@@ -15,4 +15,14 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Mapper\" />
+      <Folder Include="Request\" />
+      <Folder Include="Response\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Domain\Domain.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -1,3 +1,7 @@
+using Infraestructure.Context;
+using Microsoft.EntityFrameworkCore;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +11,26 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Connect DB
+var connectionString = builder.Configuration.GetConnectionString("ArtCollabDB");
+
+builder.Services.AddDbContext<ArtCollabDbContext>(
+    dbContextOptions =>
+    {
+        dbContextOptions.UseMySql(connectionString,
+            ServerVersion.AutoDetect(connectionString)
+        );
+    });
+
+
 var app = builder.Build();
+
+//EF
+using (var scope = app.Services.CreateScope())
+using (var context = scope.ServiceProvider.GetService<ArtCollabDbContext>())
+{
+    context.Database.EnsureCreated();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
