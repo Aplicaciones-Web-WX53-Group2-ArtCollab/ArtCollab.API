@@ -49,6 +49,30 @@ namespace Application.Controllers
             return Ok(result);
         }
 
+        // GET: api/Reader/5
+        [HttpGet("{email}", Name = "GetByEmail")]
+        public async Task<IActionResult> GetByEmailAsync(string email)
+        {
+            var data = await _readerData.GetByEmailAsync(email);
+            var result = _mapper.Map<Reader, ReaderResponse>(data);
+
+            if (result == null) return NotFound();
+
+            return Ok(result);
+        }
+
+        // GET: api/Reader/5
+        [HttpGet("{userName}/{password}", Name = "GetByUserNameAndPassword")]
+        public async Task<IActionResult> GetByUserNameAndPasswordAsync(string userName, string password)
+        {
+            var data = await _readerData.GetByUserNameAndPasswordAsync(userName, password);
+            var result = _mapper.Map<Reader, ReaderResponse>(data);
+
+            if (result == null) return NotFound();
+
+            return Ok(result);
+        }
+
         // POST: api/Reader
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] ReaderRequest data)
