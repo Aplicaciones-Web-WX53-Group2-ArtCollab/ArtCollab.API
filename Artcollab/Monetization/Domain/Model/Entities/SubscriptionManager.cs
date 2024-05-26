@@ -1,16 +1,18 @@
-namespace artcollab.API.Monetization.Interfaces.REST;
+using Application.Monetization.Domain.Model.Aggregates;
+
+namespace Application.Monetization.Domain.Model.Entities;
 
 public class SubscriptionManager
 {
     
-    private SubscriptionStrategy _subscriptionStrategy;
+    private ISubscriptionStrategy _subscriptionStrategy;
     
-    public SubscriptionManager(SubscriptionStrategy subscriptionStrategy)
+    public SubscriptionManager(ISubscriptionStrategy subscriptionStrategy)
     {
         _subscriptionStrategy = subscriptionStrategy;
     }
     
-    public void SetSubscriptionStrategy(SubscriptionStrategy subscriptionStrategy)
+    public void SetSubscriptionStrategy(ISubscriptionStrategy subscriptionStrategy)
     {
         _subscriptionStrategy = subscriptionStrategy;
     }

@@ -1,6 +1,6 @@
-namespace artcollab.API.Monetization.Interfaces.REST;
+namespace Application.Monetization.Domain.Model.Aggregates;
 
-public class Subscription
+public abstract class Subscription
 {
     public int Id { get; set; }
     public bool IsActive { get; set; }

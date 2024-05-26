@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/InterfaceLayer/Application/Application.csproj": {}
+    "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Artcollab/Application.csproj": {}
   },
   "projects": {
-    "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/InterfaceLayer/Application/Application.csproj": {
+    "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Artcollab/Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/InterfaceLayer/Application/Application.csproj",
+        "projectUniqueName": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Artcollab/Application.csproj",
         "projectName": "Application",
-        "projectPath": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/InterfaceLayer/Application/Application.csproj",
+        "projectPath": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Artcollab/Application.csproj",
         "packagesPath": "/Users/lordmathi2741/.nuget/packages/",
-        "outputPath": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/InterfaceLayer/Application/obj/",
+        "outputPath": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Artcollab/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/lordmathi2741/.nuget/NuGet/NuGet.Config"

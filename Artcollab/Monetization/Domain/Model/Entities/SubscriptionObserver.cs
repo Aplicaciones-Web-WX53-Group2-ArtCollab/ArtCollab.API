@@ -1,19 +1,22 @@
-namespace artcollab.API.Monetization.Interfaces.REST;
+using Application.Monetization.Domain.Model.Aggregates;
 
-public class SubscriptionObserver : Observer
+namespace Application.Monetization.Domain.Model.Entities
 {
-    public override void Update()
+    public class SubscriptionObserver : Observer
     {
-        throw new System.NotImplementedException();
-    }
+        public override void Update()
+        {
+            throw new System.NotImplementedException();
+        }
     
-    public void Subscribe()
-    {
-        throw new System.NotImplementedException();
-    }
+        public void Subscribe()
+        {
+            throw new System.NotImplementedException();
+        }
     
-    public void Unsubscribe()
-    {
-        throw new System.NotImplementedException();
+        public void Unsubscribe()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

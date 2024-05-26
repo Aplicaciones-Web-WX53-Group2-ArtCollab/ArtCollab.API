@@ -1,6 +1,9 @@
-namespace artcollab.API.Monetization.Interfaces.REST;
+using artcollab.API.Monetization.Interfaces.REST;
 
-public interface SubscriptionStrategy
+namespace Application.Monetization.Domain.Model.Aggregates;
+
+public interface ISubscriptionStrategy
 {
-    public void Subscribe(TEntity entity);
+    public void Subscribe(Subscription entity);
 }
+

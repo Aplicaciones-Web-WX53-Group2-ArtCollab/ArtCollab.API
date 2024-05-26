@@ -1,9 +1,13 @@
-namespace artcollab.API.Monetization.Interfaces.REST;
+using Application.Monetization.Domain.Model.Aggregates;
+using artcollab.API.Monetization.Interfaces.REST;
 
-public class ReaderSubscriptionStrategy : SubscriptionStrategy
+namespace Application.Monetization.Domain.Model.Entities
 {
-    public override void Subscribe(Subscription subscription)
+    public class ReaderSubscriptionStrategy : ISubscriptionStrategy
     {
-        subscription.isActive = true;
+        public void Subscribe(Subscription subscription)
+        {
+            subscription.IsActive = true;
+        }
     }
 }

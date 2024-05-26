@@ -1,4 +1,6 @@
-namespace artcollab.API.Monetization.Interfaces.REST;
+using Application.Monetization.Domain.Model.Aggregates;
+
+namespace Application.Monetization.Domain.Model.Entities;
 
 public class PaymentObserver : Observer
 {

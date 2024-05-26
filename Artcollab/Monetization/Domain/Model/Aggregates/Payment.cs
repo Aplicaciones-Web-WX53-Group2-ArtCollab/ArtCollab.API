@@ -1,7 +1,15 @@
-namespace artcollab.API.Monetization.Interfaces.REST;
+namespace Application.Monetization.Domain.Model.Aggregates;
 
-public class Payment
+public partial class Payment
 {
     public string Type { get; set; }
     
+}
+
+public partial class Payment
+{
+    public Payment()
+    {
+        Type = " ";
+    }
 }
