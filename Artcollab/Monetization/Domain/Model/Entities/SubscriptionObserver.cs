@@ -2,21 +2,12 @@ using Application.Monetization.Domain.Model.Aggregates;
 
 namespace Application.Monetization.Domain.Model.Entities
 {
-    public class SubscriptionObserver : Observer
+    public class SubscriptionObserver : Observer<Subscription>
     {
-        public override void Update()
+     
+        public override void Update(Subscription subscription)
         {
-            throw new System.NotImplementedException();
-        }
-    
-        public void Subscribe()
-        {
-            throw new System.NotImplementedException();
-        }
-    
-        public void Unsubscribe()
-        {
-            throw new System.NotImplementedException();
+            subscription.IsActive = !subscription.IsActive;
         }
     }
 }

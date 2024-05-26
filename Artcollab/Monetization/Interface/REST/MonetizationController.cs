@@ -1,7 +1,7 @@
 using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 
-namespace artcollab.API.Monetization.Interfaces.REST;
+namespace Application.Monetization.Interface.REST;
 
 
 

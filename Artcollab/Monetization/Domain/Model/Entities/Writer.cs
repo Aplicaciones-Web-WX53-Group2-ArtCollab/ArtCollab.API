@@ -1,5 +1,4 @@
 using Application.Monetization.Domain.Model.Aggregates;
-using artcollab.API.Monetization.Interfaces.REST;
 
 namespace Application.Monetization.Domain.Model.Entities;
 
@@ -11,7 +10,7 @@ public partial class Writer : Reader
     public  string Password { get; set; }
     public  string Type { get; set; }
     public  string Username { get; set; }
-    public  ReaderSubscriptionStrategy SubscriptionStrategy { get; set; }
+    public  WriterSubscriptionStrategy SubscriptionStrategy { get; set; }
 }
 
 public partial class Writer
@@ -23,7 +22,7 @@ public partial class Writer
         Email = " ";
         Password = " ";
         Username = " ";
-        SubscriptionStrategy = new ReaderSubscriptionStrategy();
+        SubscriptionStrategy = new WriterSubscriptionStrategy();
         
     }
 }

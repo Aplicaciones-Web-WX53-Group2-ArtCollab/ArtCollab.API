@@ -2,15 +2,11 @@ using Application.Monetization.Domain.Model.Aggregates;
 
 namespace Application.Monetization.Domain.Model.Entities;
 
-public class PaymentObserver : Observer
+public class PaymentObserver : Observer<Payment>
 {
-    public override void Update()
+    public override void Update(Payment entity)
     {
-        throw new System.NotImplementedException();
-    }
-    public void Pay()
-    {
-        throw new System.NotImplementedException();
+        entity.Status = !entity.Status;
     }
     
 }
