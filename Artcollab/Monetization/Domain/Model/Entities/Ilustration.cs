@@ -1,6 +1,6 @@
 namespace artcollab.API.Monetization.Interfaces.REST;
 
-public class Ilustration
+public class Ilustration : UserFactory
 {
     public int Id { get; set; }
     public string Name { get; set; }
