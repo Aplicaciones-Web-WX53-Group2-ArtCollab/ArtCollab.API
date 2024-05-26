@@ -1,6 +1,6 @@
 namespace Application.Monetization.Domain.Model.Aggregates;
 
-public partial class Comision
+public partial class Commision
 {
     public int Id { get; set; }
     public double Amount { get; set; }
@@ -8,9 +8,9 @@ public partial class Comision
     public DateTime Date { get; set; }
 }
 
-public partial class Comision
+public partial class Commision
 {
-    public Comision()
+    public Commision()
     {
         Amount = 0.00;
         Content = string.Empty;

@@ -29,5 +29,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         builder.Entity<Reader>().Property(r => r.Type).IsRequired();
         builder.Entity<Reader>().Property(r => r.Username).IsRequired();
         
+        builder.Entity<Commision>().ToTable("commisions");
+        builder.Entity<Commision>().HasKey(c => c.Id);
+        builder.Entity<Commision>().Property(c => c.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Commision>().Property(c => c.Amount).IsRequired();
+        builder.Entity<Commision>().Property(c => c.Content).IsRequired();
+        builder.Entity<Commision>().Property(c => c.Date).IsRequired();
+        
     }
 }
