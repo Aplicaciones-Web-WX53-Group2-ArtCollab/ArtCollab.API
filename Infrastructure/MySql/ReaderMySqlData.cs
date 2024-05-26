@@ -7,10 +7,10 @@ namespace Infrastructure.MySql;
 
 public class ReaderMySqlData : IReaderData
 {
-    private readonly Repository<Reader> _repository;
+    private readonly IRepository<Reader> _repository;
     private readonly ArtCollabDbContext _context;
 
-    public ReaderMySqlData(Repository<Reader> repository, ArtCollabDbContext context)
+    public ReaderMySqlData(IRepository<Reader> repository, ArtCollabDbContext context)
     {
         _repository = repository;
         _context = context;

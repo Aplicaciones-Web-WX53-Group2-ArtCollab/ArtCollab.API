@@ -4,3 +4,6 @@
 /Domain/obj
 /Infraestructure/obj
 /Infrastructure/obj
+/Application/bin
+/Domain/bin
+/Infrastructure/bin

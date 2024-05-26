@@ -1,4 +1,10 @@
+using Application.Mapper;
+using Domain;
+using Domain.Interfaces;
 using Infrastructure.Context;
+using Infrastructure.Interfaces;
+using Infrastructure.Model;
+using Infrastructure.MySql;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -10,6 +16,15 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//dependency injection
+builder.Services.AddScoped<IReaderData, ReaderMySqlData>();
+builder.Services.AddScoped(typeof(IRepositoryGeneric<>), typeof(RepositoryGeneric<>));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+builder.Services.AddAutoMapper(typeof(RequestToModel)
+    , typeof(ModelToRequest)
+    , typeof(ModelToResponse));
 
 // Connect DB
 var connectionString = builder.Configuration.GetConnectionString("ArtCollabDB");
