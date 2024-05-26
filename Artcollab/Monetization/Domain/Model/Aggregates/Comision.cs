@@ -13,7 +13,7 @@ public partial class Comision
     public Comision()
     {
         Amount = 0.00;
-        Content = "No content";
+        Content = string.Empty;
         Date = DateTime.Now;
     }
 }

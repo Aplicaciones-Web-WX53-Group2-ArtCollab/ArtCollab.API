@@ -11,7 +11,7 @@ public partial class Payment
 {
     public Payment()
     {
-        Type = " ";
+        Type = string.Empty;
         Status = false;
     }
 }

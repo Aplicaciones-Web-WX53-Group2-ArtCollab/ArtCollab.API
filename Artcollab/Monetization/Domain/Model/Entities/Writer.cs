@@ -18,10 +18,10 @@ public partial class Writer
     public Writer()
     {
         Type = "Writer";
-        Name = " ";
-        Email = " ";
-        Password = " ";
-        Username = " ";
+        Name = string.Empty;
+        Email = string.Empty;
+        Password = string.Empty;
+        Username = string.Empty;
         SubscriptionStrategy = new WriterSubscriptionStrategy();
         
     }

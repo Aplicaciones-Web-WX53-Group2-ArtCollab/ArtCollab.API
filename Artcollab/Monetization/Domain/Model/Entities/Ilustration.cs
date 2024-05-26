@@ -17,11 +17,11 @@ public partial class Ilustration
 {
     public Ilustration()
     {
-        Type = "Ilustration";
-        Name = " ";
-        Email = " ";
-        Password = " ";
-        Username = " ";
+        Type = string.Empty;
+        Name = string.Empty;
+        Email = string.Empty;
+        Password = string.Empty;
+        Username = string.Empty;
         SubscriptionStrategy = new IlustrationSubscriptionStrategy();
         
     }
