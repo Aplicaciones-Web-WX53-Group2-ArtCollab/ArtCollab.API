@@ -1,6 +1,7 @@
+using Infrastructure.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infraestructure.Context;
+namespace Infrastructure.Context;
 
 public class ArtCollabDbContext : DbContext
 {
@@ -13,6 +14,8 @@ public class ArtCollabDbContext : DbContext
     {
 
     }
+
+    public DbSet<Reader> Readers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -27,6 +30,8 @@ public class ArtCollabDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+
+        builder.Entity<Reader>().ToTable("Reader");
     }
 
 }

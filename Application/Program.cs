@@ -1,4 +1,4 @@
-using Infraestructure.Context;
+using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
 
