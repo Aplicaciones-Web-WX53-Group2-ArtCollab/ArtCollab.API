@@ -1,6 +1,6 @@
-namespace Application.Monetization.Shared.Domain.Repositories;
+namespace Application.Monetization.Domain.Repository;
 
-public interface IBaseRepository<TEntity> where TEntity : class
+public interface IRepositoryGeneric<TEntity> where TEntity : class
 {
     Task AddAsync(TEntity entity);
     Task<TEntity?> FindByIdAsync(int id);

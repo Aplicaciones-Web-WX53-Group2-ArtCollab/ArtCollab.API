@@ -14,20 +14,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        base.OnModelCreating(builder);
+        /*base.OnModelCreating(builder);
         builder.Entity<Subscription>().ToTable("subscriptions");
         builder.Entity<Subscription>().HasKey(s => s.Id);
         builder.Entity<Subscription>().Property(s => s.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<Subscription>().Property(s => s.IsActive).IsRequired();
-
-        builder.Entity<Reader>().ToTable("readers");
-        builder.Entity<Reader>().HasKey(r => r.Id);
-        builder.Entity<Reader>().Property(r => r.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<Reader>().Property(r => r.Name).IsRequired();
-        builder.Entity<Reader>().Property(r => r.Email).IsRequired();
-        builder.Entity<Reader>().Property(r => r.Password).IsRequired();
-        builder.Entity<Reader>().Property(r => r.Type).IsRequired();
-        builder.Entity<Reader>().Property(r => r.Username).IsRequired();
+        builder.Entity<Subscription>().Property(s => s.IsActive).IsRequired(); */
+        
         
         builder.Entity<Commision>().ToTable("commisions");
         builder.Entity<Commision>().HasKey(c => c.Id);
