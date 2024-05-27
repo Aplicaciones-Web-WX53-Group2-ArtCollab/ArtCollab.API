@@ -51,8 +51,8 @@ public class ReaderMySqlData : IReaderData
         return await _context.Readers.FirstOrDefaultAsync(i => i.Email == email);
     }
 
-    public async Task<Reader> GetByUserNameAndPasswordAsync(string userName, string password)
+    public async Task<Reader> GetByEmailAndPasswordAsync(string Email, string password)
     {
-        return await _context.Readers.FirstOrDefaultAsync(i => i.UserName == userName && i.Password == password);
+        return await _context.Readers.FirstOrDefaultAsync(i => i.Email == Email && i.Password == password);
     }
 }

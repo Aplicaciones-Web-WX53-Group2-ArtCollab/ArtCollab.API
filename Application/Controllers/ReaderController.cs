@@ -28,44 +28,11 @@ namespace Application.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/Reader
-        [HttpGet]
-        public async Task<IActionResult> GetAsync()
-        {
-            var data = await _readerData.GetAllAsync();
-            var result = _mapper.Map<IEnumerable<Reader>, List<ReaderResponse>>(data);
-            return Ok(result);
-        }
-
         // GET: api/Reader/5
-        [HttpGet("{id}", Name = "Get")]
-        public async Task<IActionResult> GetAsync(int id)
+        [HttpGet("{email}/{password}", Name = "GetByEmailAndPassword")]
+        public async Task<IActionResult> GetByEmailAndPasswordAsync(string email, string password)
         {
-            var data = await _readerData.GetByIdAsync(id);
-            var result = _mapper.Map<Reader, ReaderResponse>(data);
-
-            if (result == null) return NotFound();
-
-            return Ok(result);
-        }
-
-        // GET: api/Reader/5
-        [HttpGet("{email}", Name = "GetByEmail")]
-        public async Task<IActionResult> GetByEmailAsync(string email)
-        {
-            var data = await _readerData.GetByEmailAsync(email);
-            var result = _mapper.Map<Reader, ReaderResponse>(data);
-
-            if (result == null) return NotFound();
-
-            return Ok(result);
-        }
-
-        // GET: api/Reader/5
-        [HttpGet("{userName}/{password}", Name = "GetByUserNameAndPassword")]
-        public async Task<IActionResult> GetByUserNameAndPasswordAsync(string userName, string password)
-        {
-            var data = await _readerData.GetByUserNameAndPasswordAsync(userName, password);
+            var data = await _readerData.GetByEmailAndPasswordAsync(email, password);
             var result = _mapper.Map<Reader, ReaderResponse>(data);
 
             if (result == null) return NotFound();
@@ -85,40 +52,6 @@ namespace Application.Controllers
                 var reader = _mapper.Map<ReaderRequest, Reader>(data);
                 var result = await _repositoryGeneric.AddAsync(reader);
                 return Created("api/Reader", result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
-        }
-
-        // PUT: api/Reader/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int id, [FromBody] ReaderRequest value)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                    return BadRequest();
-
-                var reader = _mapper.Map<ReaderRequest, Reader>(value);
-                await _repositoryGeneric.UpdateAsync(reader, id);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
-        }
-
-        // DELETE: api/Reader/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            try
-            {
-                await _repositoryGeneric.DeleteAsync(id);
-                return Ok();
             }
             catch (Exception ex)
             {

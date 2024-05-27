@@ -6,5 +6,5 @@ public interface IReaderData : IRepository<Reader>
 {
     Task<Reader> GetByUserNameAsync(string userName);
     Task<Reader> GetByEmailAsync(string email);
-    Task<Reader> GetByUserNameAndPasswordAsync(string userName, string password);
+    Task<Reader> GetByEmailAndPasswordAsync(string email, string password);
 }

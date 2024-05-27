@@ -24,10 +24,17 @@ public class RepositoryGeneric<TEntity>: IRepositoryGeneric<TEntity> where TEnti
             {
                 throw new Exception("A reader with the same username already exists.");
             }
+
             var existingReaderByEmail = await _readerData.GetByEmailAsync(reader.Email);
             if (existingReaderByEmail != null)
             {
                 throw new Exception("A reader with the same email already exists.");
+            }
+
+            var readerType = reader.Type.ToLower();
+            if (readerType != "reader" && readerType != "artist")
+            {
+                throw new Exception("Invalid reader type: Must be 'reader' or 'artist'.");
             }
         }
         return await _repository.AddAsync(entity);
@@ -36,6 +43,10 @@ public class RepositoryGeneric<TEntity>: IRepositoryGeneric<TEntity> where TEnti
     public async Task UpdateAsync(TEntity entity, int id)
     {
         var existingEntity = await _repository.GetByIdAsync(id);
+        if (existingEntity == null)
+        {
+            throw new Exception("Entity not found.");
+        }
         await _repository.UpdateAsync(entity, id);
     }
 
