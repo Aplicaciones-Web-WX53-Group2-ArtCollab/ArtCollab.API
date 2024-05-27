@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qepjEDY6fkrHNYmNNEN+FlG3+m2VYHf+2J1VEaNAeDmXZ4Xn3RyIp8ZoODVDAfUGJNYxL738ebafxr/rICyfEw==",
+  "dgSpecHash": "VR4cXPXXLCPRIDaqD1nPkDbGAuqpg7QutSK81NBogdyPKN1qCUtQZw3KWOi+3r+s7hD38TjfqGkKGPxvDhwQVg==",
   "success": true,
   "projectFilePath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\artcollab.API\\Application\\Application.csproj",
   "expectedPackageFiles": [
@@ -92,9 +92,11 @@
     "C:\\Users\\user\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration\\7.0.12\\microsoft.visualstudio.web.codegeneration.7.0.12.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.core\\7.0.12\\microsoft.visualstudio.web.codegeneration.core.7.0.12.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.design\\7.0.12\\microsoft.visualstudio.web.codegeneration.design.7.0.12.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.entityframeworkcore\\7.0.12\\microsoft.visualstudio.web.codegeneration.entityframeworkcore.7.0.12.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.templating\\7.0.12\\microsoft.visualstudio.web.codegeneration.templating.7.0.12.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.utils\\7.0.12\\microsoft.visualstudio.web.codegeneration.utils.7.0.12.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.visualstudio.web.codegenerators.mvc\\7.0.12\\microsoft.visualstudio.web.codegenerators.mvc.7.0.12.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\mysqlconnector\\2.2.5\\mysqlconnector.2.2.5.nupkg.sha512",
