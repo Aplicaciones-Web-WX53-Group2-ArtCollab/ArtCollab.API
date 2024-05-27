@@ -8,4 +8,5 @@ public class Comment : BaseModel
     public string Rank { get; set; }
     public int Likes { get; set; } = 0;
     public int Dislikes { get; set; } = 0;
+    public DateTime Date { get; set; }
 }

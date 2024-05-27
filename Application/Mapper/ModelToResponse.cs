@@ -1,6 +1,13 @@
+using Application.Response;
+using AutoMapper;
+using Infraestructure.Models;
+
 namespace Application.Mapper;
 
-public class ModelToResponse
+public class ModelToResponse : Profile
 {
-    
+    public ModelToResponse()
+    {
+        CreateMap<Comment, CommentResponse>();
+    }
 }

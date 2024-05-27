@@ -14,6 +14,7 @@ public class CommentDomain : ICommentDomain
 
     public async Task<int> SaveCommentAsync(Comment data)
     {
+        data.Date = DateTime.Now;
         return await _commentData.SaveCommentAsync(data);
     }
 
