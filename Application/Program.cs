@@ -1,3 +1,8 @@
+using Infraestructure.Context;
+using Infraestructure.Interfaces;
+using Infraestructure.MySql;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +12,30 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped(typeof(IRepositoryGeneric<>), typeof(RepositoryGeneric<>));
+
+var connectionString = builder.Configuration.GetConnectionString("ArtCollabDb");
+
+builder.Services.AddDbContext<TemplateDBContext>(
+    dbContextOptions =>
+    {
+        dbContextOptions.UseMySql(connectionString, 
+                ServerVersion.AutoDetect(connectionString), 
+                options => options.EnableRetryOnFailure(
+            maxRetryCount: 5,
+            maxRetryDelay: TimeSpan.FromSeconds(30),
+            errorNumbersToAdd: null));
+    });
+
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<TemplateDBContext>();
+    context.Database.EnsureCreated();
+}
 
 app.UseCors(
     b =>b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()
