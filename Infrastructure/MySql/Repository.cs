@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infraestructure.MySql
 {
-    public class Repository<TEntity>(BookDBContext context) : IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity>(TemplateDBContext context) : IRepository<TEntity> where TEntity : class
     {
-        private readonly BookDBContext _context = context;
+        private readonly TemplateDBContext _context = context;
         private readonly DbSet<TEntity> _dbSet = context.Set<TEntity>();
         
         public async Task<IEnumerable<TEntity>> GetAllAsync()

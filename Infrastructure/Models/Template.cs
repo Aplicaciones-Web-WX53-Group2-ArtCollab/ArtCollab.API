@@ -1,8 +1,8 @@
 ﻿namespace Infraestructure.Models
 {
-    public partial class Book
+    public partial class Template
     {
-        public Book()
+        public Template()
         {
             this.Title = string.Empty;
             this.Description = string.Empty;
@@ -17,7 +17,7 @@
         }
     }
 
-    public partial class Book
+    public partial class Template
     {
         public string Title { get; set; }
         public string Description { get; set; }
