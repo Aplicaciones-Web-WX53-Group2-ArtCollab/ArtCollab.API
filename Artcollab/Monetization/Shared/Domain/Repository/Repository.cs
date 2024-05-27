@@ -2,7 +2,7 @@ using Application.Monetization.Shared.Domain.Interfaces;
 using Application.Monetization.Shared.Infrastructure.Persistence.EFC.Configuration.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Monetization.Shared.Domain.Repositories;
+namespace Application.Monetization.Shared.Domain.Repository;
 
 public class Repository<TEntity>(AppDbContext context): IBaseRepository<TEntity> where TEntity : class 
 {

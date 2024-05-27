@@ -1,7 +1,9 @@
 using Application.Monetization.Data.Persistence.EFC.Repository;
+using Application.Monetization.Domain.Model.Aggregates;
+using Application.Monetization.Domain.Model.Entities;
 using Application.Monetization.Domain.Repository;
 using Application.Monetization.Shared.Domain.Interfaces;
-using Application.Monetization.Shared.Domain.Repositories;
+using Application.Monetization.Shared.Domain.Repository;
 using Application.Monetization.Shared.Infrastructure.Persistence.EFC.Configuration.Context;
 using Microsoft.EntityFrameworkCore;
 
