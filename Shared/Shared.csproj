@@ -15,4 +15,8 @@
       <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Infrastructure\Persistence\EFC\Configuration\" />
+    </ItemGroup>
+
 </Project>

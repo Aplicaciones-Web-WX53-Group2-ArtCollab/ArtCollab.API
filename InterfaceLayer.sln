@@ -4,9 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{F68F1CD1-A3BF-4B08-8D58-5198AA626C13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infraestructure", "Infraestructure\Infraestructure.csproj", "{5373F829-3C9D-4B7F-944A-C97837456035}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{519A0032-AD39-4358-A450-850F0F4C3DF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{5373F829-3C9D-4B7F-944A-C97837456035}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +24,5 @@ Global
 		{5373F829-3C9D-4B7F-944A-C97837456035}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5373F829-3C9D-4B7F-944A-C97837456035}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5373F829-3C9D-4B7F-944A-C97837456035}.Release|Any CPU.Build.0 = Release|Any CPU
-		{519A0032-AD39-4358-A450-850F0F4C3DF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{519A0032-AD39-4358-A450-850F0F4C3DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{519A0032-AD39-4358-A450-850F0F4C3DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{519A0032-AD39-4358-A450-850F0F4C3DF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

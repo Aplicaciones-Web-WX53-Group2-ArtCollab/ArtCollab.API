@@ -16,11 +16,7 @@
 /Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/bin/Debug/net7.0/Domain.dll
-/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/bin/Debug/net7.0/Infraestructure.dll
-/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/bin/Debug/net7.0/Shared.dll
 /Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/bin/Debug/net7.0/Domain.pdb
-/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/bin/Debug/net7.0/Infraestructure.pdb
-/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/bin/Debug/net7.0/Shared.pdb
 /Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/obj/Debug/net7.0/Application.csproj.AssemblyReference.cache
 /Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/obj/Debug/net7.0/Application.GeneratedMSBuildEditorConfig.editorconfig
 /Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/obj/Debug/net7.0/Application.AssemblyInfoInputs.cache
@@ -43,3 +39,5 @@
 /Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/obj/Debug/net7.0/Application.pdb
 /Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/obj/Debug/net7.0/Application.genruntimeconfig.cache
 /Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/obj/Debug/net7.0/ref/Application.dll
+/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/bin/Debug/net7.0/Infrastructure.dll
+/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/bin/Debug/net7.0/Infrastructure.pdb

@@ -1,9 +1,9 @@
+using Domain.Monetization.Interface;
 using Domain.Monetization.Repository;
-using Infraestructure.Monetization.Persistence.EFC.Repository;
+using Infraestructure.Monetization.Context;
+using Infraestructure.Monetization.Interfaces;
+using Infraestructure.Monetization.MySql;
 using Microsoft.EntityFrameworkCore;
-using Shared.Domain.Interfaces;
-using Shared.Domain.Repository;
-using Shared.Infrastructure.Persistence.EFC.Configuration.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(Repository<>));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IRepositoryGeneric<>), typeof(RepositoryGeneric<>));
 
 var connectionString = builder.Configuration.GetConnectionString("ArtCollabDb");

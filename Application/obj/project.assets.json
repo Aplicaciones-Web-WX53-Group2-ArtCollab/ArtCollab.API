@@ -264,7 +264,7 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.OpenApi/1.6.14": {
+      "Microsoft.OpenApi/1.4.3": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
@@ -374,42 +374,27 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "Microsoft.OpenApi": "1.6.14",
+          "Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
+      },
+      "Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.2",
           "Pomelo.EntityFrameworkCore.MySql": "7.0.0"
         },
         "compile": {
-          "bin/placeholder/Domain.dll": {}
+          "bin/placeholder/Infrastructure.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Domain.dll": {}
-        }
-      },
-      "Infraestructure/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "Domain": "1.0.0",
-          "Shared": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Infraestructure.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Infraestructure.dll": {}
-        }
-      },
-      "Shared/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "Domain": "1.0.0",
-          "Microsoft.EntityFrameworkCore": "7.0.19"
-        },
-        "compile": {
-          "bin/placeholder/Shared.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Shared.dll": {}
+          "bin/placeholder/Infrastructure.dll": {}
         }
       }
     }
@@ -1012,18 +997,17 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.OpenApi/1.6.14": {
-      "sha512": "tTaBT8qjk3xINfESyOPE2rIellPvB7qpVqiWiyA/lACVvz+xOGiXhFUfohcx82NLbi5avzLW0lx+s6oAqQijfw==",
+    "Microsoft.OpenApi/1.4.3": {
+      "sha512": "rURwggB+QZYcSVbDr7HSdhw/FELvMlriW10OeOzjPT7pstefMo7IThhtNtDudxbXhW+lj0NfX72Ka5EDsG8x6w==",
       "type": "package",
-      "path": "microsoft.openapi/1.6.14",
+      "path": "microsoft.openapi/1.4.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "README.md",
         "lib/netstandard2.0/Microsoft.OpenApi.dll",
         "lib/netstandard2.0/Microsoft.OpenApi.pdb",
         "lib/netstandard2.0/Microsoft.OpenApi.xml",
-        "microsoft.openapi.1.6.14.nupkg.sha512",
+        "microsoft.openapi.1.4.3.nupkg.sha512",
         "microsoft.openapi.nuspec"
       ]
     },
@@ -1166,23 +1150,19 @@
       "path": "../Domain/Domain.csproj",
       "msbuildProject": "../Domain/Domain.csproj"
     },
-    "Infraestructure/1.0.0": {
+    "Infrastructure/1.0.0": {
       "type": "project",
-      "path": "../Infraestructure/Infraestructure.csproj",
-      "msbuildProject": "../Infraestructure/Infraestructure.csproj"
-    },
-    "Shared/1.0.0": {
-      "type": "project",
-      "path": "../Shared/Shared.csproj",
-      "msbuildProject": "../Shared/Shared.csproj"
+      "path": "../Infrastructure/Infrastructure.csproj",
+      "msbuildProject": "../Infrastructure/Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "Domain >= 1.0.0",
-      "Infraestructure >= 1.0.0",
+      "Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.10",
-      "Shared >= 1.0.0",
+      "Microsoft.EntityFrameworkCore >= 7.0.19",
+      "Pomelo.EntityFrameworkCore.MySql >= 7.0.0",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
@@ -1214,11 +1194,8 @@
             "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Domain/Domain.csproj": {
               "projectPath": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Domain/Domain.csproj"
             },
-            "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Infraestructure/Infraestructure.csproj": {
-              "projectPath": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Infraestructure/Infraestructure.csproj"
-            },
-            "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Shared/Shared.csproj": {
-              "projectPath": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Shared/Shared.csproj"
+            "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Infrastructure/Infrastructure.csproj": {
+              "projectPath": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Infrastructure/Infrastructure.csproj"
             }
           }
         }
@@ -1236,6 +1213,14 @@
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[7.0.10, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[7.0.19, )"
+          },
+          "Pomelo.EntityFrameworkCore.MySql": {
+            "target": "Package",
+            "version": "[7.0.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

@@ -1,4 +1,5 @@
 using System.Net.Mime;
+using Domain.Monetization.Interface;
 using Domain.Monetization.Model.Aggregates;
 using Domain.Monetization.Repository;
 using Microsoft.AspNetCore.Authorization;
@@ -17,14 +18,14 @@ public class SubscriptionController(IRepositoryGeneric<Subscription> repositoryG
     [Route("get-all")]
     public async Task<IActionResult> GetAll()
     {
-        return Ok(await _repositoryGeneric.ListAsync());
+        return Ok(await _repositoryGeneric.GetAllAsync());
     }
     
     [HttpPost]
     [Route("add-subscription")]
     public async Task<IActionResult> Post([FromBody] Subscription subscription)
     {
-        await _repositoryGeneric.AddAsync(subscription);
+        await _repositoryGeneric.Add(subscription);
         return Ok(true);
     }
 }

@@ -11,3 +11,6 @@
 /Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Domain/obj/Debug/net7.0/refint/Domain.dll
 /Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Domain/obj/Debug/net7.0/Domain.pdb
 /Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Domain/obj/Debug/net7.0/ref/Domain.dll
+/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Domain/bin/Debug/net7.0/Infrastructure.dll
+/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Domain/bin/Debug/net7.0/Infrastructure.pdb
+/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Domain/obj/Debug/net7.0/Domain.csproj.CopyComplete

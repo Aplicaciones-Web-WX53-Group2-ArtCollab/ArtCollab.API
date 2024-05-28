@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "waXh+5/Epp2FscLHNZy+4RkmxEtL6Qtnew2+/+Mdb97fr7pzwoP+jwjSeN5vf8/HOZYHOCA8qMQIOhR44YrlXw==",
+  "dgSpecHash": "j/N4BB3xMRxb2t1+AMFX7HQt8ajnvJhcpqGrim3hCIUGRx7aAedEQqk5sIcVdw0Uv/AWsu3/9e0qTUu2uu+XJw==",
   "success": true,
   "projectFilePath": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/Application.csproj",
   "expectedPackageFiles": [
@@ -19,7 +19,7 @@
     "/Users/lordmathi2741/.nuget/packages/microsoft.extensions.logging.abstractions/7.0.0/microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
     "/Users/lordmathi2741/.nuget/packages/microsoft.extensions.options/7.0.0/microsoft.extensions.options.7.0.0.nupkg.sha512",
     "/Users/lordmathi2741/.nuget/packages/microsoft.extensions.primitives/7.0.0/microsoft.extensions.primitives.7.0.0.nupkg.sha512",
-    "/Users/lordmathi2741/.nuget/packages/microsoft.openapi/1.6.14/microsoft.openapi.1.6.14.nupkg.sha512",
+    "/Users/lordmathi2741/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
     "/Users/lordmathi2741/.nuget/packages/mysqlconnector/2.2.5/mysqlconnector.2.2.5.nupkg.sha512",
     "/Users/lordmathi2741/.nuget/packages/pomelo.entityframeworkcore.mysql/7.0.0/pomelo.entityframeworkcore.mysql.7.0.0.nupkg.sha512",
     "/Users/lordmathi2741/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
