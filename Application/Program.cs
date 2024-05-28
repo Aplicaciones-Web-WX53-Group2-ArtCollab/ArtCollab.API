@@ -5,6 +5,8 @@ using Infrastructure.Context;
 using Infrastructure.Interfaces;
 using Infrastructure.Model;
 using Infrastructure.MySql;
+using Infrastructure.Users.Interfaces;
+using Infrastructure.Users.MySql;
 using Microsoft.EntityFrameworkCore;
 
 

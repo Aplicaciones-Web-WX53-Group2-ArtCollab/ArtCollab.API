@@ -1,17 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application.Request;
-using Application.Response;
+using Application.Users.Request;
+using Application.Users.Response;
 using AutoMapper;
 using Domain.Interfaces;
 using Infrastructure.Interfaces;
 using Infrastructure.Model;
-using Microsoft.AspNetCore.Http;
+using Infrastructure.Users.Interfaces;
+using Infrastructure.Users.Model;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Application.Controllers
+namespace Application.Users.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -32,7 +29,18 @@ namespace Application.Controllers
         [HttpGet("{email}/{password}", Name = "GetByEmailAndPassword")]
         public async Task<IActionResult> GetByEmailAndPasswordAsync(string email, string password)
         {
-            var data = await _readerData.GetByEmailAndPasswordAsync(email, password);
+            var readerId = await _readerData.GetByEmailAndPasswordAsync(email, password);
+
+            if (readerId == null) return NotFound();
+
+            return Ok(readerId);
+        }
+
+        // GET: api/Reader/5
+        [HttpGet("{id}", Name = "GetById")]
+        public async Task<IActionResult> GetByIdAsync(int id)
+        {
+            var data = await _readerData.GetByIdAsync(id);
             var result = _mapper.Map<Reader, ReaderResponse>(data);
 
             if (result == null) return NotFound();

@@ -1,9 +1,10 @@
 using Infrastructure.Context;
 using Infrastructure.Interfaces;
-using Infrastructure.Model;
+using Infrastructure.Users.Interfaces;
+using Infrastructure.Users.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.MySql;
+namespace Infrastructure.Users.MySql;
 
 public class ReaderMySqlData : IReaderData
 {
@@ -51,8 +52,9 @@ public class ReaderMySqlData : IReaderData
         return await _context.Readers.FirstOrDefaultAsync(i => i.Email == email);
     }
 
-    public async Task<Reader> GetByEmailAndPasswordAsync(string Email, string password)
+    public async Task<int?> GetByEmailAndPasswordAsync(string Email, string password)
     {
-        return await _context.Readers.FirstOrDefaultAsync(i => i.Email == Email && i.Password == password);
+        var reader = await _context.Readers.FirstOrDefaultAsync(i => i.Email == Email && i.Password == password);
+        return reader?.Id;
     }
 }

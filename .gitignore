@@ -7,3 +7,5 @@
 /Application/bin
 /Domain/bin
 /Infrastructure/bin
+/Domain.Test/obj
+/Domain.Test/bin

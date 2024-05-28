@@ -1,6 +1,8 @@
 using Domain.Interfaces;
 using Infrastructure.Interfaces;
 using Infrastructure.Model;
+using Infrastructure.Users.Interfaces;
+using Infrastructure.Users.Model;
 
 namespace Domain;
 
@@ -40,24 +42,4 @@ public class RepositoryGeneric<TEntity>: IRepositoryGeneric<TEntity> where TEnti
         return await _repository.AddAsync(entity);
     }
 
-    public async Task UpdateAsync(TEntity entity, int id)
-    {
-        var existingEntity = await _repository.GetByIdAsync(id);
-        if (existingEntity == null)
-        {
-            throw new Exception("Entity not found.");
-        }
-        await _repository.UpdateAsync(entity, id);
-    }
-
-    public async Task DeleteAsync(int id)
-    {
-        var existingEntity = await _repository.GetByIdAsync(id);
-        if (existingEntity == null)
-        {
-            throw new Exception("Entity not found.");
-        }
-        await _repository.DeleteAsync(id);
-
-    }
 }

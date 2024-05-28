@@ -1,7 +1,6 @@
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+using Infrastructure.Model;
 
-namespace Infrastructure.Model;
+namespace Infrastructure.Users.Model;
 
 public class Reader : BaseModel
 {

@@ -1,6 +1,7 @@
-using Application.Response;
+using Application.Users.Response;
 using AutoMapper;
 using Infrastructure.Model;
+using Infrastructure.Users.Model;
 
 namespace Application.Mapper;
 

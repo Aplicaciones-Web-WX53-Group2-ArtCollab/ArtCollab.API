@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Application.Request;
+namespace Application.Users.Request;
 
 public class ReaderRequest
 {

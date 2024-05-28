@@ -1,4 +1,5 @@
 using Infrastructure.Model;
+using Infrastructure.Users.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Context;

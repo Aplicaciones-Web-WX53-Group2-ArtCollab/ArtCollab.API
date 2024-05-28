@@ -1,4 +1,4 @@
-namespace Application.Response;
+namespace Application.Users.Response;
 
 public class ReaderResponse
 {
