@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "j/N4BB3xMRxb2t1+AMFX7HQt8ajnvJhcpqGrim3hCIUGRx7aAedEQqk5sIcVdw0Uv/AWsu3/9e0qTUu2uu+XJw==",
+  "dgSpecHash": "rngxsQmrOKOeC2eEDZjzgExwfLa6idZsRK4b5/GJ/j2iYzdAveiRufwcIuH1HE4u2Bb+Huq3K1QtpHSNIvaw3Q==",
   "success": true,
   "projectFilePath": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/Application.csproj",
   "expectedPackageFiles": [
-    "/Users/lordmathi2741/.nuget/packages/microsoft.aspnetcore.openapi/7.0.10/microsoft.aspnetcore.openapi.7.0.10.nupkg.sha512",
+    "/Users/lordmathi2741/.nuget/packages/microsoft.aspnetcore.openapi/7.0.19/microsoft.aspnetcore.openapi.7.0.19.nupkg.sha512",
     "/Users/lordmathi2741/.nuget/packages/microsoft.entityframeworkcore/7.0.19/microsoft.entityframeworkcore.7.0.19.nupkg.sha512",
     "/Users/lordmathi2741/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.19/microsoft.entityframeworkcore.abstractions.7.0.19.nupkg.sha512",
     "/Users/lordmathi2741/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.19/microsoft.entityframeworkcore.analyzers.7.0.19.nupkg.sha512",

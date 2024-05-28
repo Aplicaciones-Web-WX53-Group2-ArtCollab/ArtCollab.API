@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net7.0": {
-      "Microsoft.AspNetCore.OpenApi/7.0.10": {
+      "Microsoft.AspNetCore.OpenApi/7.0.19": {
         "type": "package",
         "dependencies": {
           "Microsoft.OpenApi": "1.4.3"
@@ -400,10 +400,10 @@
     }
   },
   "libraries": {
-    "Microsoft.AspNetCore.OpenApi/7.0.10": {
-      "sha512": "p5LiYt1mFJdS70zyHoydahohko2pLIoXiXwANRZGYYyTXcYNQpNUOt+At+lUgGgRwta28sUKVhy2W/93j0qwhA==",
+    "Microsoft.AspNetCore.OpenApi/7.0.19": {
+      "sha512": "gHLiPrMts7U1ugAA5m8R6eN40ymcbvQC0BUB3sVs/9G4eXAW/6w8e6sA++8ENBZVqWNoxA5lcXUzDRh8Apkpig==",
       "type": "package",
-      "path": "microsoft.aspnetcore.openapi/7.0.10",
+      "path": "microsoft.aspnetcore.openapi/7.0.19",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -411,7 +411,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net7.0/Microsoft.AspNetCore.OpenApi.dll",
         "lib/net7.0/Microsoft.AspNetCore.OpenApi.xml",
-        "microsoft.aspnetcore.openapi.7.0.10.nupkg.sha512",
+        "microsoft.aspnetcore.openapi.7.0.19.nupkg.sha512",
         "microsoft.aspnetcore.openapi.nuspec"
       ]
     },
@@ -1160,7 +1160,7 @@
     "net7.0": [
       "Domain >= 1.0.0",
       "Infrastructure >= 1.0.0",
-      "Microsoft.AspNetCore.OpenApi >= 7.0.10",
+      "Microsoft.AspNetCore.OpenApi >= 7.0.19",
       "Microsoft.EntityFrameworkCore >= 7.0.19",
       "Pomelo.EntityFrameworkCore.MySql >= 7.0.0",
       "Swashbuckle.AspNetCore >= 6.5.0"
@@ -1212,7 +1212,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
-            "version": "[7.0.10, )"
+            "version": "[7.0.19, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",

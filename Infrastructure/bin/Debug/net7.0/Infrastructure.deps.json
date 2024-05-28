@@ -9,8 +9,7 @@
       "Infrastructure/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "7.0.2",
-          "Pomelo.EntityFrameworkCore.MySql": "7.0.0",
-          "Shared": "1.0.0.0"
+          "Pomelo.EntityFrameworkCore.MySql": "7.0.0"
         },
         "runtime": {
           "Infrastructure.dll": {}
@@ -169,22 +168,6 @@
             "fileVersion": "7.0.0.0"
           }
         }
-      },
-      "Shared/1.0.0.0": {
-        "runtime": {
-          "Shared.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "Domain/1.0.0.0": {
-        "runtime": {
-          "Domain.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
       }
     }
   },
@@ -298,16 +281,6 @@
       "sha512": "sha512-Qk5WB/skSZet5Yrz6AN2ywjZaB1pxfAmvQ+5I4khTkLwwIamI4QJoH2NphCWLFQL+2ar8HvsNCTmwYk0qhqL0w==",
       "path": "pomelo.entityframeworkcore.mysql/7.0.0",
       "hashPath": "pomelo.entityframeworkcore.mysql.7.0.0.nupkg.sha512"
-    },
-    "Shared/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Domain/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
     }
   }
 }

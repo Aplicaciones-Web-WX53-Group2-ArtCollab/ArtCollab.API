@@ -1,7 +1,5 @@
 using System.Net.Mime;
 using Domain.Monetization.Interface;
-using Domain.Monetization.Model.Aggregates;
-using Domain.Monetization.Repository;
 using Infraestructure.Monetization.Model.Aggregates;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

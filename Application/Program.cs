@@ -13,11 +13,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IRepositoryGeneric<>), typeof(RepositoryGeneric<>));
 
 var connectionString = builder.Configuration.GetConnectionString("ArtCollabDb");
-
 builder.Services.AddDbContext<AppDbContext>(
     dbContextOptions =>
     {
@@ -40,7 +40,6 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.UseCors(b => b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
