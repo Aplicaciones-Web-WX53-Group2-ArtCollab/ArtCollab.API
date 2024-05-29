@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VR4cXPXXLCPRIDaqD1nPkDbGAuqpg7QutSK81NBogdyPKN1qCUtQZw3KWOi+3r+s7hD38TjfqGkKGPxvDhwQVg==",
+  "dgSpecHash": "ZAsaj6+YpBt82RZSv46Uf5eICgnXCc7rMAsCGR3kfRDDJzQ6ydRzvGlGhMce5vn04lWH71mpigC0ziC63UDbaA==",
   "success": true,
-  "projectFilePath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\artcollab.API\\Application\\Application.csproj",
+  "projectFilePath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

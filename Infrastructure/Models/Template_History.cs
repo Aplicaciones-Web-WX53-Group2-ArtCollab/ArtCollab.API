@@ -4,15 +4,9 @@ namespace Infraestructure.Models;
 
 public partial class Template_History : BaseModel
 {
-    public Template_History()
-    {
-        ModifiedAt = DateTime.Now;
-        DeleteAt = DateTime.Now;
-    }
-    
-    [Column("Modified_At")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTime ModifiedAt { get; set; }
     
-    [Column("Delete_At")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTime DeleteAt { get; set; }
 }

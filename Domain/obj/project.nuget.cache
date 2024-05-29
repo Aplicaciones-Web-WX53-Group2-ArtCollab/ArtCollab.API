@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5PSdm7Z6Z9DQCrOaFW5HEpNjDBZsiS4lLmYaHwIXjshfjJptOvP7oLQcFZ+Pokgt+B9ZmBHJz+ULIe0uacQUVw==",
+  "dgSpecHash": "7fJWRoih5I6LxhGRSyoS5N31nQOX8r8Pqw+MQNF/bGnM9yOhJ2Tp+alXGPfG4OZ5Ha+BqnU4UsvP7SH2fAsMtQ==",
   "success": true,
-  "projectFilePath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\artcollab.API\\Domain\\Domain.csproj",
+  "projectFilePath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Domain\\Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.19\\microsoft.entityframeworkcore.7.0.19.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.19\\microsoft.entityframeworkcore.abstractions.7.0.19.nupkg.sha512",

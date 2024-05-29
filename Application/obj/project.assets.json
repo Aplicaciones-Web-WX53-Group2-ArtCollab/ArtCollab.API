@@ -10728,11 +10728,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\artcollab.API\\Application\\Application.csproj",
+      "projectUniqueName": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\artcollab.API\\Application\\Application.csproj",
+      "projectPath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Application\\Application.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\artcollab.API\\Application\\obj\\",
+      "outputPath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -10747,11 +10747,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\artcollab.API\\Domain\\Domain.csproj": {
-              "projectPath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\artcollab.API\\Domain\\Domain.csproj"
+            "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Domain\\Domain.csproj": {
+              "projectPath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Domain\\Domain.csproj"
             },
-            "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\artcollab.API\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\artcollab.API\\Infrastructure\\Infrastructure.csproj"
+            "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }

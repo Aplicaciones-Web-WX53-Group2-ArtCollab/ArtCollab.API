@@ -6,22 +6,24 @@ namespace Infraestructure.Models
     {
         public Template()
         {
-            Date_Publish = DateTime.Now;
+            TemplateStateId = 0;
+            TemplateHistoryId = 0;
+            PortfolioId = 0;
+            Genre = String.Empty;
         }
 
         public string Title { get; set; }
         public string Description { get; set; }
+        
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime Date_Publish { get; set; }
         public string Type { get; set; }
         public string ImgUrl { get; set; }
         
-        [Column("TemplateState_Id")]
         public int TemplateStateId { get; set; }
         
-        [Column("TemplateHistory_Id")]
         public int TemplateHistoryId { get; set; }
         
-        [Column("Portfolio_Id")]
         public int PortfolioId { get; set; }
         public string Genre { get; set; }
     }
