@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "ZAsaj6+YpBt82RZSv46Uf5eICgnXCc7rMAsCGR3kfRDDJzQ6ydRzvGlGhMce5vn04lWH71mpigC0ziC63UDbaA==",
+  "dgSpecHash": "3o4IsBuAvJ8/HCtRf5qTVQFGrH9T11ySGD3CLFzA3GQdTc2bRA+ExIrQFxKcxxmDXU54znnJVKkHIQU+YT2eyg==",
   "success": true,
   "projectFilePath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Application\\Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",
@@ -70,6 +72,7 @@
     "C:\\Users\\user\\.nuget\\packages\\microsoft.codeanalysis.razor\\6.0.11\\microsoft.codeanalysis.razor.6.0.11.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.codeanalysis.scripting.common\\4.4.0\\microsoft.codeanalysis.scripting.common.4.4.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.codeanalysis.workspaces.common\\4.4.0\\microsoft.codeanalysis.workspaces.common.4.4.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.diasymreader\\1.4.0\\microsoft.diasymreader.1.4.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.dotnet.scaffolding.shared\\7.0.12\\microsoft.dotnet.scaffolding.shared.7.0.12.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.19\\microsoft.entityframeworkcore.7.0.19.nupkg.sha512",

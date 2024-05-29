@@ -23,11 +23,8 @@ builder.Services.AddDbContext<TemplateDBContext>(
     dbContextOptions =>
     {
         dbContextOptions.UseMySql(connectionString, 
-                ServerVersion.AutoDetect(connectionString), 
-                options => options.EnableRetryOnFailure(
-            maxRetryCount: 5,
-            maxRetryDelay: TimeSpan.FromSeconds(30),
-            errorNumbersToAdd: null));
+                ServerVersion.AutoDetect(connectionString) 
+        );
     });
 
 var app = builder.Build();
