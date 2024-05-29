@@ -1,3 +1,4 @@
+using Application.Mapper;
 using Domain;
 using Domain.Interfaces;
 using Infraestructure.Context;
@@ -16,6 +17,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IRepositoryGeneric<>), typeof(RepositoryGeneric<>));
+
+builder.Services.AddAutoMapper(typeof(RequestToModel)
+    , typeof(ModelToRequest)
+    , typeof(ModelToResponse));
+
 
 var connectionString = builder.Configuration.GetConnectionString("ArtCollabDb");
 
