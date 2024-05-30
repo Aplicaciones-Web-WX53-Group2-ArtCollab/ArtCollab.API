@@ -30,7 +30,7 @@ namespace Domain.Repository
                     throw new Exception("Content is required for a commision");
                 }
 
-                if (commision.Amount <0)
+                if (commision.Amount < 0)
                 {
                     throw new Exception("Amount must be greater than 0");
                 }
@@ -42,9 +42,21 @@ namespace Domain.Repository
         {
             if (entity is Subscription subscription)
             {
-             _observer.Update();
+                var responseObserver = _observer.Update();
+                if (responseObserver.IsSuccessStatusCode)
+                {
+                 await _repository.Update(entity);
+                }
+                else
+                {
+                    throw new Exception("Error updating subscription");
+                }
             }
-            await _repository.Update(entity);
+            else
+            {
+                await _repository.Update(entity);
+            }
+            
         }
 
         public async Task Delete(int id)

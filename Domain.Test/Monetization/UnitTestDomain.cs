@@ -1,3 +1,4 @@
+using System.Net;
 using Domain.Interface;
 using Domain.Monetization.Model.Aggregates;
 using Infraestructure.Monetization.Model.Aggregates;
@@ -83,5 +84,21 @@ public class UnitTestDomain
         //Assert
         Assert.ThrowsAsync<Exception>(async ()  => await mockRepository.Object.Add(commisionWithNegativeAmount));
       
+    }
+
+    [Fact]
+    public void Subscription_Updating_Validate()
+    {
+        //Arrange
+        var mockRepository = new Mock<IRepositoryGeneric<Subscription>>();
+        var mockObserver = new Mock<Observer>();
+
+        mockObserver.Setup(o => o.Update()).Returns(new HttpResponseMessage(HttpStatusCode.Accepted));
+        //Act
+        var request = mockRepository.Object.Update(new Subscription());
+        var responseObserver = mockObserver.Object.Update();
+        //Assert
+        Assert.NotNull(request);
+        Assert.Equal(HttpStatusCode.Accepted, responseObserver.StatusCode);
     }
 }
