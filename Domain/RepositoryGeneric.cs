@@ -8,16 +8,6 @@ public class RepositoryGeneric<TEntity>(IRepository<TEntity> repository) : IRepo
 {
     private readonly IRepository<TEntity> _repository = repository;
     
-    public async Task<IEnumerable<TEntity>> GetAllAsync()
-    {
-        return await _repository.GetAllAsync();
-    }
-
-    public async Task<TEntity> GetByIdAsync(int id)
-    {
-        return await _repository.GetByIdAsync(id);
-    }
-
     public async Task Add(TEntity entity)
     {
         if (entity is Template template)
