@@ -41,3 +41,4 @@
 /Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/obj/Debug/net7.0/Application.pdb
 /Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/obj/Debug/net7.0/Application.genruntimeconfig.cache
 /Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/obj/Debug/net7.0/ref/Application.dll
+/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/bin/Debug/net7.0/AutoMapper.dll

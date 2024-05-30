@@ -1,5 +1,6 @@
 using Domain.Interface;
 using Domain.Monetization.Model.Aggregates;
+using Infraestructure.Monetization.Model.Aggregates;
 using Moq;
 
 namespace Domain.Test;
@@ -59,5 +60,28 @@ public class UnitTestMonetization
         var result = mockRepository.Object.Delete(1);
         //Assert
         Assert.NotNull(result);
+    }
+
+    [Fact]
+    public void BussinesRules_AreWorking()
+    {
+        //Arrange
+        var mockRepository = new Mock<IRepositoryGeneric<Commision>>();
+        Commision commisionWithContentEmpty = new Commision()
+        {
+            Content = " ",
+            Amount = 1000
+        };
+        Commision commisionWithNegativeAmount = new Commision()
+        {
+            Content = "For someone",
+            Amount = -1
+        };
+            
+        //Act
+        var result = mockRepository.Object.Add(commisionWithNegativeAmount);
+        //Assert
+        Assert.ThrowsAsync<Exception>(async ()  => await mockRepository.Object.Add(commisionWithNegativeAmount));
+      
     }
 }

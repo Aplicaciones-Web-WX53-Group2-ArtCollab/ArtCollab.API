@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "rngxsQmrOKOeC2eEDZjzgExwfLa6idZsRK4b5/GJ/j2iYzdAveiRufwcIuH1HE4u2Bb+Huq3K1QtpHSNIvaw3Q==",
+  "dgSpecHash": "9A03b/5FLFA8/6NHKUKf8w7akYlaDxHjJdrTF6mP4DSyVx7zOP7/AKdYOu599i2dHan68W2KjcZRok0qDOT7Jw==",
   "success": true,
   "projectFilePath": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/artcollab.API/Application/Application.csproj",
   "expectedPackageFiles": [
+    "/Users/lordmathi2741/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
     "/Users/lordmathi2741/.nuget/packages/microsoft.aspnetcore.openapi/7.0.19/microsoft.aspnetcore.openapi.7.0.19.nupkg.sha512",
     "/Users/lordmathi2741/.nuget/packages/microsoft.entityframeworkcore/7.0.19/microsoft.entityframeworkcore.7.0.19.nupkg.sha512",
     "/Users/lordmathi2741/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.19/microsoft.entityframeworkcore.abstractions.7.0.19.nupkg.sha512",

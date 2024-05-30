@@ -2,6 +2,22 @@
   "version": 3,
   "targets": {
     "net7.0": {
+      "AutoMapper/13.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Options": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.OpenApi/7.0.19": {
         "type": "package",
         "dependencies": {
@@ -400,6 +416,21 @@
     }
   },
   "libraries": {
+    "AutoMapper/13.0.1": {
+      "sha512": "/Fx1SbJ16qS7dU4i604Sle+U9VLX+WSNVJggk6MupKVkYvvBm4XqYaeFuf67diHefHKHs50uQIS2YEDFhPCakQ==",
+      "type": "package",
+      "path": "automapper/13.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "automapper.13.0.1.nupkg.sha512",
+        "automapper.nuspec",
+        "icon.png",
+        "lib/net6.0/AutoMapper.dll",
+        "lib/net6.0/AutoMapper.xml"
+      ]
+    },
     "Microsoft.AspNetCore.OpenApi/7.0.19": {
       "sha512": "gHLiPrMts7U1ugAA5m8R6eN40ymcbvQC0BUB3sVs/9G4eXAW/6w8e6sA++8ENBZVqWNoxA5lcXUzDRh8Apkpig==",
       "type": "package",
@@ -1158,6 +1189,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "AutoMapper >= 13.0.1",
       "Domain >= 1.0.0",
       "Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.19",
@@ -1210,6 +1242,10 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "AutoMapper": {
+            "target": "Package",
+            "version": "[13.0.1, )"
+          },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[7.0.19, )"

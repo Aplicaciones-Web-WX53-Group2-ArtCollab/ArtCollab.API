@@ -1,4 +1,8 @@
+using System.Collections;
 using System.Net.Mime;
+using Application.Monetization.Request;
+using Application.Monetization.Response;
+using AutoMapper;
 using Domain.Interface;
 using Infraestructure.Monetization.Model.Aggregates;
 using Microsoft.AspNetCore.Authorization;
@@ -10,20 +14,27 @@ namespace Application.Monetization.REST.Controllers;
 [ApiController]
 [Produces(MediaTypeNames.Application.Json)]
 [AllowAnonymous]
-public class CommisionController(IRepositoryGeneric<Commision> repositoryGeneric)  : ControllerBase
+public class CommisionController(IRepositoryGeneric<Commision> repositoryGeneric, IMapper mapper )  : ControllerBase
 {
     private readonly IRepositoryGeneric<Commision> _repositoryGeneric = repositoryGeneric;
+    private readonly IMapper _mapper = mapper;
     [HttpGet]
     [Route("get-all")]
     public async Task<IActionResult> GetAll()
     {
-        return Ok(await _repositoryGeneric.GetAllAsync());
+       var commisions = await _repositoryGeneric.GetAllAsync();
+       var result = _mapper.Map<IEnumerable<Commision>, IEnumerable<CommisionResponse>>(commisions);
+
+       if (result == null) return NotFound();
+
+       return Ok(result);
     }
     
     [HttpPost]
     [Route("add-commision")]
-    public async Task<IActionResult> Post([FromBody] Commision commision)
+    public async Task<IActionResult> Post([FromBody] CommisionRequest commisionRequest)
     {
+        var commision = _mapper.Map<CommisionRequest, Commision>(commisionRequest);
         await _repositoryGeneric.Add(commision);
         return Ok(true);
     }
@@ -32,8 +43,13 @@ public class CommisionController(IRepositoryGeneric<Commision> repositoryGeneric
     [Route("get-by-id/{id}")]
     public async Task<IActionResult> GetById(int id)
     {
-        return Ok(await _repositoryGeneric.GetByIdAsync(id));
+       var commision = await _repositoryGeneric.GetByIdAsync(id);
+       var result = _mapper.Map<Commision, CommisionResponse>(commision);
+       if(result == null) return NotFound();
+
+       return Ok(result);
     }
+    
     
     [HttpPost]
     [Route("update")]

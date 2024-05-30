@@ -1,5 +1,7 @@
 using Domain.Interface;
+using Domain.Monetization.Model.Aggregates;
 using Infraestructure.Monetization.Interfaces;
+using Infraestructure.Monetization.Model.Aggregates;
 
 namespace Domain.Repository
 {
@@ -19,6 +21,18 @@ namespace Domain.Repository
 
         public async Task Add(TEntity entity)
         {
+            if (entity is Commision commision)
+            {
+                if (commision.Content == string.Empty || commision.Content == null)
+                {
+                    throw new Exception("Content is required for a commision");
+                }
+
+                if (commision.Amount <0)
+                {
+                    throw new Exception("Amount must be greater than 0");
+                }
+            }
             await _repository.Add(entity);
         }
 
