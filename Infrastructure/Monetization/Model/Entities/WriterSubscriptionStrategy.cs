@@ -1,7 +1,7 @@
 using Domain.Monetization.Model.Aggregates;
 using Infraestructure.Monetization.Model.Aggregates;
 
-namespace Domain.Monetization.Model.Entity;
+namespace Infraestructure.Monetization.Model.Entities;
 
 public class WriterSubscriptionStrategy : ISubscriptionStrategy
 {

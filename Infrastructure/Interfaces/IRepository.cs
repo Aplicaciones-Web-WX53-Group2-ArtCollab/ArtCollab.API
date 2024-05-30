@@ -1,4 +1,4 @@
-namespace Infraestructure.Monetization.Interfaces;
+namespace Infraestructure.Interfaces;
 
 public interface IRepository<TEntity> where TEntity : class
 {

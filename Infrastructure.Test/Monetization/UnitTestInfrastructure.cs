@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Test;
 
-public class UnitTestMonetization
+public class UnitTestInfrastructure
 {
     
     

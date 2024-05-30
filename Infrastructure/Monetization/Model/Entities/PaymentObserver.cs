@@ -1,12 +1,14 @@
 using Domain.Monetization.Model.Aggregates;
+using Infraestructure.Monetization.Model.Aggregates;
 
-namespace Domain.Monetization.Model.Entity;
-
-public class PaymentObserver : Observer<Payment>
+namespace Infraestructure.Monetization.Model.Entities
 {
-    public override void Update(Payment entity)
+    public class PaymentObserver : Observer<Payment>
     {
-        entity.Status = !entity.Status;
-    }
+        public override void Update(Payment entity)
+        {
+            entity.Status = !entity.Status;
+        }
     
+    }
 }

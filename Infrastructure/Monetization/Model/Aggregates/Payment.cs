@@ -1,4 +1,4 @@
-namespace Domain.Monetization.Model.Aggregates;
+namespace Infraestructure.Monetization.Model.Aggregates;
 
 public partial class Payment
 {

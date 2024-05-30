@@ -5,7 +5,7 @@ using Moq;
 
 namespace Domain.Test;
 
-public class UnitTestMonetization
+public class UnitTestDomain
 {
     [Fact]
     public void AddAsync_IsWorking()

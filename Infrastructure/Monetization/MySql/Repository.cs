@@ -1,4 +1,4 @@
-using Infraestructure.Monetization.Interfaces;
+using Infraestructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using AppDbContext = Infraestructure.Monetization.Context.AppDbContext;
 

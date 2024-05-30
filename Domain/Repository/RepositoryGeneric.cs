@@ -1,6 +1,6 @@
 using Domain.Interface;
 using Domain.Monetization.Model.Aggregates;
-using Infraestructure.Monetization.Interfaces;
+using Infraestructure.Interfaces;
 using Infraestructure.Monetization.Model.Aggregates;
 
 namespace Domain.Repository

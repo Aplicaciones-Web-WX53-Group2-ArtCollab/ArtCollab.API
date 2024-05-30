@@ -1,11 +1,12 @@
 using Domain.Monetization.Model.Aggregates;
 
-namespace Domain.Monetization.Model.Entity;
-
-public interface ILustratorSubscriptionStrategy
+namespace Infraestructure.Monetization.Model.Entities
 {
-    public void Subscribe(Subscription subscription)
+    public interface ILustratorSubscriptionStrategy
     {
-        subscription.IsActive = true;
+        public void Subscribe(Subscription subscription)
+        {
+            subscription.IsActive = true;
+        }
     }
 }

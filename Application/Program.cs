@@ -1,8 +1,8 @@
 using Application.Mapper;
 using Domain.Interface;
 using Domain.Repository;
+using Infraestructure.Interfaces;
 using Infraestructure.Monetization.Context;
-using Infraestructure.Monetization.Interfaces;
 using Infraestructure.Monetization.MySql;
 using Microsoft.EntityFrameworkCore;
 
