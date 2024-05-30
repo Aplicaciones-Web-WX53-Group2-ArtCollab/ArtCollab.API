@@ -1,6 +1,8 @@
 using Application.Mapper;
 using Domain;
 using Domain.Interfaces;
+using Infraestructure.Content.Interfaces;
+using Infraestructure.Content.MySql;
 using Infraestructure.Context;
 using Infraestructure.Interfaces;
 using Infraestructure.MySql;
@@ -16,6 +18,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped(typeof(ITemplateData<>), typeof(TemplateMySqlData<>));
 builder.Services.AddScoped(typeof(IRepositoryGeneric<>), typeof(RepositoryGeneric<>));
 
 builder.Services.AddAutoMapper(typeof(RequestToModel)

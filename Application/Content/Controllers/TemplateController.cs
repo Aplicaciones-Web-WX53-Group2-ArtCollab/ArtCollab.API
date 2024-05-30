@@ -7,6 +7,7 @@ using Application.Request;
 using Application.Response;
 using AutoMapper;
 using Domain.Interfaces;
+using Infraestructure.Content.Interfaces;
 using Infraestructure.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -18,10 +19,11 @@ namespace Application.Controllers
     [ApiController]
     [Produces((MediaTypeNames.Application.Json))]
     [AllowAnonymous]
-    public class TemplateController(IRepositoryGeneric<Template> repositoryGeneric, IMapper mapper) : ControllerBase
+    public class TemplateController(IRepositoryGeneric<Template> repositoryGeneric, IMapper mapper, ITemplateData<Template> templateData) : ControllerBase
     {
         private readonly IRepositoryGeneric<Template> _repositoryGeneric = repositoryGeneric;
         private readonly IMapper _mapper = mapper;
+        private readonly ITemplateData<Template> _templateData = templateData;
         
         [HttpGet]
         [Route("get-all-templates")]
@@ -43,6 +45,18 @@ namespace Application.Controllers
             var result = _mapper.Map<Template, TemplateResponse>(template);
             
             if (result == null) return NotFound();
+            
+            return Ok(result);
+        }
+        
+        [HttpGet]
+        [Route("get-template-by-genre")]
+        public async Task<IActionResult> GetTemplateByGenre(string genre)
+        {
+            var templates = await _templateData.GetByGenreAsync(genre);
+            var result = _mapper.Map<IEnumerable<Template>, IEnumerable<TemplateResponse>>(templates);
+    
+            if (result == null || !result.Any()) return NotFound();
             
             return Ok(result);
         }
