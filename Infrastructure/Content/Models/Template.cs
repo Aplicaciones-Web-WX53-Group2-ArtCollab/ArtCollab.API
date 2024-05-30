@@ -9,7 +9,6 @@ namespace Infraestructure.Models
             TemplateStateId = 0;
             TemplateHistoryId = 0;
             PortfolioId = 0;
-            Genre = String.Empty;
         }
 
         public string Title { get; set; }

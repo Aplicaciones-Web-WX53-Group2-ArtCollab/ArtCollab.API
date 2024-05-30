@@ -22,6 +22,6 @@ public class TemplateRequest
     [MaxLength(120)]
     public string ImgUrl { get; set; }
     
-    
+    [DefaultValue(" ")]
     public string Genre { get; set; }
 }
