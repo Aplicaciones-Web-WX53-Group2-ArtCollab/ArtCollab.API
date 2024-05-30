@@ -1,6 +1,13 @@
-
+using Application.Mapper;
+using Domain;
 using Domain.Interfaces;
+using Infraestructure;
+using Infraestructure.Context;
 using Infraestructure.Interfaces;
+using Infraestructure.MySql;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,15 +18,34 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped(typeof(ISubscriptionData<>), typeof(Repository<>));
-builder.Services.AddScoped(typeof(ISubscriptionDomain<>), typeof(RepositoryGeneric<>));
+builder.Services.AddScoped(typeof(ISubscriptionData<>), typeof(SubscriptionData<>));
+builder.Services.AddScoped(typeof(ISubscriptionDomain<>), typeof(SubscriptionDomain<>));
 
-builder.Services.AddAutoMapper(typeof(RequestToModel)
-    , typeof(ModelToRequest)
-    , typeof(ModelToResponse));
+// Especifica explícitamente el espacio de nombres de AddAutoMapper
+builder.Services.AddAutoMapper(cfg => cfg.AddProfile<RequestToModel>(), typeof(ModelToRequest), typeof(ModelToResponse));
 
+var connectionString = builder.Configuration.GetConnectionString("ArtCollabDb");
+
+builder.Services.AddDbContext<SubscriptionDBContext>(
+    dbContextOptions =>
+    {
+        dbContextOptions.UseMySql(connectionString, 
+            ServerVersion.AutoDetect(connectionString) 
+        );
+    });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<SubscriptionDBContext>();
+    context.Database.EnsureCreated();
+}
+
+app.UseCors(
+    b =>b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()
+);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
