@@ -84,7 +84,7 @@ namespace Application.Controllers
         [Route("update-template")]
         public async Task<IActionResult> UpdateTemplate(Template data)
         {
-            await _repositoryGeneric.Update(data);
+            await _repository.Update(data);
             return Ok(true);
         }
     }

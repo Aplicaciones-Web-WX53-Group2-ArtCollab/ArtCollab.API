@@ -1,4 +1,5 @@
-﻿using Domain.Interfaces;
+﻿using System.Data;
+using Domain.Interfaces;
 using Infraestructure.Content.Interfaces;
 using Infraestructure.Interfaces;
 using Infraestructure.Models;
@@ -37,13 +38,12 @@ public class RepositoryGeneric<TEntity>(IRepository<TEntity> repository, ITempla
         await _repository.Add(entity);
     }
 
-    public async Task Update(TEntity entity)
-    {
-        await _repository.Update(entity);
-    }
-
     public async Task Delete(int id)
     {
+        var existingTutorial = await _repository.GetByIdAsync(id);
+        if (existingTutorial == null)
+            throw new ConstraintException("Template not found");
+        
         await _repository.Delete(id);
     }
 }
