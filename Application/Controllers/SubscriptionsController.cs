@@ -6,47 +6,59 @@ using System.Threading.Tasks;
 using Domain.Interfaces;
 using Infraestructure.Interfaces;
 using Infraestructure.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace Application.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
     [Produces((MediaTypeNames.Application.Json))]
+    [AllowAnonymous]
     public class SubscriptionsController(ISubscriptionDomain<Subscription> subscriptionDomain) : ControllerBase
     {
         private readonly ISubscriptionDomain<Subscription> _subscriptionDomain = subscriptionDomain;
-        // GET: api/Subscriptions
+        
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("get-all-subscriptions")]
+        public async Task<IActionResult> GetAllTemplates()
         {
-            return new string[] { "value1", "value2" };
+            var templates = await _subscriptionDomain.GetAllAsync();
+            return Ok(templates);
         }
-
-        // GET: api/Subscriptions/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        
+        [HttpGet]
+        [Route("get-subscription-by-id")]
+        public async Task<IActionResult> GetTemplateById(int id)
         {
-            return "value";
+            var template = await _subscriptionDomain.GetByIdAsync(id);
+            return Ok(template);
         }
-
-        // POST: api/Subscriptions
+        
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("create-subscriptions")]
+        public async Task<IActionResult> CreateTemplate(Subscription data)
         {
+            await _subscriptionDomain.Add(data);
+            return Ok(true);
         }
-
-        // PUT: api/Subscriptions/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        
+        [HttpGet]
+        [Route("delete-subscriptions")]
+        public async Task<IActionResult> DeleteTemplate(int id)
         {
+            await _subscriptionDomain.Delete(id);
+            return Ok(true);
         }
-
-        // DELETE: api/Subscriptions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        
+        [HttpPost]
+        [Route("update-subscription")]
+        public async Task<IActionResult> UpdateTemplate(Subscription data)
         {
+            await _subscriptionDomain.Update(data);
+            return Ok(true);
         }
     }
 }

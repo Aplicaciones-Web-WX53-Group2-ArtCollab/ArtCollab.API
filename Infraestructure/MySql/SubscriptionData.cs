@@ -1,18 +1,12 @@
-namespace Infraestructure;
-
-public class SubscriptionData:ISubscriptionData
-{
-    
-}
 using Infraestructure.Context;
 using Infraestructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infraestructure.MySql
 {
-    public class SubscriptionData<TEntity>(TemplateDBContext context) : IRepository<TEntity> where TEntity : class
+    public class SubscriptionData<TEntity>(SubscriptionDBContext context) : ISubscriptionData<TEntity> where TEntity : class
     {
-        private readonly TemplateDBContext _context = context;
+        private readonly SubscriptionDBContext _context = context;
         private readonly DbSet<TEntity> _dbSet = context.Set<TEntity>();
         
         public async Task<IEnumerable<TEntity>> GetAllAsync()
