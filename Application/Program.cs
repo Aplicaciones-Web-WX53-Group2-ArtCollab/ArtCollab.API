@@ -1,5 +1,5 @@
-using Domain.Monetization.Interface;
-using Domain.Monetization.Repository;
+using Domain.Interface;
+using Domain.Repository;
 using Infraestructure.Monetization.Context;
 using Infraestructure.Monetization.Interfaces;
 using Infraestructure.Monetization.MySql;

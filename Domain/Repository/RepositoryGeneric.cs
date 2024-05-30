@@ -1,8 +1,7 @@
-
-using Domain.Monetization.Interface;
+using Domain.Interface;
 using Infraestructure.Monetization.Interfaces;
 
-namespace Domain.Monetization.Repository
+namespace Domain.Repository
 {
     public class RepositoryGeneric<TEntity>(IRepository<TEntity> repository): IRepositoryGeneric<TEntity> where TEntity : class
     {

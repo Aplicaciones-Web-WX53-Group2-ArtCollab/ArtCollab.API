@@ -1,5 +1,5 @@
 using System.Net.Mime;
-using Domain.Monetization.Interface;
+using Domain.Interface;
 using Infraestructure.Monetization.Model.Aggregates;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +27,31 @@ public class CommisionController(IRepositoryGeneric<Commision> repositoryGeneric
         await _repositoryGeneric.Add(commision);
         return Ok(true);
     }
+
+    [HttpGet]
+    [Route("get-by-id/{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        return Ok(await _repositoryGeneric.GetByIdAsync(id));
+    }
+    
+    [HttpPost]
+    [Route("update")]
+    public async Task<IActionResult> Update([FromBody] Commision commision)
+    {
+        await _repositoryGeneric.Update(commision);
+        return Ok(true);
+    }
+    
+    [HttpGet]
+    [Route("delete/{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        await _repositoryGeneric.Delete(id);
+        return Ok(true);
+    }
+    
+    
     
     
 }

@@ -1,4 +1,4 @@
-using Domain.Monetization.Interface;
+using Domain.Interface;
 using Domain.Monetization.Model.Aggregates;
 using Moq;
 

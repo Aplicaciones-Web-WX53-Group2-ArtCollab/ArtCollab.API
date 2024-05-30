@@ -1,4 +1,4 @@
-namespace Domain.Monetization.Interface;
+namespace Domain.Interface;
 
 public interface IRepositoryGeneric<TEntity> where TEntity : class
 {
