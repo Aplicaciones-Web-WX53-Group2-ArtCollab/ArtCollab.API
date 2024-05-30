@@ -3,7 +3,7 @@ using Domain.Monetization.Model.Aggregates;
 using Infraestructure.Monetization.Model.Aggregates;
 using Moq;
 
-namespace Domain.Test;
+namespace Domain.Test.Monetization;
 
 public class UnitTestDomain
 {
