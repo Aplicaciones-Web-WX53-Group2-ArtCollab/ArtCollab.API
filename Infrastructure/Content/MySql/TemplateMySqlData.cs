@@ -14,4 +14,14 @@ public class TemplateMySqlData<TEntity>(TemplateDBContext context) : ITemplateDa
     {
         return await _context.Templates.Where(i => i.Genre == genre).ToListAsync();
     }
+    
+    public async Task<IEnumerable<Template>> GetByDescriptionAsync(string description)
+    {
+        return await _context.Templates.Where(i => i.Description == description).ToListAsync();
+    }
+    
+    public async Task<IEnumerable<Template>> GetByCoverImageAsync(string imgUrl)
+    {
+        return await _context.Templates.Where(i => i.ImgUrl == imgUrl).ToListAsync();
+    }
 }
