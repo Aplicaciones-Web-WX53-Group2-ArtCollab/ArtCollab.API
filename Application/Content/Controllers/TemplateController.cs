@@ -63,30 +63,6 @@ namespace Application.Controllers
             return Ok(result);
         }
         
-        [HttpGet]
-        [Route("get-template-by-description")]
-        public async Task<IActionResult> GetTemplateByDescription(string description)
-        {
-            var templates = await _templateData.GetByDescriptionAsync(description);
-            var result = _mapper.Map<IEnumerable<Template>, IEnumerable<TemplateResponse>>(templates);
-    
-            if (result == null || !result.Any()) return NotFound();
-            
-            return Ok(result);
-        }
-        
-        [HttpGet]
-        [Route("get-template-by-cover-image")]
-        public async Task<IActionResult> GetTemplateByCoverImage(string imgUrl)
-        {
-            var templates = await _templateData.GetByCoverImageAsync(imgUrl);
-            var result = _mapper.Map<IEnumerable<Template>, IEnumerable<TemplateResponse>>(templates);
-    
-            if (result == null || !result.Any()) return NotFound();
-            
-            return Ok(result);
-        }
-        
         [HttpPost]
         [Route("create-template")]
         public async Task<IActionResult> CreateTemplate(TemplateRequest data)
