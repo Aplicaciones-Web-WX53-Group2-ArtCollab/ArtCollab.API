@@ -3,6 +3,8 @@ using Domain.Interface;
 using Domain.Repository;
 using Infraestructure.Interfaces;
 using Infraestructure.Monetization.Context;
+using Infraestructure.Monetization.Model.Aggregates;
+using Infraestructure.Monetization.Model.Entities;
 using Infraestructure.Monetization.MySql;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +19,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IRepositoryGeneric<>), typeof(RepositoryGeneric<>));
+builder.Services.AddScoped(typeof(Observer), typeof(SubscriptionObserver));
 builder.Services.AddAutoMapper(typeof(RequestToModel), typeof(ModelToResponse), typeof(ModelToRequest));
+
 
 var connectionString = builder.Configuration.GetConnectionString("ArtCollabDb");
 builder.Services.AddDbContext<AppDbContext>(

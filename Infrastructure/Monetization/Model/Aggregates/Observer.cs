@@ -1,7 +1,7 @@
-namespace Domain.Monetization.Model.Aggregates;
+namespace Infraestructure.Monetization.Model.Aggregates;
 
-public abstract class Observer<TEntity>
+public abstract class Observer
 {
-    public abstract void Update(TEntity entity);
+    public abstract TaskStatus Update();
     
 }

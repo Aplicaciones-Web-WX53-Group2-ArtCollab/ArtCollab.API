@@ -2,12 +2,14 @@ using Domain.Interface;
 using Domain.Monetization.Model.Aggregates;
 using Infraestructure.Interfaces;
 using Infraestructure.Monetization.Model.Aggregates;
+using Infraestructure.Monetization.Model.Entities;
 
 namespace Domain.Repository
 {
-    public class RepositoryGeneric<TEntity>(IRepository<TEntity> repository): IRepositoryGeneric<TEntity> where TEntity : class
+    public class RepositoryGeneric<TEntity>(IRepository<TEntity> repository, Observer observer): IRepositoryGeneric<TEntity> where TEntity : class
     {
         private readonly IRepository<TEntity> _repository = repository;
+        private Observer _observer = observer;
     
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
@@ -38,6 +40,10 @@ namespace Domain.Repository
 
         public async Task Update(TEntity entity)
         {
+            if (entity is Subscription subscription)
+            {
+             _observer.Update();
+            }
             await _repository.Update(entity);
         }
 

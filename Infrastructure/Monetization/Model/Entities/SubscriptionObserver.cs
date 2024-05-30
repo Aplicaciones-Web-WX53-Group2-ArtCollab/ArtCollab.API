@@ -1,12 +1,12 @@
 using Domain.Monetization.Model.Aggregates;
+using Infraestructure.Monetization.Model.Aggregates;
 
 namespace Infraestructure.Monetization.Model.Entities;
 
-public class SubscriptionObserver : Observer<Subscription>
+public class SubscriptionObserver : Observer
 {
-     
-    public override void Update(Subscription subscription)
+    public override TaskStatus Update()
     {
-        subscription.IsActive = !subscription.IsActive;
+        return TaskStatus.Created;
     }
 }

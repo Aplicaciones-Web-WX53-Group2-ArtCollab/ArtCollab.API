@@ -3,11 +3,11 @@ using Infraestructure.Monetization.Model.Aggregates;
 
 namespace Infraestructure.Monetization.Model.Entities
 {
-    public class PaymentObserver : Observer<Payment>
+    public class PaymentObserver : Observer
     {
-        public override void Update(Payment entity)
+        public override TaskStatus Update()
         {
-            entity.Status = !entity.Status;
+            return TaskStatus.Created;  
         }
     
     }

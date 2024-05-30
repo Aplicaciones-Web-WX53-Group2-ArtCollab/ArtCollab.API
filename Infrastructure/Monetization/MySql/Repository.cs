@@ -1,3 +1,4 @@
+
 using Infraestructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using AppDbContext = Infraestructure.Monetization.Context.AppDbContext;
@@ -52,6 +53,7 @@ public class Repository<TEntity>(AppDbContext context): IRepository<TEntity> whe
                     _dbSet.Update(entity);
                     await _context.SaveChangesAsync();
                     await transaction.CommitAsync();
+                    
                 }
                 catch (Exception e)
                 {
