@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
 using System.Threading.Tasks;
+using Application.Request;
+using Application.Response;
+using AutoMapper;
 using Domain.Interfaces;
 using Infraestructure.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -15,16 +18,21 @@ namespace Application.Controllers
     [ApiController]
     [Produces((MediaTypeNames.Application.Json))]
     [AllowAnonymous]
-    public class TemplateController(IRepositoryGeneric<Template> repositoryGeneric) : ControllerBase
+    public class TemplateController(IRepositoryGeneric<Template> repositoryGeneric, IMapper mapper) : ControllerBase
     {
         private readonly IRepositoryGeneric<Template> _repositoryGeneric = repositoryGeneric;
+        private readonly IMapper _mapper = mapper;
         
         [HttpGet]
         [Route("get-all-templates")]
         public async Task<IActionResult> GetAllTemplates()
         {
             var templates = await _repositoryGeneric.GetAllAsync();
-            return Ok(templates);
+            var result = _mapper.Map<IEnumerable<Template>, IEnumerable<TemplateResponse>>(templates);
+            
+            if (result == null) return NotFound();
+            
+            return Ok(result);
         }
         
         [HttpGet]
@@ -32,14 +40,19 @@ namespace Application.Controllers
         public async Task<IActionResult> GetTemplateById(int id)
         {
             var template = await _repositoryGeneric.GetByIdAsync(id);
-            return Ok(template);
+            var result = _mapper.Map<Template, TemplateResponse>(template);
+            
+            if (result == null) return NotFound();
+            
+            return Ok(result);
         }
         
         [HttpPost]
         [Route("create-template")]
-        public async Task<IActionResult> CreateTemplate(Template data)
+        public async Task<IActionResult> CreateTemplate(TemplateRequest data)
         {
-            await _repositoryGeneric.Add(data);
+            var template = _mapper.Map<TemplateRequest, Template>(data);
+            await _repositoryGeneric.Add(template);
             return Ok(true);
         }
         

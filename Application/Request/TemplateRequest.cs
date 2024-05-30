@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Application.Request;
 
@@ -21,6 +22,6 @@ public class TemplateRequest
     [MaxLength(120)]
     public string ImgUrl { get; set; }
     
-    [MaxLength(50)]
+    
     public string Genre { get; set; }
 }
