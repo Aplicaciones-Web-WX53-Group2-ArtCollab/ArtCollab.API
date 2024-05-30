@@ -1,8 +1,7 @@
-
 using Infraestructure.Monetization.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Test;
+namespace Infrastructure.Test.Monetization;
 
 public class UnitTestInfrastructure
 {
