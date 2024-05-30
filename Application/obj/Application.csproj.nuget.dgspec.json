@@ -1,31 +1,40 @@
 {
   "format": 1,
   "restore": {
-    "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/InterfaceLayer/Application/Application.csproj": {}
+    "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Application\\Application.csproj": {}
   },
   "projects": {
-    "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/InterfaceLayer/Application/Application.csproj": {
+    "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/InterfaceLayer/Application/Application.csproj",
+        "projectUniqueName": "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/InterfaceLayer/Application/Application.csproj",
-        "packagesPath": "/Users/lordmathi2741/.nuget/packages/",
-        "outputPath": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/InterfaceLayer/Application/obj/",
+        "projectPath": "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\frida\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/lordmathi2741/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\frida\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Domain\\Domain.csproj"
+              },
+              "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Infraestructure\\Infraestructure.csproj": {
+                "projectPath": "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Infraestructure\\Infraestructure.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -38,9 +47,29 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.19, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[7.0.12, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -61,15 +90,19 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
+              "version": "[7.0.20, 7.0.20]"
             },
             {
-              "name": "Microsoft.NETCore.App.Host.osx-arm64",
-              "version": "[7.0.14, 7.0.14]"
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.20, 7.0.20]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
             }
           ],
           "frameworkReferences": {
@@ -80,7 +113,177 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.106\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Domain\\Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Domain\\Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\frida\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\frida\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Infraestructure\\Infraestructure.csproj": {
+                "projectPath": "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Infraestructure\\Infraestructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.106\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Infraestructure\\Infraestructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Infraestructure\\Infraestructure.csproj",
+        "projectName": "Infraestructure",
+        "projectPath": "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Infraestructure\\Infraestructure.csproj",
+        "packagesPath": "C:\\Users\\frida\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Infraestructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\frida\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.19, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.106\\RuntimeIdentifierGraph.json"
         }
       }
     }
