@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/InterfaceLayer/Infraestructure/Infraestructure.csproj": {}
+    "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Infraestructure\\Infraestructure.csproj": {}
   },
   "projects": {
-    "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/InterfaceLayer/Infraestructure/Infraestructure.csproj": {
+    "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Infraestructure\\Infraestructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/InterfaceLayer/Infraestructure/Infraestructure.csproj",
+        "projectUniqueName": "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Infraestructure\\Infraestructure.csproj",
         "projectName": "Infraestructure",
-        "projectPath": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/InterfaceLayer/Infraestructure/Infraestructure.csproj",
-        "packagesPath": "/Users/lordmathi2741/.nuget/packages/",
-        "outputPath": "/Users/lordmathi2741/Documents/Cursos/Aplicaciones Web-Upc/InterfaceLayer/Infraestructure/obj/",
+        "projectPath": "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Infraestructure\\Infraestructure.csproj",
+        "packagesPath": "C:\\Users\\frida\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\frida\\OneDrive\\Escritorio\\BackendAppWebFrida\\Infraestructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/lordmathi2741/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\frida\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -37,6 +39,24 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.19, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -51,11 +71,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
+              "version": "[7.0.20, 7.0.20]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
             }
           ],
           "frameworkReferences": {
@@ -63,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.106\\RuntimeIdentifierGraph.json"
         }
       }
     }
