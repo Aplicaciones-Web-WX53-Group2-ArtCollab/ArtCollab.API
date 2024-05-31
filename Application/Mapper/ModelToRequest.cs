@@ -1,4 +1,4 @@
-﻿using Application.Request;
+using Application.Request;
 using AutoMapper;
 using Infraestructure.Models;
 
@@ -8,6 +8,6 @@ public class ModelToRequest : Profile
 {
     public ModelToRequest()
     {
-        CreateMap<Template, TemplateRequest>();
+        CreateMap<Comment, CommentRequest>();
     }
 }

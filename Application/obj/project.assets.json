@@ -3618,8 +3618,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "AutoMapper": "12.0.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
-          "Infrastructure": "1.0.0"
+          "Infraestructure": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Domain.dll": {}
@@ -3628,7 +3629,7 @@
           "bin/placeholder/Domain.dll": {}
         }
       },
-      "Infrastructure/1.0.0": {
+      "Infraestructure/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
@@ -3638,10 +3639,10 @@
           "Pomelo.EntityFrameworkCore.MySql": "7.0.0"
         },
         "compile": {
-          "bin/placeholder/Infrastructure.dll": {}
+          "bin/placeholder/Infraestructure.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Infrastructure.dll": {}
+          "bin/placeholder/Infraestructure.dll": {}
         }
       }
     }
@@ -10843,10 +10844,10 @@
       "path": "../Domain/Domain.csproj",
       "msbuildProject": "../Domain/Domain.csproj"
     },
-    "Infrastructure/1.0.0": {
+    "Infraestructure/1.0.0": {
       "type": "project",
-      "path": "../Infrastructure/Infrastructure.csproj",
-      "msbuildProject": "../Infrastructure/Infrastructure.csproj"
+      "path": "../Infraestructure/Infraestructure.csproj",
+      "msbuildProject": "../Infraestructure/Infraestructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -10854,29 +10855,28 @@
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
       "Domain >= 1.0.0",
-      "Infrastructure >= 1.0.0",
+      "Infraestructure >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.10",
       "Microsoft.EntityFrameworkCore >= 7.0.19",
-      "Microsoft.VisualStudio.Web.CodeGeneration >= 7.0.12",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.12",
       "Pomelo.EntityFrameworkCore.MySql >= 7.0.0",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {}
+    "C:\\Users\\jcuad\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Application\\Application.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Application\\obj\\",
+      "projectPath": "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Application\\Application.csproj",
+      "packagesPath": "C:\\Users\\jcuad\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\jcuad\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -10888,11 +10888,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Domain\\Domain.csproj": {
-              "projectPath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Domain\\Domain.csproj"
+            "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Domain\\Domain.csproj"
             },
-            "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "D:\\CAMILA\\UPC\\Ciclo 6\\Apps web\\Proyecto\\Api v2\\artcollab.API\\Infrastructure\\Infrastructure.csproj"
+            "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Infraestructure\\Infraestructure.csproj": {
+              "projectPath": "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Infraestructure\\Infraestructure.csproj"
             }
           }
         }
@@ -10922,10 +10922,6 @@
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[7.0.19, )"
-          },
-          "Microsoft.VisualStudio.Web.CodeGeneration": {
-            "target": "Package",
-            "version": "[7.0.12, )"
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
@@ -10959,7 +10955,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.409\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205\\RuntimeIdentifierGraph.json"
       }
     }
   }

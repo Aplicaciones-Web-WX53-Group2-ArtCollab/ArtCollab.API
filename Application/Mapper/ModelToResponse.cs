@@ -1,4 +1,4 @@
-﻿using Application.Response;
+using Application.Response;
 using AutoMapper;
 using Infraestructure.Models;
 
@@ -8,6 +8,6 @@ public class ModelToResponse : Profile
 {
     public ModelToResponse()
     {
-        CreateMap<Template, TemplateResponse>();
+        CreateMap<Comment, CommentResponse>();
     }
 }
