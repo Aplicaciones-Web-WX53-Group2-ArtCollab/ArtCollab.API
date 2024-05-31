@@ -29,7 +29,6 @@ public class ReaderDomainTest
 
         readerDataMock.Setup(t => t.GetByUserNameAsync(reader.UserName)).ReturnsAsync(reader2);
         readerDataMock.Setup(t => t.GetByEmailAsync(reader.Email)).ReturnsAsync(reader3);
-        readerDataMock.Setup(t => t.GetByEmailAndPasswordAsync(reader.Email, reader.Password)).ReturnsAsync(1);
         repositoryMock.Setup(t => t.AddAsync(reader)).ReturnsAsync(1);
 
         RepositoryGeneric<Reader> repositoryGeneric = new RepositoryGeneric<Reader>(repositoryMock.Object, readerDataMock.Object);
@@ -70,7 +69,6 @@ public class ReaderDomainTest
 
         readerDataMock.Setup(t => t.GetByUserNameAsync(reader.UserName)).ReturnsAsync(reader2);
         readerDataMock.Setup(t => t.GetByEmailAsync(reader.Email)).ReturnsAsync(reader3);
-        readerDataMock.Setup(t => t.GetByEmailAndPasswordAsync(reader.Email, reader.Password)).ReturnsAsync(1);
         repositoryMock.Setup(t => t.AddAsync(reader)).ReturnsAsync(1);
 
         RepositoryGeneric<Reader> repositoryGeneric = new RepositoryGeneric<Reader>(repositoryMock.Object, readerDataMock.Object);
@@ -111,7 +109,6 @@ public class ReaderDomainTest
 
         readerDataMock.Setup(t => t.GetByUserNameAsync(reader.UserName)).ReturnsAsync(reader2);
         readerDataMock.Setup(t => t.GetByEmailAsync(reader.Email)).ReturnsAsync(reader3);
-        readerDataMock.Setup(t => t.GetByEmailAndPasswordAsync(reader.Email, reader.Password)).ReturnsAsync(1);
         repositoryMock.Setup(t => t.AddAsync(reader)).ReturnsAsync(1);
 
         RepositoryGeneric<Reader> repositoryGeneric =
@@ -145,7 +142,6 @@ public class ReaderDomainTest
 
         readerDataMock.Setup(t => t.GetByUserNameAsync(reader.UserName)).ReturnsAsync(reader2);
         readerDataMock.Setup(t => t.GetByEmailAsync(reader.Email)).ReturnsAsync(reader3);
-        readerDataMock.Setup(t => t.GetByEmailAndPasswordAsync(reader.Email, reader.Password)).ReturnsAsync(1);
         repositoryMock.Setup(t => t.AddAsync(reader)).ReturnsAsync(1);
 
         RepositoryGeneric<Reader> repositoryGeneric =
