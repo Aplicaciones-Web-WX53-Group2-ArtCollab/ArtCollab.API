@@ -18,7 +18,6 @@ public class TemplateMySqlData<TEntity>(TemplateDBContext context) : ITemplateDa
     public async Task<Template> GetByDescriptionAsync(string description)
     {
         return await _context.Templates.FirstOrDefaultAsync(i => i.Description == description);
-        //return await _context.Templates.Where(i => i.Description == description).ToListAsync();
     }
     
     public async Task<Template> GetByCoverImageAsync(string imgUrl)
