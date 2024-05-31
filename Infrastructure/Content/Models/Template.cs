@@ -4,12 +4,7 @@ namespace Infraestructure.Models
 {
     public partial class Template : BaseModel
     {
-        public Template()
-        {
-            TemplateStateId = 0;
-            TemplateHistoryId = 0;
-            PortfolioId = 0;
-        }
+        public Template() {}
 
         public string Title { get; set; }
         public string Description { get; set; }
@@ -19,11 +14,11 @@ namespace Infraestructure.Models
         public string Type { get; set; }
         public string ImgUrl { get; set; }
         
-        public int TemplateStateId { get; set; }
+        public int TemplateState_id { get; set; }
         
-        public int TemplateHistoryId { get; set; }
+        public int Template_History_id { get; set; }
         
-        public int PortfolioId { get; set; }
+        public int Portfolio_id { get; set; }
         public string Genre { get; set; }
     }
 }

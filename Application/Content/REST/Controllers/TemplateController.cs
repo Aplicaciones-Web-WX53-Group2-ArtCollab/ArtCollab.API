@@ -67,9 +67,35 @@ namespace Application.Controllers
         [Route("create-template")]
         public async Task<IActionResult> CreateTemplate(TemplateRequest data)
         {
-            var template = _mapper.Map<TemplateRequest, Template>(data);
-            await _repositoryGeneric.Add(template);
-            return Ok(true);
+            try
+            {
+                if(!ModelState.IsValid) return BadRequest();
+                
+                var template = _mapper.Map<TemplateRequest, Template>(data);
+                await _repositoryGeneric.Add(template);
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+        
+        [HttpPost]
+        [Route("update-template")]
+        public async Task<IActionResult> UpdateTemplate(Template data)
+        {
+            try
+            {
+                if(!ModelState.IsValid) return BadRequest();
+                
+                await _repository.Update(data);
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
         
         [HttpGet]
@@ -77,14 +103,6 @@ namespace Application.Controllers
         public async Task<IActionResult> DeleteTemplate(int id)
         {
             await _repositoryGeneric.Delete(id);
-            return Ok(true);
-        }
-        
-        [HttpPost]
-        [Route("update-template")]
-        public async Task<IActionResult> UpdateTemplate(Template data)
-        {
-            await _repository.Update(data);
             return Ok(true);
         }
     }
