@@ -14,4 +14,6 @@ public interface ICommentData
     Task<List<Comment>> getAllCommentAsync();
     
     Task<Comment> getByIdCommentAsync(int Id);
+    
+    Task<Comment> getCommentByNameAsync(string name);
 }

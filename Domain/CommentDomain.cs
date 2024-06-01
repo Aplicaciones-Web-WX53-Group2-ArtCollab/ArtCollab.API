@@ -14,6 +14,11 @@ public class CommentDomain : ICommentDomain
 
     public async Task<int> SaveCommentAsync(Comment data)
     {
+        var existingComment = await _commentData.getCommentByNameAsync(data.Name);
+        if (existingComment != null)
+        {
+            throw new Exception("Name already exists");
+        }
         data.Date = DateTime.Now;
         return await _commentData.SaveCommentAsync(data);
     }

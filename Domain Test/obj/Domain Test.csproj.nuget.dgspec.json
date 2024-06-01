@@ -1,0 +1,229 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Domain Test\\Domain Test.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Domain Test\\Domain Test.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Domain Test\\Domain Test.csproj",
+        "projectName": "Domain Test",
+        "projectPath": "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Domain Test\\Domain Test.csproj",
+        "packagesPath": "C:\\Users\\jcuad\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Domain Test\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\jcuad\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Domain\\Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.5.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.70, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Domain\\Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Domain\\Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\jcuad\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\jcuad\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Infraestructure\\Infraestructure.csproj": {
+                "projectPath": "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Infraestructure\\Infraestructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Infraestructure\\Infraestructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Infraestructure\\Infraestructure.csproj",
+        "projectName": "Infraestructure",
+        "projectPath": "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Infraestructure\\Infraestructure.csproj",
+        "packagesPath": "C:\\Users\\jcuad\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jcuad\\OneDrive\\Documentos\\UPC\\Ciclo-5\\Aplicaciones Web\\BackEnd\\artcollab.API\\Infraestructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\jcuad\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.19, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

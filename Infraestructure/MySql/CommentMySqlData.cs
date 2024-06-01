@@ -74,4 +74,10 @@ public class CommentMySqlData : ICommentData
         return await _artCollabDbContext.Comments.Where(t => t.Id == Id)
             .FirstOrDefaultAsync();
     }
+
+    public async Task<Comment> getCommentByNameAsync(string name)
+    {
+        return await _artCollabDbContext.Comments.Where(t => t.Name == name)
+            .FirstOrDefaultAsync();
+    }
 }
