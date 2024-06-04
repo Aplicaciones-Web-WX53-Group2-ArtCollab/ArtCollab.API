@@ -21,7 +21,7 @@ public class ArtCollabDBContext : DbContext
         if (!optionsBuilder.IsConfigured)
         {
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
-            optionsBuilder.UseMySql("Server=localhost,3306;Uid=root;pwd=Ju!081204;Database=ArtCollab",
+            optionsBuilder.UseMySql("Server=localhost,3306;Uid=root;pwd=12345678;Database=ArtCollab",
                 serverVersion);
         }
     }
