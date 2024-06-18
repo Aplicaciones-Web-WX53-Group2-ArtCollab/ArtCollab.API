@@ -475,3 +475,19 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+/.idea
+/Application/obj
+/Domain/obj
+/Infraestructure/obj
+/Infrastructure/obj
+/Application/bin
+/Domain/bin
+/Infrastructure/bin
+/Domain.Test/obj
+/Domain.Test/bin
+/Domain. Test/obj
+/Infrastructure.Test/bin
+/Infrastructure.Test/obj
+/Presentation/bin
+/Presentation/obj
