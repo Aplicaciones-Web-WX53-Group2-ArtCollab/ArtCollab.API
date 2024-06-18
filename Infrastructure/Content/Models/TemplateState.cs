@@ -1,4 +1,6 @@
-﻿namespace Infraestructure.Models;
+﻿using Infrastructure.Shared.Model;
+
+namespace Infrastructure.Content.Models;
 
 public partial class TemplateState : BaseModel
 {

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using Infrastructure.Shared.Model;
 
-namespace Infraestructure.Models;
+namespace Infrastructure.Content.Models;
 
 public partial class Template_History : BaseModel
 {
