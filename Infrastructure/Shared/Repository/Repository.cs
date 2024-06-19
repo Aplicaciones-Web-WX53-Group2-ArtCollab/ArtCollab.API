@@ -1,4 +1,4 @@
-using Infrastructure.Shared.Context;
+using Infrastructure.Context;
 using Infrastructure.Shared.Interfaces;
 using Infrastructure.Shared.Model;
 using Microsoft.EntityFrameworkCore;

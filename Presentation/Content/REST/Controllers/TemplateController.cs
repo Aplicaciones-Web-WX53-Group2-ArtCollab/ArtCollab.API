@@ -1,11 +1,11 @@
 using System.Net.Mime;
 using AutoMapper;
+using Domain.Content.Models.Aggregate;
+using Domain.Content.Models.Commands;
+using Domain.Content.Models.Response;
 using Infrastructure.Content.Interfaces;
-using Infrastructure.Content.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Presentation.Content.Request;
-using Presentation.Content.Response;
 
 namespace Presentation.Content.REST.Controllers
 {
@@ -109,10 +109,10 @@ namespace Presentation.Content.REST.Controllers
         [Route("create-template")]
         [ProducesResponseType(201)]
         [ProducesResponseType(401)]
-        public async Task<IActionResult> CreateTemplate(TemplateRequest data)
+        public async Task<IActionResult> CreateTemplate(CreateTemplateCommand data)
         {
                 if(!ModelState.IsValid) return BadRequest();
-                var template = _mapper.Map<TemplateRequest, Template>(data);
+                var template = _mapper.Map<CreateTemplateCommand, Template>(data);
                 await _templateData.Add(template);
                 return Ok(true);
         }

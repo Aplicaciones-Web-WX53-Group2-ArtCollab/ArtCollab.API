@@ -1,6 +1,6 @@
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Infrastructure.Shared.Model;
+namespace Domain.Shared.Models.Entities;
 
 public class BaseModel
 {

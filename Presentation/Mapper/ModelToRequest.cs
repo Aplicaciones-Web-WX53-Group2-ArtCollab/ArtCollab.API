@@ -1,4 +1,6 @@
 using AutoMapper;
+using Domain.Content.Models.Aggregate;
+using Domain.Content.Models.Commands;
 using Infrastructure.Collaboration.Model;
 using Infrastructure.Monetization.Model.Aggregates;
 using Infrastructure.Users.Model;
@@ -16,6 +18,6 @@ public class ModelToRequest : Profile
         CreateMap<Comment, CommentRequest>();
         CreateMap<Subscription, SubscriptionRequest>();
         CreateMap<Commision, CommisionRequest>();
-        
+        CreateMap<Template, CreateTemplateCommand>();
     }
 }

@@ -1,19 +1,17 @@
-using Infrastructure.Collaboration.Model;
-using Infrastructure.Content.Models;
-using Infrastructure.Monetization.Model.Aggregates;
-using Infrastructure.Users.Model;
+﻿using Domain.Content.Models.Aggregate;
+using Domain.Content.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Shared.Context;
+namespace Infraestructure.Shared.Contexts;
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
     public DbSet<Subscription> Subscriptions { get; set; }
     public DbSet<Commision> Commisions { get; set; }
-    public DbSet<Template> Templates { get; set; }
-    public DbSet<Template_History> TemplateHistories { get; set; }
+    public DbSet<Template?> Templates { get; set; }
+    public DbSet<TemplateHistory> TemplateHistories { get; set; }
     public DbSet<TemplateState> TemplateStates { get; set; }
-    public DbSet<Reader> Readers { get; set; }
+    public DbSet<Reader?> Readers { get; set; }
     public DbSet<Comment> Comments { get; set; }
     
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
@@ -49,15 +47,15 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         builder.Entity<Template>().Property(t => t.ImgUrl).IsRequired();
         builder.Entity<Template>().Property(t => t.Date_Publish).IsRequired();
         builder.Entity<Template>().Property(t => t.TemplateState_id).IsRequired();
-        builder.Entity<Template>().Property(t => t.Template_History_id).IsRequired();
+        builder.Entity<Template>().Property(t => t.TemplateHistory_id).IsRequired();
         builder.Entity<Template>().Property(t => t.Portfolio_id).IsRequired();
        
         
-        builder.Entity<Template_History>().ToTable("template_histories");
-        builder.Entity<Template_History>().HasKey(th => th.Id);
-        builder.Entity<Template_History>().Property(th => th.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<Template_History>().Property(th => th.Modified_at).IsRequired();
-        builder.Entity<Template_History>().Property(th => th.Delete_at).IsRequired();
+        builder.Entity<TemplateHistory>().ToTable("template_histories");
+        builder.Entity<TemplateHistory>().HasKey(th => th.Id);
+        builder.Entity<TemplateHistory>().Property(th => th.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<TemplateHistory>().Property(th => th.Modified_at).IsRequired();
+        builder.Entity<TemplateHistory>().Property(th => th.Delete_at).IsRequired();
         
         builder.Entity<TemplateState>().ToTable("template_states");
         builder.Entity<TemplateState>().HasKey(ts => ts.Id);

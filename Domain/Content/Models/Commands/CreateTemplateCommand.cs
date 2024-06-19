@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Presentation.Content.Request;
+namespace Domain.Content.Models.Commands;
 
-public class TemplateRequest
+public class CreateTemplateCommand
 {
     [Required] 
     [MaxLength(50)]

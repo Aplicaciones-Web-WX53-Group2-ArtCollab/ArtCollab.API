@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Infrastructure.Shared.Model;
 
-namespace Infrastructure.Content.Models;
+namespace Domain.Content.Models.Entities;
 
-public partial class Template_History : BaseModel
+public partial class TemplateHistory
 {
+    public int Id {get;set; }
+    
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTime Modified_at { get; set; }
     

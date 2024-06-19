@@ -1,6 +1,6 @@
 ﻿using Infrastructure.Content.Interfaces;
 using Infrastructure.Content.Models;
-using Infrastructure.Shared.Context;
+using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Content.MySql;

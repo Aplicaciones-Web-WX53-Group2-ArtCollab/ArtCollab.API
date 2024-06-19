@@ -1,4 +1,4 @@
-﻿namespace Presentation.Content.Response;
+﻿namespace Domain.Content.Models.Response;
 
 public class TemplateResponse
 {
@@ -9,7 +9,7 @@ public class TemplateResponse
     public string Type { get; set; }
     public string ImgUrl { get; set; }
     public int TemplateState_id { get; set; }
-    public int Template_History_id { get; set; }
+    public int TemplateHistory_id { get; set; }
     public int Portfolio_id { get; set; }
     public string Genre { get; set; }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using Domain.Content.Interfaces;
+using Domain.Content.Models.Aggregate;
 using Infrastructure.Content.Interfaces;
-using Infrastructure.Content.Models;
 
 namespace Domain.Repository;
 

@@ -1,10 +1,10 @@
 using AutoMapper;
+using Domain.Content.Models.Aggregate;
+using Domain.Content.Models.Response;
 using Infrastructure.Collaboration.Model;
-using Infrastructure.Content.Models;
 using Infrastructure.Monetization.Model.Aggregates;
 using Infrastructure.Users.Model;
 using Presentation.Collaboration.Response;
-using Presentation.Content.Response;
 using Presentation.Monetization.Response;
 using Presentation.Users.Response;
 

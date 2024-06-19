@@ -1,7 +1,6 @@
 using System.Data;
 using Domain.Interfaces;
 using Infrastructure.Content.Interfaces;
-using Infrastructure.Content.Models;
 using Infrastructure.Monetization.Model.Aggregates;
 using Infrastructure.Shared.Exceptions;
 using Infrastructure.Shared.Interfaces;

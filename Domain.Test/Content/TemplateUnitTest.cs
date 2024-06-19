@@ -1,7 +1,7 @@
 using Domain.Content.Interfaces;
+using Domain.Content.Models.Aggregate;
 using Domain.Repository;
 using Infrastructure.Content.Interfaces;
-using Infrastructure.Content.Models;
 using Moq;
 
 namespace Domain.Test.Content;
