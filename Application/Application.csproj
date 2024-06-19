@@ -5,6 +5,16 @@
         <RootNamespace>Application</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="User\Internal\CommandServices\" />
+      <Folder Include="User\Internal\QueryServices\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Domain\Domain.csproj" />
+    </ItemGroup>
 
 </Project>

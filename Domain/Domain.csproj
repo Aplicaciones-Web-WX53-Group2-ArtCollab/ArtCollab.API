@@ -10,15 +10,15 @@
     <ItemGroup>
       <PackageReference Include="AutoMapper" Version="12.0.1" />
       <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+      <PackageReference Include="EntityFrameworkCore.CreatedUpdatedDate" Version="7.0.10" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.19" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Shared\" />
+      <Folder Include="User\Model\Commands\" />
+      <Folder Include="User\Model\Queries\" />
+      <Folder Include="User\Repositories\" />
+      <Folder Include="User\Services\" />
     </ItemGroup>
 
 </Project>

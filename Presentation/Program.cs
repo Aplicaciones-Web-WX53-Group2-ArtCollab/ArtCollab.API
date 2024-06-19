@@ -1,6 +1,7 @@
 
 using System.Reflection;
 using Domain.Interfaces;
+using Domain.Monetization.Model.Aggregates;
 using Domain.Repository;
 using Infrastructure.Content.Interfaces;
 using Infrastructure.Content.MySql;
