@@ -11,7 +11,7 @@ namespace Presentation.Collaboration.REST;
 [Route("api/v1/collaboration/[controller]")]
 [ApiController]
 [Produces(MediaTypeNames.Application.Json)]
-[Authorize]
+[AllowAnonymous]
 [ProducesResponseType(401)]
 [ProducesResponseType(403)]
 [ProducesResponseType(500)]

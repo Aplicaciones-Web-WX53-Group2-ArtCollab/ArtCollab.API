@@ -22,10 +22,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Users\Persistence\EFC\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Application\Application.csproj" />
       <ProjectReference Include="..\Domain.Test\Domain.Test.csproj" />
       <ProjectReference Include="..\Domain\Domain.csproj" />

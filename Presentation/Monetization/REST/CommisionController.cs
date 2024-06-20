@@ -12,7 +12,7 @@ namespace Presentation.Monetization.REST;
 [Route("api/v1/monetization/[controller]")]
 [ApiController]
 [Produces(MediaTypeNames.Application.Json)]
-[Authorize]
+[AllowAnonymous]
 [ProducesResponseType(500)]
 [ProducesResponseType(401)]
 [ProducesResponseType(403)]

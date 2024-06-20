@@ -54,7 +54,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         builder.Entity<Reader>().HasKey(r => r.Id);
         builder.Entity<Reader>().Property(r => r.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Reader>().Property(r => r.Name).IsRequired();
-        builder.Entity<Reader>().Property(r => r.UserName).IsRequired();
+        builder.Entity<Reader>().Property(r => r.Username).IsRequired();
         builder.Entity<Reader>().Property(r => r.Email).IsRequired();
         builder.Entity<Reader>().Property(r => r.Password).IsRequired();
         builder.Entity<Reader>().Property(r => r.Type).IsRequired();

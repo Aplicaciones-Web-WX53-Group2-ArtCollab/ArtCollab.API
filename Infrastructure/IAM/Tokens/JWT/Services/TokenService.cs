@@ -23,7 +23,7 @@ public class TokenService(IOptions<TokenSettings> tokenSettings) : ITokenService
                 new Claim(ClaimTypes.Sid, admin.Id.ToString()),
                 new Claim(ClaimTypes.Name, admin.Username)
             }),
-            Expires = DateTime.UtcNow.AddMinutes(1),
+            Expires = DateTime.UtcNow.AddDays(7),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
         var tokenHandler = new JsonWebTokenHandler();

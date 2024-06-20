@@ -10,11 +10,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="User\Internal\CommandServices\" />
-      <Folder Include="User\Internal\QueryServices\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
 
