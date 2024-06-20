@@ -4,18 +4,28 @@ using Application.Collaboration.Internal.CommandServices;
 using Application.Collaboration.Internal.QueryServices;
 using Application.Content.Internal.CommandServices;
 using Application.Content.Internal.QueryServices;
+using Application.IAM.Internal.CommandServices;
+using Application.IAM.Internal.OutboundServices;
+using Application.IAM.Internal.QueryServices;
 using Application.Monetization.Internal.CommandServices;
 using Application.Monetization.Internal.QueryServices;
 using Domain.Collaboration.Repositories;
 using Domain.Collaboration.Services;
 using Domain.Content.Repositories;
 using Domain.Content.Services;
+using Domain.IAM.Repositories;
+using Domain.IAM.Services;
 using Domain.Monetization.Model.Aggregates;
 using Domain.Monetization.Repositories;
 using Domain.Monetization.Services;
 using Domain.Shared.Repositories;
 using Infrastructure.Collaboration.Persistence.EFC.Repositories;
 using Infrastructure.Content.Persistence.EFC.Repositories;
+using Infrastructure.IAM.Hashing.Bcrypt.Services;
+using Infrastructure.IAM.Persistence.EFC.Repositories;
+using Infrastructure.IAM.Pipeline.Middleware.Extensions;
+using Infrastructure.IAM.Tokens.JWT.Configuration;
+using Infrastructure.IAM.Tokens.JWT.Services;
 using Infrastructure.Monetization.Model.Entities;
 using Infrastructure.Monetization.Persistence.EFC.Repositories;
 using Infrastructure.Shared.Interfaces.ASP.Configuration;
@@ -23,6 +33,8 @@ using Infrastructure.Shared.Persistence.EFC.Configuration;
 using Infrastructure.Shared.Persistence.EFC.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Presentation.IAM.ACL;
+using Presentation.IAM.ACL.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,6 +71,28 @@ builder.Services.AddSwaggerGen(
                 Url = new Uri("https://artcollab.com/license")
             }
         });
+        options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+        {
+            In = ParameterLocation.Header,
+            Description = "Please enter token",
+            Name = "Authorization",
+            Type = SecuritySchemeType.Http,
+            BearerFormat = "JWT",
+            Scheme = "bearer"
+        });
+        options.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Id = "Bearer", Type = ReferenceType.SecurityScheme
+                    } 
+                }, 
+                Array.Empty<string>()
+            }
+        });
         // using System.Reflection;
         var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
         options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
@@ -82,6 +116,16 @@ builder.Services.AddScoped<ICommisionQueryService, CommisionQueryService>();
 
 builder.Services.AddScoped<ISubscriptionCommandService,SubscriptionCommandService>();
 builder.Services.AddScoped<ISubscriptionQueryService, SubscriptionQueryService>();
+
+//IAM dependency injection
+builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection("TokenSettings"));
+
+builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
+builder.Services.AddScoped<IHashingService, HashingService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IAdminRepository, AdminRepository>();
+builder.Services.AddScoped<IAdminCommandService, AdminCommandService>();
+builder.Services.AddScoped<IAdminQueryService, AdminQueryService>();
 
 
 
@@ -116,6 +160,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Add authorization middleware to pipeline
+app.UseRequestAuthorization();
 
 app.UseHttpsRedirection();
 

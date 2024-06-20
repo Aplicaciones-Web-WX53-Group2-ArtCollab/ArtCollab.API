@@ -1,8 +1,7 @@
-
 using Infrastructure.Shared.Persistence.EFC.Configuration;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Test.Monetization;
+namespace Infrastructure.Test.Shared;
 
 public class UnitTestInfrastructure
 {

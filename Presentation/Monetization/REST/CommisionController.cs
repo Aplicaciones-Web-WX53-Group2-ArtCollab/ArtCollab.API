@@ -1,6 +1,4 @@
 using System.Net.Mime;
-using AutoMapper;
-using Domain.Monetization.Model.Aggregates;
 using Domain.Monetization.Model.Commands;
 using Domain.Monetization.Model.Queries;
 using Domain.Monetization.Services;
@@ -14,8 +12,10 @@ namespace Presentation.Monetization.REST;
 [Route("api/v1/monetization/[controller]")]
 [ApiController]
 [Produces(MediaTypeNames.Application.Json)]
-[AllowAnonymous]
+[Authorize]
 [ProducesResponseType(500)]
+[ProducesResponseType(401)]
+[ProducesResponseType(403)]
 public class CommisionController(ICommisionCommandService commisionCommandService, ICommisionQueryService commisionQueryService )  : ControllerBase
 {
   
@@ -27,6 +27,8 @@ public class CommisionController(ICommisionCommandService commisionCommandServic
     /// <response code="200">Return all commisions</response>
     /// <response code="404">If there are no commisions</response>
     /// <response code="500">If there is an internal error</response>
+    /// <response code="401">Unauthorized</response>
+    /// <response code="403">Forbidden</response>
     [HttpGet]
     [ProducesResponseType(404)]
     [ProducesResponseType(200)]
@@ -44,6 +46,8 @@ public class CommisionController(ICommisionCommandService commisionCommandServic
     /// </summary>
     /// <response code="201">If the commision was added successfully</response>
     /// <response code="500">If there is an internal error</response>
+    /// <response code="401">Unauthorized</response>
+    /// <response code="403">Forbidden</response>
     
     [HttpPost]
     [ProducesResponseType(201)]
@@ -62,6 +66,8 @@ public class CommisionController(ICommisionCommandService commisionCommandServic
     /// <response code="200">Return a commision by id</response>
     /// <response code="404">If the commision was not found</response>
     /// <response code="500">If there is an internal error</response>
+    /// <response code="401">Unauthorized</response>
+    /// <response code="403">Forbidden</response>
 
     [HttpGet("{id:int}")]
     [ProducesResponseType(200)]
@@ -82,6 +88,8 @@ public class CommisionController(ICommisionCommandService commisionCommandServic
     ///  <response code="200">If the commision was updated successfully</response>
     ///  <response code="404">If the commision to Update not found</response>
     ///  <response code="500">If there is an internal error</response>
+    /// <response code="401">Unauthorized</response>
+    /// <response code="403">Forbidden</response>
     
     
     [HttpPut("{id:int}")]
@@ -103,6 +111,8 @@ public class CommisionController(ICommisionCommandService commisionCommandServic
     ///  <response code="200">If the commision was deleted successfully</response>
     ///  <response code="500">If there is an internal error</response>
     ///  <response code="404">If the commision was not found</response>
+    /// <response code="401">Unauthorized</response>
+    /// <response code="403">Forbidden</response>
     
     [HttpDelete("{id:int}")]
     [ProducesResponseType(200)]

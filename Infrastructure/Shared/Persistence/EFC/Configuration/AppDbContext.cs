@@ -1,8 +1,10 @@
 using Domain.Collaboration.Model.Aggregates;
 using Domain.Content.Model.Aggregates;
+using Domain.IAM.Model.Aggregates;
 using Domain.Monetization.Model.Aggregates;
 using Domain.User.Model.Aggregates;
 using Infrastructure.Monetization.Model.Aggregates;
+using Infrastructure.Shared.Persistence.EFC.Configuration.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Shared.Persistence.EFC.Configuration;
@@ -64,7 +66,13 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         builder.Entity<Comment>().Property(c => c.Content).IsRequired();
         builder.Entity<Comment>().Property(c => c.Date).IsRequired();
 
+        builder.Entity<Admin>().ToTable("admins");
+        builder.Entity<Admin>().HasKey(a => a.Id);
+        builder.Entity<Admin>().Property(a => a.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Admin>().Property(a => a.Username).IsRequired();
+        builder.Entity<Admin>().Property(a => a.PasswordHash).IsRequired();
 
+      builder.UseSnakeCaseWithPluralizedTableNamingConvention();
 
 
     }

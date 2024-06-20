@@ -12,9 +12,11 @@ namespace Presentation.Content.REST
     [Route("api/v1/content/[controller]")]
     [ApiController]
     [Produces((MediaTypeNames.Application.Json))]
-    [AllowAnonymous]
+    [Authorize]
     [ProducesResponseType(400)]
     [ProducesResponseType(500)]
+    [ProducesResponseType(401)]
+    [ProducesResponseType(403)]
     public class TemplateController(ITemplateCommandService templateCommandService, ITemplateQueryService templateQueryService) : ControllerBase
     {
         
@@ -26,6 +28,8 @@ namespace Presentation.Content.REST
        /// <response code = "404">Not found</response>
        /// <response code = "500">Internal Server Error</response>
        /// <response code = "400">Bad Request</response>
+       /// <response code="401">Unauthorized</response>
+       /// <response code="403">Forbidden</response>
         [HttpGet] [ProducesResponseType(200)]
        [ProducesResponseType(404)]
         public async Task<IActionResult> GetAllTemplates()
@@ -44,6 +48,8 @@ namespace Presentation.Content.REST
       /// <response code="404">Not found</response>
       /// <response code="500">Internal Server Error</response>
       /// <response code="400">Bad Request</response>
+      /// <response code="401">Unauthorized</response>
+      /// <response code="403">Forbidden</response>
         [HttpGet]
         [Route("{id:int}")]
         [ProducesResponseType(200)]
@@ -64,6 +70,8 @@ namespace Presentation.Content.REST
        /// <response code="404">Not found</response>
        /// <response code="500">Internal Server Error</response>
        /// <response code="400">Bad Request</response>
+       /// <response code="401">Unauthorized</response>
+       /// <response code="403">Forbidden</response>
         [HttpGet]
         [Route("/genre/{genre}")]
         [ProducesResponseType(200)]
@@ -95,6 +103,8 @@ namespace Presentation.Content.REST
         /// <response code="500">Internal Server Error</response>
         /// <response code="400">Bad Request</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="403">Forbidden</response>
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(401)]
@@ -122,6 +132,12 @@ namespace Presentation.Content.REST
         ///     "genre": "Template genre"
         /// }
         /// </remarks>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="403">Forbidden</response>
+        /// <response code="200">Returns the updated template</response>
+        /// <reponse code = "404">Not found</reponse>
+        /// <reponse code = "500">Internal Server Error</reponse>
+        /// <reponse code = "400">Bad Request</reponse>
         [HttpPut ("{id:int}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -145,6 +161,8 @@ namespace Presentation.Content.REST
         /// <response code="404">Not found</response>
         /// <response code="500">Internal Server Error</response>
         /// <response code="400">Bad Request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="403">Forbidden</response>
         [HttpDelete("{id:int}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]

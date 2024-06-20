@@ -19,6 +19,8 @@ namespace Presentation.Monetization.REST;
 [AllowAnonymous]
 [ProducesResponseType(500)]
 [ProducesResponseType(400)]
+[ProducesResponseType(401)]
+[ProducesResponseType(403)]
 public class SubscriptionController(ISubscriptionQueryService subscriptionQueryService, ISubscriptionCommandService subscriptionCommandService )  : ControllerBase
 {
     
@@ -30,6 +32,8 @@ public class SubscriptionController(ISubscriptionQueryService subscriptionQueryS
     /// <response code="404">Not found</response>
     /// <response code="500">Internal Server Error</response>
     /// <response code="400">Bad Request</response>
+    /// <response code="401">Unauthorized</response>
+    /// <response code="403">Forbidden</response>
     
     [HttpGet]
     [ProducesResponseType(200)]
@@ -49,6 +53,8 @@ public class SubscriptionController(ISubscriptionQueryService subscriptionQueryS
     /// <response code="404">Not found</response>
     /// <response code="500">Internal Server Error</response>
     /// <response code="400">Bad Request</response>
+    /// <response code="401">Unauthorized</response>
+    /// <response code="403">Forbidden</response>
 
 
     [HttpGet("{id:int}")]
@@ -70,6 +76,8 @@ public class SubscriptionController(ISubscriptionQueryService subscriptionQueryS
     /// <response code="500">Internal Server Error</response>
     /// <response code="404">If subscription to update Not found</response>
     /// <response code="400">Bad Request</response>
+    /// <response code="401">Unauthorized</response>
+    /// <response code="403">Forbidden</response>
     
     [HttpPut("{id:int}")]
     [ProducesResponseType(200)]
@@ -89,6 +97,8 @@ public class SubscriptionController(ISubscriptionQueryService subscriptionQueryS
     /// <response code="404">If susbcription to delete Not found</response>
     /// <response code="500">Internal Server Error</response>
     /// <response code="400">Bad Request</response>
+    /// <response code="401">Unauthorized</response>
+    /// <response code="403">Forbidden</response>
 
     [HttpDelete("{id:int}")]
     [ProducesResponseType(200)]
@@ -108,6 +118,8 @@ public class SubscriptionController(ISubscriptionQueryService subscriptionQueryS
     /// <response code="500">Internal Server Error</response>
     /// <response code="400">Bad Request</response>
     /// <response code="401">Unauthorized</response>
+    /// <response code="401">Unauthorized</response>
+    /// <response code="403">Forbidden</response>
 
     [HttpPost]
     [ProducesResponseType(201)]

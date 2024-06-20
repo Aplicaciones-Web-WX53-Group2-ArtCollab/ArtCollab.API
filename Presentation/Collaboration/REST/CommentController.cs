@@ -11,7 +11,9 @@ namespace Presentation.Collaboration.REST;
 [Route("api/v1/collaboration/[controller]")]
 [ApiController]
 [Produces(MediaTypeNames.Application.Json)]
-[AllowAnonymous]
+[Authorize]
+[ProducesResponseType(401)]
+[ProducesResponseType(403)]
 [ProducesResponseType(500)]
 [ProducesResponseType(400)]
 public class CommentController(ICommentCommandService commentCommandService, ICommentQueryService commentQueryService) : ControllerBase
@@ -25,6 +27,8 @@ public class CommentController(ICommentCommandService commentCommandService, ICo
     /// <response code="404">Not found</response>
     /// <response code="500">Internal Server Error</response>
     /// <response code="400">Bad Request</response>
+    /// <response code="401">Unauthorized</response>
+    /// <response code="403">Forbidden</response>
         
     [HttpGet]
     [ProducesResponseType(200)]
@@ -45,7 +49,8 @@ public class CommentController(ICommentCommandService commentCommandService, ICo
     /// <response code="404">Not found</response>
     /// <response code="500">Internal Server Error</response>
     /// <response code="400">Bad Request</response>
-    /// <returns></returns>
+    /// <response code="401">Unauthorized</response>
+    /// <response code="403">Forbidden</response>
         
     [HttpGet]
     [Route("{id:int}")]
@@ -66,7 +71,8 @@ public class CommentController(ICommentCommandService commentCommandService, ICo
     /// <response code="401">Unauthorized</response>
     /// <response code="500">Internal Server Error</response>
     /// <response code="400">Bad Request</response>
-    /// <returns></returns>
+    /// <response code="401">Unauthorized</response>
+    /// <response code="403">Forbidden</response>
         
     [HttpPost]
     [ProducesResponseType(201)]
@@ -87,7 +93,8 @@ public class CommentController(ICommentCommandService commentCommandService, ICo
     /// <response code="404">Not found</response>
     /// <response code="500">Internal Server Error</response>
     /// <response code="400">Bad Request</response>
-    /// <returns></returns>
+    /// <response code="401">Unauthorized</response>
+    /// <response code="403">Forbidden</response>
         
     [HttpPut("{id:int}")]
     [ProducesResponseType(200)]
@@ -108,7 +115,8 @@ public class CommentController(ICommentCommandService commentCommandService, ICo
     /// <response code="404">Not found</response>
     /// <response code="500">Internal Server Error</response>
     /// <response code="400">Bad Request</response>
-    /// <returns></returns>
+    /// <response code="401">Unauthorized</response>
+    /// <response code="403">Forbidden</response>
 
     [HttpDelete("{id:int}")]
     [ProducesResponseType(200)]
