@@ -42,7 +42,7 @@ public class SubscriptionController(ISubscriptionQueryService subscriptionQueryS
     {
         var query = new GetAllSubscriptionsQuery();
         var subscriptions = await subscriptionQueryService.Handle(query);
-        var subscriptionResource = subscriptions.Select(SubscriptionResourceFromEntityAssembler.ToResourceFromEntity);
+        var subscriptionResource = subscriptions.Select(SubscriptionResourceFromEntityAssembler.ToResourceFromEntity).ToList();
         return Ok(subscriptionResource);
 
     }

@@ -38,7 +38,7 @@ namespace Presentation.Users.REST
         {
             var query = new GetAllReadersQuery();
             var readers = await readerQueryService.Handle(query);
-            var readerResource = readers.Select(ReaderResourceFromEntityAssembler.ToResourceFromEntity);
+            var readerResource = readers.Select(ReaderResourceFromEntityAssembler.ToResourceFromEntity).ToList();
             return Ok(readerResource);
         }
 

@@ -9,7 +9,7 @@ using Moq;
 
 namespace Domain.Test.Content;
 
-public class TemplateUnitTest
+public class TemplateTestDomain
 {
   [Fact]
   public async Task CreateTemplateWorking()
@@ -82,6 +82,34 @@ public class TemplateUnitTest
       var templates = await mockTemplateQueryService.Object.Handle(query);
       //Assert
       Assert.NotNull(templates);
+  }
+
+  [Fact]
+  public async Task GetTemplateByCoverImageWorking()
+  {
+      //Arrange
+      var query = new GetTemplateByCoverImageQuery("ExampleImgUrl");
+      var mockTemplateQueryService = new Mock<ITemplateQueryService>();
+      
+      //Act
+      mockTemplateQueryService.Setup(x => x.Handle(query)).ReturnsAsync(new Template());
+      var template = await mockTemplateQueryService.Object.Handle(query);
+      //Assert
+      Assert.NotNull(template);
+
+  }
+
+  [Fact]
+  public async Task GetTemplateByDescription()
+  {
+      //Arrange
+      var query = new GetTemplateByDescriptionQuery("ExampleDescription");
+      var mockTemplateQueryService = new Mock<ITemplateQueryService>();
+      //Act
+      mockTemplateQueryService.Setup(x => x.Handle(query)).ReturnsAsync(new Template());
+      var template = await mockTemplateQueryService.Object.Handle(query);
+      //Assert
+      Assert.NotNull(template);
   }
   
   [Fact]

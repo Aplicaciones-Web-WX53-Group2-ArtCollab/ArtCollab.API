@@ -8,7 +8,7 @@ public class UnitTestInfrastructure
     
     
     [Fact]
-    public void DataBase_IsConfiguring()
+    public void DataBaseIsConfiguring()
     {
         // Arrange
         var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
@@ -20,7 +20,7 @@ public class UnitTestInfrastructure
     }
 
     [Fact]
-    public void Tables_AreCreating()
+    public void TablesAreCreating()
     {
         
         //Arrange

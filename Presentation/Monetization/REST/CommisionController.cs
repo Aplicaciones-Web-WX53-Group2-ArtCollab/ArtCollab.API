@@ -36,7 +36,7 @@ public class CommisionController(ICommisionCommandService commisionCommandServic
     {
         var query = new GetAllCommisionsQuery();
         var commisions = await commisionQueryService.Handle(query);
-        var commisionResource = commisions.Select(CommisionResourceFromEntityAssembler.ToResourceFromEntity);
+        var commisionResource = commisions.Select(CommisionResourceFromEntityAssembler.ToResourceFromEntity).ToList();
         return Ok(commisionResource);
     }
     

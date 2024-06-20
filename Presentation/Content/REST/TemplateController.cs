@@ -12,75 +12,122 @@ namespace Presentation.Content.REST
     [Route("api/v1/content/[controller]")]
     [ApiController]
     [Produces((MediaTypeNames.Application.Json))]
-    [Authorize]
     [ProducesResponseType(400)]
     [ProducesResponseType(500)]
     [ProducesResponseType(401)]
     [ProducesResponseType(403)]
-    public class TemplateController(ITemplateCommandService templateCommandService, ITemplateQueryService templateQueryService) : ControllerBase
+    public class TemplateController(
+        ITemplateCommandService templateCommandService,
+        ITemplateQueryService templateQueryService) : ControllerBase
     {
-        
+
         // GET: api/v1/content/template/get-all-templates
-       /// <summary>
-       /// Get all templates
-       /// </summary>
-       /// <response code = "200">Return all templates</response>
-       /// <response code = "404">Not found</response>
-       /// <response code = "500">Internal Server Error</response>
-       /// <response code = "400">Bad Request</response>
-       /// <response code="401">Unauthorized</response>
-       /// <response code="403">Forbidden</response>
-        [HttpGet] [ProducesResponseType(200)]
-       [ProducesResponseType(404)]
+        /// <summary>
+        /// Get all templates
+        /// </summary>
+        /// <response code = "200">Return all templates</response>
+        /// <response code = "404">Not found</response>
+        /// <response code = "500">Internal Server Error</response>
+        /// <response code = "400">Bad Request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="403">Forbidden</response>
+        [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> GetAllTemplates()
         {
             var query = new GetAllTemplatesQuery();
             var templates = await templateQueryService.Handle(query);
-            var templateResource = templates.Select(TemplateResourceFromEntityAssembler.ToResourceFromEntity);
+            var templateResource = templates.Select(TemplateResourceFromEntityAssembler.ToResourceFromEntity).ToList();
             return Ok(templateResource);
         }
-        
+
         // GET: api/v1/content/template/get-template-by-id
-      /// <summary>
-      ///  Get template by id
-      /// </summary>
-      /// <response code="200">Return template by id</response>
-      /// <response code="404">Not found</response>
-      /// <response code="500">Internal Server Error</response>
-      /// <response code="400">Bad Request</response>
-      /// <response code="401">Unauthorized</response>
-      /// <response code="403">Forbidden</response>
+        /// <summary>
+        ///  Get template by id
+        /// </summary>
+        /// <response code="200">Return template by id</response>
+        /// <response code="404">Not found</response>
+        /// <response code="500">Internal Server Error</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="403">Forbidden</response>
         [HttpGet]
         [Route("{id:int}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetTemplateById(int id)
-        { 
+        {
             var query = new GetTemplateByIdQuery(id);
-          var template = await templateQueryService.Handle(query);
-          var templateResource = TemplateResourceFromEntityAssembler.ToResourceFromEntity(template);
-          return Ok(templateResource);
+            var template = await templateQueryService.Handle(query);
+            var templateResource = TemplateResourceFromEntityAssembler.ToResourceFromEntity(template);
+            return Ok(templateResource);
         }
-        
-        // GET: api/v1/content/template/get-template-by-genre
-       /// <summary>
-       ///  Get template by genre
-       /// </summary>
-       /// <response code="200">Return template by genre</response>
-       /// <response code="404">Not found</response>
-       /// <response code="500">Internal Server Error</response>
-       /// <response code="400">Bad Request</response>
-       /// <response code="401">Unauthorized</response>
-       /// <response code="403">Forbidden</response>
+
+        // GET: api/v1/content/{genre}
+        /// <summary>
+        ///  Get templates by genre
+        /// </summary>
+        /// <response code="200">Return template by genre</response>
+        /// <response code="404">Not found</response>
+        /// <response code="500">Internal Server Error</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="403">Forbidden</response>
         [HttpGet]
-        [Route("/genre/{genre}")]
+        [Route("genre/{genre}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> GetTemplateByGenre(string genre)
+        public async Task<IActionResult> GetTemplatesByGenre(string genre)
         {
             var query = new GetTemplatesByGenreQuery(genre);
             var templates = await templateQueryService.Handle(query);
-            var templateResource = templates.Select(TemplateResourceFromEntityAssembler.ToResourceFromEntity);
+            var templateResource = templates.Select(TemplateResourceFromEntityAssembler.ToResourceFromEntity).ToList();
+            return Ok(templateResource);
+        }
+       
+        // GET: api/v1/content/{imgUrl}
+        /// <summary>
+        ///  Get template by cover image
+        /// </summary>
+        /// <response code="200">Return template by cover image</response>
+        /// <response code="404">Not found</response>
+        /// <response code="500">Internal Server Error</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="403">Forbidden</response>
+        [HttpGet]
+        [Route("coverImage/{imgUrl}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> GetTemplateByCoverImage(string imgUrl)
+        {
+            var query = new GetTemplateByCoverImageQuery(imgUrl);
+            var template = await templateQueryService.Handle(query);
+            var templateResource = TemplateResourceFromEntityAssembler.ToResourceFromEntity(template);
+            return Ok(templateResource);
+        }
+        
+        
+        // GET: api/v1/content/{imgUrl}
+        /// <summary>
+        ///  Get template by description
+        /// </summary>
+        /// <response code="200">Return template by description</response>
+        /// <response code="404">Not found</response>
+        /// <response code="500">Internal Server Error</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="403">Forbidden</response>
+        [HttpGet]
+        [Route("description/{description}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> GetTemplateByDescription(string description)
+        {
+            var query = new GetTemplateByDescriptionQuery(description);
+            var template = await templateQueryService.Handle(query);
+            var templateResource = TemplateResourceFromEntityAssembler.ToResourceFromEntity(template);
             return Ok(templateResource);
         }
         

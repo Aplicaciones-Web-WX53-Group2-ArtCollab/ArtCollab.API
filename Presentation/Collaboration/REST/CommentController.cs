@@ -37,7 +37,7 @@ public class CommentController(ICommentCommandService commentCommandService, ICo
     {
         var query = new GetAllCommentsQuery();
         var comments = await commentQueryService.Handle(query);
-        var commentResource = comments.Select(CommentResourceFromEntityAssembler.ToResourceFromEntity);
+        var commentResource = comments.Select(CommentResourceFromEntityAssembler.ToResourceFromEntity).ToList();
         return Ok(commentResource);
     }
         
