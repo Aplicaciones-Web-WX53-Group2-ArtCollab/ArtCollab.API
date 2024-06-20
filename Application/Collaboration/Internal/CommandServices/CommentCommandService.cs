@@ -16,18 +16,19 @@ public class CommentCommandService(IUnitOfWork unitOfWork, ICommentRepository co
         return comment;
     }
 
-    public async Task<Comment?> Handle(int id,UpdateCommentCommand command)
+    public async Task<Comment?> Handle(UpdateCommentCommand command)
     {
-        var comment = await commentRepository.GetByIdAsync(id); 
+        var comment = await commentRepository.GetByIdAsync(command.Id); 
         if(comment == null) return null;
+        comment.Content = command.Comment;
         commentRepository.Update(comment);
         await unitOfWork.CompleteAsync();
         return comment;
     }
 
-    public async Task<Comment?> Handle(int id,DeleteCommentCommand command)
+    public async Task<Comment?> Handle(DeleteCommentCommand command)
     {
-        var comment = await commentRepository.GetByIdAsync(id);
+        var comment = await commentRepository.GetByIdAsync(command.Id);
         if(comment == null) return null;
         commentRepository.Delete(comment);
         await unitOfWork.CompleteAsync();

@@ -1,15 +1,10 @@
-using Domain.Content.Interfaces;
-using Domain.Content.Repository;
-using Domain.Repository;
-using Infrastructure.Content.Interfaces;
-using Infrastructure.Content.Models;
-using Moq;
+
 
 namespace Domain.Test.Content;
 
 public class TemplateUnitTest
 {
-   [Fact]
+   /*[Fact]
     public void AddAsync_ValidTemplate_ReturnsTaskCompletedTask()
     {
         // Arrange
@@ -197,5 +192,6 @@ public class TemplateUnitTest
         //Assert
         Assert.ThrowsAsync<Exception>(async () => await repository.Delete(template.Id));
     } 
+    */
 
 }

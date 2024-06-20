@@ -8,7 +8,10 @@ namespace Infrastructure.Content.Persistence.EFC.Repositories;
 
 public class TemplateRepository(AppDbContext context ): BaseRepository<Template>(context), ITemplateRepository
 {
-   
+    public bool TemplateByTitleExists(string title)
+    {
+        return context.Set<Template>().Any(t => t.Title == title);
+    }
 
     public async Task<IEnumerable<Template?>> GetTemplatesByGenre(string genre)
     {

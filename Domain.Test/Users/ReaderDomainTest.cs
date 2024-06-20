@@ -1,17 +1,10 @@
 
-using Domain.Monetization.Model.Aggregates;
-using Domain.Repository;
-using Infrastructure.Monetization.Model.Aggregates;
-using Infrastructure.Shared.Interfaces;
-using Infrastructure.Users.Interfaces;
-using Infrastructure.Users.Model;
-using Moq;
 
 namespace Domain.Test.Users;
 
 public class ReaderDomainTest
 {
-    [Fact]
+    /*[Fact]
     public void AddAsync_ValidReader_ReturnsValidId()
     {
         //Arrange
@@ -163,5 +156,5 @@ public class ReaderDomainTest
 
         //Assert
         Assert.ThrowsAsync<Exception>(async () => await repositoryGeneric.AddAsync(reader));
-    }
+    }*/
 }

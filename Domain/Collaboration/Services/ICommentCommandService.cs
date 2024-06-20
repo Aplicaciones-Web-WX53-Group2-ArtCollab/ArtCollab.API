@@ -6,6 +6,6 @@ namespace Domain.Collaboration.Services;
 public interface ICommentCommandService
 {
     Task<Comment?> Handle(CreateCommentCommand command);
-    Task <Comment?> Handle(int id,UpdateCommentCommand command);
-    Task<Comment?> Handle(int id,DeleteCommentCommand command);
+    Task <Comment?> Handle(UpdateCommentCommand command);
+    Task<Comment?> Handle(DeleteCommentCommand command);
 }

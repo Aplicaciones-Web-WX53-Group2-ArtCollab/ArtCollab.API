@@ -1,4 +1,5 @@
-using Infrastructure.Shared.Context;
+
+using Infrastructure.Shared.Persistence.EFC.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Test.Monetization;

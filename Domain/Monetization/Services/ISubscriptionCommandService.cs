@@ -6,6 +6,6 @@ namespace Domain.Monetization.Services;
 public interface ISubscriptionCommandService
 {
     Task<Subscription?> Handle(CreateSubscriptionCommand command);
-    Task<Subscription?> Handle(int id,UpdateSubscriptionCommand command);
-    Task<Subscription?> Handle(int id,DeleteSubscriptionCommand command);
+    Task<Subscription?> Handle(UpdateSubscriptionCommand command);
+    Task<Subscription?> Handle(DeleteSubscriptionCommand command);
 }

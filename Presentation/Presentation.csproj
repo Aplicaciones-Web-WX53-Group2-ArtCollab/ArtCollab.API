@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <RootNamespace>Presentation</RootNamespace>
         <LangVersion>latest</LangVersion>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -20,12 +21,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Collaboration\REST\Resources\" />
-      <Folder Include="Collaboration\REST\Transform\" />
-      <Folder Include="Content\REST\Resources\" />
-      <Folder Include="Content\REST\Transform\" />
-      <Folder Include="Monetization\REST\Resources\" />
-      <Folder Include="Monetization\REST\Transform\" />
       <Folder Include="Users\REST\Resources\" />
       <Folder Include="Users\REST\Transform\" />
     </ItemGroup>

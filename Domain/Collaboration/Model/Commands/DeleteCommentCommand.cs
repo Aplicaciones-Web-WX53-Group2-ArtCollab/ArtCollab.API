@@ -1,3 +1,3 @@
 namespace Domain.Collaboration.Model.Commands;
 
-public record DeleteCommentCommand(string Comment);
+public record DeleteCommentCommand(int Id);

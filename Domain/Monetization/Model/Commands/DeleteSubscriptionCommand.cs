@@ -1,3 +1,3 @@
 namespace Domain.Monetization.Model.Commands;
 
-public record DeleteSubscriptionCommand();
+public record DeleteSubscriptionCommand(int Id);

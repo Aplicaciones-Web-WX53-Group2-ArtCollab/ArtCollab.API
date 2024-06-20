@@ -1,3 +1,3 @@
 namespace Domain.Monetization.Model.Commands;
 
-public record UpdateSubscriptionCommand();
+public record UpdateSubscriptionCommand(int Id, bool IsActive);

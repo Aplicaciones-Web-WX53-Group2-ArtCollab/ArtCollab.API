@@ -1,14 +1,15 @@
 using System.Net.Mime;
 using AutoMapper;
-using Domain.Interfaces;
 using Domain.Monetization.Model.Aggregates;
-using Infrastructure.Monetization.Model.Aggregates;
+using Domain.Monetization.Model.Commands;
+using Domain.Monetization.Model.Queries;
+using Domain.Monetization.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Presentation.Monetization.Request;
-using Presentation.Monetization.Response;
+using Presentation.Monetization.REST.Resources;
+using Presentation.Monetization.REST.Transform;
 
-namespace Presentation.Monetization.REST.Controllers;
+namespace Presentation.Monetization.REST;
 
 
 
@@ -18,10 +19,8 @@ namespace Presentation.Monetization.REST.Controllers;
 [AllowAnonymous]
 [ProducesResponseType(500)]
 [ProducesResponseType(400)]
-public class SubscriptionController(IRepositoryGeneric<Subscription> repositoryGeneric, IMapper mapper )  : ControllerBase
+public class SubscriptionController(ISubscriptionQueryService subscriptionQueryService, ISubscriptionCommandService subscriptionCommandService )  : ControllerBase
 {
-    private readonly IRepositoryGeneric<Subscription> _repositoryGeneric = repositoryGeneric;
-    private readonly IMapper _mapper = mapper;
     
     // GET: api/v1/monetization/subscription/get-all
     /// <summary>
@@ -33,15 +32,15 @@ public class SubscriptionController(IRepositoryGeneric<Subscription> repositoryG
     /// <response code="400">Bad Request</response>
     
     [HttpGet]
-    [Route("get-all")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
     public async Task<IActionResult> GetAllSubscriptions()
     {
-        var subscriptions = await _repositoryGeneric.GetAllAsync();
-        var result = _mapper.Map<IEnumerable<Subscription>, IEnumerable<SubscriptionResponse>>(subscriptions);
-        if (result == null) return NotFound();
-        return Ok(result);
+        var query = new GetAllSubscriptionsQuery();
+        var subscriptions = await subscriptionQueryService.Handle(query);
+        var subscriptionResource = subscriptions.Select(SubscriptionResourceFromEntityAssembler.ToResourceFromEntity);
+        return Ok(subscriptionResource);
+
     }
     /// <summary>
     /// Return subscription by id
@@ -52,16 +51,16 @@ public class SubscriptionController(IRepositoryGeneric<Subscription> repositoryG
     /// <response code="400">Bad Request</response>
 
 
-    [HttpGet]
-    [Route("get-by-id/{id}")]
+    [HttpGet("{id:int}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
     public async Task<IActionResult> GetSubscriptionById(int id)
     {
-       var subscription = await _repositoryGeneric.GetByIdAsync(id);
-       var result = _mapper.Map<Subscription, SubscriptionResponse>(subscription);
-       if(result == null) return NotFound();
-       return Ok(result);
+        var query = new GetSubscriptionByIdQuery(id);
+        var subscription = await subscriptionQueryService.Handle(query);
+        if (subscription == null) return NotFound();
+        var subscriptionResource = SubscriptionResourceFromEntityAssembler.ToResourceFromEntity(subscription);
+        return Ok(subscriptionResource);
     }
     
     /// <summary>
@@ -72,17 +71,15 @@ public class SubscriptionController(IRepositoryGeneric<Subscription> repositoryG
     /// <response code="404">If subscription to update Not found</response>
     /// <response code="400">Bad Request</response>
     
-    [HttpPost]
-    [Route("update")]
+    [HttpPut("{id:int}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
-    public async Task<IActionResult> UpdateSubscription([FromBody] Subscription subscription)
+    public async Task<IActionResult> UpdateSubscription(int id,[FromBody] UpdateSubscriptionResource updateSubscriptionResource)
     {
-        var subscriptionToUpdate = await _repositoryGeneric.GetByIdAsync(subscription.Id);
-        if (subscriptionToUpdate == null) return NotFound();
-        await _repositoryGeneric.Update(subscriptionToUpdate);
-        var subscriptionResponse = _mapper.Map<Subscription, SubscriptionResponse>(subscriptionToUpdate);
-        return Ok(subscriptionResponse);
+        var command = UpdateSubscriptionCommandFromResourceAssembler.ToCommandFromResource(id, updateSubscriptionResource);
+        var subscription = await subscriptionCommandService.Handle(command);
+        var subscriptionResource = SubscriptionResourceFromEntityAssembler.ToResourceFromEntity(subscription);
+        return Ok(subscriptionResource);
     }
     
     /// <summary>
@@ -93,17 +90,15 @@ public class SubscriptionController(IRepositoryGeneric<Subscription> repositoryG
     /// <response code="500">Internal Server Error</response>
     /// <response code="400">Bad Request</response>
 
-    [HttpGet]
-    [Route("delete/{id}")]
+    [HttpDelete("{id:int}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
     public async Task<IActionResult> DeleteSubscription(int id)
     {
-        var subscriptionToDelete = await _repositoryGeneric.GetByIdAsync(id);
-        if (subscriptionToDelete == null) return NotFound();
-        await _repositoryGeneric.Delete(id);
-        var subscriptionResponse = _mapper.Map<Subscription, SubscriptionResponse>(subscriptionToDelete);
-        return StatusCode(201, subscriptionResponse);
+        var command = new DeleteSubscriptionCommand(id);
+        var subscription = await subscriptionCommandService.Handle(command);
+        var subscriptionResource = SubscriptionResourceFromEntityAssembler.ToResourceFromEntity(subscription);
+        return Ok(subscriptionResource);
     }
     
     /// <summary>
@@ -115,14 +110,13 @@ public class SubscriptionController(IRepositoryGeneric<Subscription> repositoryG
     /// <response code="401">Unauthorized</response>
 
     [HttpPost]
-    [Route("add-subscription")]
     [ProducesResponseType(201)]
     [ProducesResponseType(401)]
-    public async Task<IActionResult> CreateSubscription([FromBody] SubscriptionRequest subscriptionRequest)
+    public async Task<IActionResult> CreateSubscription([FromBody] CreateSubscriptionResource createSubscriptionResource)
     {
-        var subscription = _mapper.Map<SubscriptionRequest, Subscription>(subscriptionRequest);
-        await _repositoryGeneric.AddAsync(subscription);
-        var subscriptionResponse = _mapper.Map<Subscription, SubscriptionResponse>(subscription);
-        return Ok(subscriptionResponse);
+        var command = CreateSubscriptionCommandFromResourceAssembler.ToCommandFromResource(createSubscriptionResource);
+        var subscription = await subscriptionCommandService.Handle(command);
+        var subscriptionResource = SubscriptionResourceFromEntityAssembler.ToResourceFromEntity(subscription);
+        return StatusCode(201, subscriptionResource);
     }
 }

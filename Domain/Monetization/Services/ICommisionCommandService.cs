@@ -6,6 +6,6 @@ namespace Domain.Monetization.Services;
 public interface ICommisionCommandService
 {
     Task<Commision?> Handle(CreateCommisionCommand command);
-    Task<Commision?> Handle(int id,UpdateCommisionCommand command);
-    Task<Commision?> Handle(int id,DeleteCommisionCommand command);
+    Task<Commision?> Handle(UpdateCommisionCommand command);
+    Task<Commision?> Handle(DeleteCommisionCommand command);
 }

@@ -1,3 +1,3 @@
 namespace Domain.Monetization.Model.Commands;
 
-public record DeleteCommisionCommand(double Amount, string Content);
+public record DeleteCommisionCommand(int Id);

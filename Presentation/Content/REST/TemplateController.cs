@@ -1,13 +1,13 @@
 using System.Net.Mime;
 using AutoMapper;
-using Infrastructure.Content.Interfaces;
-using Infrastructure.Content.Models;
+using Domain.Content.Model.Queries;
+using Domain.Content.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Presentation.Content.Request;
-using Presentation.Content.Response;
+using Presentation.Content.REST.Resources;
+using Presentation.Content.REST.Transform;
 
-namespace Presentation.Content.REST.Controllers
+namespace Presentation.Content.REST
 {
     [Route("api/v1/content/[controller]")]
     [ApiController]
@@ -15,10 +15,8 @@ namespace Presentation.Content.REST.Controllers
     [AllowAnonymous]
     [ProducesResponseType(400)]
     [ProducesResponseType(500)]
-    public class TemplateController(IMapper mapper, ITemplateData<Template> templateData) : ControllerBase
+    public class TemplateController(ITemplateCommandService templateCommandService, ITemplateQueryService templateQueryService) : ControllerBase
     {
-        private readonly IMapper _mapper = mapper;
-        private readonly ITemplateData<Template> _templateData = templateData;
         
         // GET: api/v1/content/template/get-all-templates
        /// <summary>
@@ -28,18 +26,14 @@ namespace Presentation.Content.REST.Controllers
        /// <response code = "404">Not found</response>
        /// <response code = "500">Internal Server Error</response>
        /// <response code = "400">Bad Request</response>
-        [HttpGet]
-        [Route("get-all-templates")]
-        [ProducesResponseType(200)]
+        [HttpGet] [ProducesResponseType(200)]
        [ProducesResponseType(404)]
         public async Task<IActionResult> GetAllTemplates()
         {
-            var templates = await _templateData.GetAllAsync();
-            var result = _mapper.Map<IEnumerable<Template>, IEnumerable<TemplateResponse>>(templates);
-            
-            if (result == null) return NotFound();
-            
-            return Ok(result);
+            var query = new GetAllTemplatesQuery();
+            var templates = await templateQueryService.Handle(query);
+            var templateResource = templates.Select(TemplateResourceFromEntityAssembler.ToResourceFromEntity);
+            return Ok(templateResource);
         }
         
         // GET: api/v1/content/template/get-template-by-id
@@ -51,17 +45,15 @@ namespace Presentation.Content.REST.Controllers
       /// <response code="500">Internal Server Error</response>
       /// <response code="400">Bad Request</response>
         [HttpGet]
-        [Route("get-template-by-id")]
+        [Route("{id:int}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetTemplateById(int id)
-        {
-            var template = await _templateData.GetByIdAsync(id);
-            var result = _mapper.Map<Template, TemplateResponse>(template);
-            
-            if (result == null) return NotFound();
-            
-            return Ok(result);
+        { 
+            var query = new GetTemplateByIdQuery(id);
+          var template = await templateQueryService.Handle(query);
+          var templateResource = TemplateResourceFromEntityAssembler.ToResourceFromEntity(template);
+          return Ok(templateResource);
         }
         
         // GET: api/v1/content/template/get-template-by-genre
@@ -73,17 +65,15 @@ namespace Presentation.Content.REST.Controllers
        /// <response code="500">Internal Server Error</response>
        /// <response code="400">Bad Request</response>
         [HttpGet]
-        [Route("get-template-by-genre")]
+        [Route("/genre/{genre}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetTemplateByGenre(string genre)
         {
-            var templates = await _templateData.GetByGenreAsync(genre);
-            var result = _mapper.Map<IEnumerable<Template>, IEnumerable<TemplateResponse>>(templates);
-    
-            if (result == null || !result.Any()) return NotFound();
-            
-            return Ok(result);
+            var query = new GetTemplatesByGenreQuery(genre);
+            var templates = await templateQueryService.Handle(query);
+            var templateResource = templates.Select(TemplateResourceFromEntityAssembler.ToResourceFromEntity);
+            return Ok(templateResource);
         }
         
         // POST: api/v1/content/template/create-template
@@ -106,15 +96,14 @@ namespace Presentation.Content.REST.Controllers
         /// <response code="400">Bad Request</response>
         /// <response code="401">Unauthorized</response>
         [HttpPost]
-        [Route("create-template")]
         [ProducesResponseType(201)]
         [ProducesResponseType(401)]
-        public async Task<IActionResult> CreateTemplate(TemplateRequest data)
+        public async Task<IActionResult> CreateTemplate([FromBody] CreateTemplateResource createTemplateResource)
         {
-                if(!ModelState.IsValid) return BadRequest();
-                var template = _mapper.Map<TemplateRequest, Template>(data);
-                await _templateData.Add(template);
-                return Ok(true);
+            var command = CreateTemplateCommandFromResourceAssembler.ToResourceFromEntity(createTemplateResource);
+            var template = await templateCommandService.Handle(command);
+            var templateResource = TemplateResourceFromEntityAssembler.ToResourceFromEntity(template);
+            return StatusCode(201, templateResource);
         }
         
         // PUT: api/v1/content/template/update-template
@@ -133,13 +122,15 @@ namespace Presentation.Content.REST.Controllers
         ///     "genre": "Template genre"
         /// }
         /// </remarks>
-        [HttpPost]
-        [Route("update-template")]
-        public async Task<IActionResult> UpdateTemplate(Template data)
+        [HttpPut ("{id:int}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> UpdateTemplate(int id, [FromBody] UpdateTemplateResource resource)
         {
-                if(!ModelState.IsValid) return BadRequest();
-                await _templateData.Update(data);
-                return Ok(true);
+            var command = UpdateTemplateCommandFromResourceAssembler.ToCommandFromResource(id,resource);
+            var template = await templateCommandService.Handle(command);
+            var templateResource = TemplateResourceFromEntityAssembler.ToResourceFromEntity(template);
+            return Ok(templateResource);
         }
         
         // DELETE: api/v1/content/template/delete-template
@@ -154,14 +145,16 @@ namespace Presentation.Content.REST.Controllers
         /// <response code="404">Not found</response>
         /// <response code="500">Internal Server Error</response>
         /// <response code="400">Bad Request</response>
-        [HttpGet]
-        [Route("delete-template")]
+        [HttpDelete("{id:int}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> DeleteTemplate(int id)
         {
-            await _templateData.Delete(id);
-            return Ok(true);
+            var deleteTemplateResource = new DeleteTemplateResource(id);
+            var command = DeleteTemplateCommandFromResourceAssembler.ToCommandFromResource(deleteTemplateResource);
+            var template = await templateCommandService.Handle(command);
+            var templateResource = TemplateResourceFromEntityAssembler.ToResourceFromEntity(template);
+            return Ok(templateResource);
         }
     }
 }

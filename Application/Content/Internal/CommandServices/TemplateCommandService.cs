@@ -11,23 +11,33 @@ public class TemplateCommandService(IUnitOfWork unitOfWork, ITemplateRepository 
     public async Task<Template?> Handle(CreateTemplateCommand command)
     {
         var template = new Template(command);
+        var templateWithTitleExists = templateRepository.TemplateByTitleExists(command.Title);
+        if (templateWithTitleExists)
+        {
+            throw new Exception("Template with the same title already exists.");
+        }
         await templateRepository.AddAsync(template);
         await unitOfWork.CompleteAsync();
         return template;
     }
 
-    public async Task<Template?> Handle(int id, UpdateTemplateCommand command)
+    public async Task<Template?> Handle(UpdateTemplateCommand command)
     {
-        var template = await templateRepository.GetByIdAsync(id);
+        var template = await templateRepository.GetByIdAsync(command.Id);
         if (template == null) return null;
+        template.Title = command.Title;
+        template.Description = command.Description;
+        template.Type = command.Type;
+        template.ImgUrl = command.ImgUrl;
+        template.Genre = command.Genre;
         templateRepository.Update(template);
         await unitOfWork.CompleteAsync();
         return template;
     }
 
-    public async Task<Template?> Handle(int id, DeleteTemplateCommand command)
+    public async Task<Template?> Handle(DeleteTemplateCommand command)
     {
-        var template = await templateRepository.GetByIdAsync(id);
+        var template = await templateRepository.GetByIdAsync(command.Id);
         if (template == null) return null;
         templateRepository.Delete(template);
         await unitOfWork.CompleteAsync();

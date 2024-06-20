@@ -1,3 +1,3 @@
 namespace Domain.Monetization.Model.Queries;
 
-public record GetSubscriptionByIdQuery();
+public record GetSubscriptionByIdQuery(int Id);

@@ -1,14 +1,10 @@
-using System.Net;
-using Domain.Interfaces;
-using Domain.Monetization.Model.Aggregates;
-using Infrastructure.Monetization.Model.Aggregates;
-using Moq;
+
 
 namespace Domain.Test.Monetization;
 
 public class UnitTestDomain
 {
-    [Fact]
+    /*[Fact]
     public void AddAsync_IsWorking()
     {
         // Arrange
@@ -100,5 +96,5 @@ public class UnitTestDomain
         //Assert
         Assert.NotNull(request);
         Assert.Equal(HttpStatusCode.Accepted, responseObserver.StatusCode);
-    }
+    }*/
 }

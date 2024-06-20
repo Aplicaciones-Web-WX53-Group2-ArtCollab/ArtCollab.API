@@ -1,3 +1,4 @@
+/*
 using System.Net.Mime;
 using AutoMapper;
 using Domain.Interfaces;
@@ -96,3 +97,4 @@ namespace Presentation.Users.REST.Controllers
             }
         }
     }
+    */

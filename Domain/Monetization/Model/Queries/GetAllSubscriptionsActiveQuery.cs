@@ -1,3 +1,3 @@
 namespace Domain.Monetization.Model.Queries;
 
-public record GetAllSubscriptionsActiveQuery();
+public record GetAllSubscriptionsActiveQuery(bool IsActive);

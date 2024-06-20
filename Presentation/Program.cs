@@ -1,21 +1,28 @@
 
 using System.Reflection;
-using Domain.Interfaces;
+using Application.Collaboration.Internal.CommandServices;
+using Application.Collaboration.Internal.QueryServices;
+using Application.Content.Internal.CommandServices;
+using Application.Content.Internal.QueryServices;
+using Application.Monetization.Internal.CommandServices;
+using Application.Monetization.Internal.QueryServices;
+using Domain.Collaboration.Repositories;
+using Domain.Collaboration.Services;
+using Domain.Content.Repositories;
+using Domain.Content.Services;
 using Domain.Monetization.Model.Aggregates;
-using Domain.Repository;
-using Infrastructure.Content.Interfaces;
-using Infrastructure.Content.MySql;
-using Infrastructure.Monetization.Model.Aggregates;
+using Domain.Monetization.Repositories;
+using Domain.Monetization.Services;
+using Domain.Shared.Repositories;
+using Infrastructure.Collaboration.Persistence.EFC.Repositories;
+using Infrastructure.Content.Persistence.EFC.Repositories;
 using Infrastructure.Monetization.Model.Entities;
-using Infrastructure.Shared.Context;
-using Infrastructure.Shared.Interfaces;
-using Infrastructure.Shared.Middleware;
-using Infrastructure.Shared.Repository;
-using Infrastructure.Users.Interfaces;
-using Infrastructure.Users.MySql;
+using Infrastructure.Monetization.Persistence.EFC.Repositories;
+using Infrastructure.Shared.Interfaces.ASP.Configuration;
+using Infrastructure.Shared.Persistence.EFC.Configuration;
+using Infrastructure.Shared.Persistence.EFC.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Presentation.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +30,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Add services to the container.
+
+builder.Services.AddControllers( options => options.Conventions.Add(new KebabCaseRouteNamingConvention()));
+
+
+// Configure Lowercase URLs
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(
     options =>
@@ -50,16 +65,32 @@ builder.Services.AddSwaggerGen(
     });
 
 //dependency injection
-builder.Services.AddScoped<IReaderData, ReaderMySqlData>();
-builder.Services.AddScoped(typeof(IRepositoryGeneric<>), typeof(RepositoryGeneric<>));
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddScoped(typeof(ITemplateData<>), typeof(TemplateMySqlData<>));
-builder.Services.AddAutoMapper(typeof(RequestToModel), typeof(ModelToRequest), typeof(ModelToResponse));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<ITemplateRepository, TemplateRepository>();
+builder.Services.AddScoped<ICommisionRepository, CommisionRepository>();
+builder.Services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+builder.Services.AddScoped<ICommentCommandService,CommentCommandService>();
+builder.Services.AddScoped<ICommentQueryService, CommentQueryService>();
+
+builder.Services.AddScoped<ITemplateCommandService,TemplateCommandService>();
+builder.Services.AddScoped<ITemplateQueryService, TemplateQueryService>();
+
+builder.Services.AddScoped<ICommisionCommandService,CommisionCommandService>();
+builder.Services.AddScoped<ICommisionQueryService, CommisionQueryService>();
+
+builder.Services.AddScoped<ISubscriptionCommandService,SubscriptionCommandService>();
+builder.Services.AddScoped<ISubscriptionQueryService, SubscriptionQueryService>();
+
+
+
+
 builder.Services.AddScoped<Observer, SubscriptionObserver>();
 
 
 // Connect DB
-var connectionString = builder.Configuration.GetConnectionString("ArtCollabDB");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<AppDbContext>(
     dbContextOptions =>
@@ -86,7 +117,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

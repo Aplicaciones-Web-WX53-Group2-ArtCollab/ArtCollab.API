@@ -1,24 +1,24 @@
 using System.Net.Mime;
 using AutoMapper;
-using Domain.Interfaces;
 using Domain.Monetization.Model.Aggregates;
-using Infrastructure.Monetization.Model.Aggregates;
+using Domain.Monetization.Model.Commands;
+using Domain.Monetization.Model.Queries;
+using Domain.Monetization.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Presentation.Monetization.Request;
-using Presentation.Monetization.Response;
+using Presentation.Monetization.REST.Resources;
+using Presentation.Monetization.REST.Transform;
 
-namespace Presentation.Monetization.REST.Controllers;
+namespace Presentation.Monetization.REST;
 
 [Route("api/v1/monetization/[controller]")]
 [ApiController]
 [Produces(MediaTypeNames.Application.Json)]
 [AllowAnonymous]
 [ProducesResponseType(500)]
-public class CommisionController(IRepositoryGeneric<Commision> repositoryGeneric, IMapper mapper )  : ControllerBase
+public class CommisionController(ICommisionCommandService commisionCommandService, ICommisionQueryService commisionQueryService )  : ControllerBase
 {
-    private readonly IRepositoryGeneric<Commision> _repositoryGeneric = repositoryGeneric;
-    private readonly IMapper _mapper = mapper;
+  
     
     // GET: api/v1/monetization/commision/get-all
     /// <summary>
@@ -28,17 +28,14 @@ public class CommisionController(IRepositoryGeneric<Commision> repositoryGeneric
     /// <response code="404">If there are no commisions</response>
     /// <response code="500">If there is an internal error</response>
     [HttpGet]
-    [Route("get-all")]
     [ProducesResponseType(404)]
     [ProducesResponseType(200)]
     public async Task<IActionResult> GetAll()
     {
-       var commisions = await _repositoryGeneric.GetAllAsync();
-       var result = _mapper.Map<IEnumerable<Commision>, IEnumerable<CommisionResponse>>(commisions);
-
-       if (result == null) return NotFound();
-
-       return Ok(result);
+        var query = new GetAllCommisionsQuery();
+        var commisions = await commisionQueryService.Handle(query);
+        var commisionResource = commisions.Select(CommisionResourceFromEntityAssembler.ToResourceFromEntity);
+        return Ok(commisionResource);
     }
     
     // POST: api/v1/monetization/commision/add-commision
@@ -49,14 +46,13 @@ public class CommisionController(IRepositoryGeneric<Commision> repositoryGeneric
     /// <response code="500">If there is an internal error</response>
     
     [HttpPost]
-    [Route("add-commision")]
     [ProducesResponseType(201)]
-    public async Task<IActionResult> Post([FromBody] CommisionRequest commisionRequest)
+    public async Task<IActionResult> Post([FromBody] CreateCommisionResource createCommisionResource)
     {
-        var commision = _mapper.Map<CommisionRequest, Commision>(commisionRequest);
-        await _repositoryGeneric.AddAsync(commision);
-        var commisionResponse = _mapper.Map<Commision, CommisionResponse>(commision);
-        return StatusCode(201, commisionResponse);
+        var command = CreateCommisionCommandFromResourceAssembler.ToCommandFromResource(createCommisionResource);
+        var commision = await commisionCommandService.Handle(command);
+        var commisionResource = CommisionResourceFromEntityAssembler.ToResourceFromEntity(commision);
+        return StatusCode(201, commisionResource);
     }
     
     // GET: api/v1/monetization/commision/get-by-id/{id}
@@ -67,16 +63,16 @@ public class CommisionController(IRepositoryGeneric<Commision> repositoryGeneric
     /// <response code="404">If the commision was not found</response>
     /// <response code="500">If there is an internal error</response>
 
-    [HttpGet]
-    [Route("get-by-id/{id}")]
+    [HttpGet("{id:int}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
     public async Task<IActionResult> GetById(int id)
     {
-       var commision = await _repositoryGeneric.GetByIdAsync(id);
-       var result = _mapper.Map<Commision, CommisionResponse>(commision);
-       if(result == null) return NotFound();
-       return Ok(result);
+        var query = new GetCommisionByIdQuery(id);
+        var commision = await commisionQueryService.Handle(query);
+        if (commision == null) return NotFound();
+        var commisionResource = CommisionResourceFromEntityAssembler.ToResourceFromEntity(commision);
+        return Ok(commisionResource);
     }
     
     // POST: api/v1/monetization/commision/update
@@ -88,17 +84,16 @@ public class CommisionController(IRepositoryGeneric<Commision> repositoryGeneric
     ///  <response code="500">If there is an internal error</response>
     
     
-    [HttpPost]
-    [Route("update")]
+    [HttpPut("{id:int}")]
     [ProducesResponseType(404)]
     [ProducesResponseType(200)]
-    public async Task<IActionResult> Update([FromBody] Commision commision)
+    public async Task<IActionResult> Update(int id,[FromBody] UpdateCommisionResource updateCommisionResource)
     {
-        var commisionToUpdate = await _repositoryGeneric.GetByIdAsync(commision.Id);
-        if (commisionToUpdate == null) return NotFound();
-        await _repositoryGeneric.Update(commisionToUpdate);
-        var subscriptionResponse = _mapper.Map<Commision, CommisionResponse>(commisionToUpdate);
-        return Ok(subscriptionResponse);
+        var command = UpdateCommisionCommandFromResourceAssembler.ToCommandFromResource(id,updateCommisionResource);
+        var updatedCommision = await commisionCommandService.Handle(command);
+        if (updatedCommision == null) return NotFound();
+        var commisionResource = CommisionResourceFromEntityAssembler.ToResourceFromEntity(updatedCommision);
+        return Ok(commisionResource);
     }
     
     // GET: api/v1/monetization/commision/delete/{id}
@@ -109,17 +104,16 @@ public class CommisionController(IRepositoryGeneric<Commision> repositoryGeneric
     ///  <response code="500">If there is an internal error</response>
     ///  <response code="404">If the commision was not found</response>
     
-    [HttpGet]
-    [Route("delete/{id}")]
+    [HttpDelete("{id:int}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
     public async Task<IActionResult> Delete(int id)
     {
-        var commisionToDelete = await _repositoryGeneric.GetByIdAsync(id);
-        if (commisionToDelete == null) return NotFound();
-        await _repositoryGeneric.Delete(id);
-        var commisionResponse = _mapper.Map<Commision, CommisionResponse>(commisionToDelete);
-        return Ok(commisionResponse);
+        var command = new DeleteCommisionCommand(id);
+        var deletedCommision = await commisionCommandService.Handle(command);
+        if (deletedCommision == null) return NotFound();
+        var commisionResource = CommisionResourceFromEntityAssembler.ToResourceFromEntity(deletedCommision);
+        return Ok(commisionResource);
     }
     
     

@@ -1,3 +1,3 @@
 namespace Domain.Collaboration.Model.Commands;
 
-public record UpdateCommentCommand(string Comment);
+public record UpdateCommentCommand(int Id,string Comment);

@@ -16,18 +16,18 @@ public class SubscriptionCommandService(IUnitOfWork unitOfWork, ISubscriptionRep
         return subscription;
     }
 
-    public async Task<Subscription?> Handle(int id, UpdateSubscriptionCommand command)
+    public async Task<Subscription?> Handle(UpdateSubscriptionCommand command)
     {
-        var subscription = await subscriptionRepository.GetByIdAsync(id);
+        var subscription = await subscriptionRepository.GetByIdAsync(command.Id);
         if (subscription == null) return null;
         subscriptionRepository.Update(subscription);
         await unitOfWork.CompleteAsync();
         return subscription;
     }
 
-    public async Task<Subscription?> Handle(int id, DeleteSubscriptionCommand command)
+    public async Task<Subscription?> Handle( DeleteSubscriptionCommand command)
     {
-        var subscription = await subscriptionRepository.GetByIdAsync(id);
+        var subscription = await subscriptionRepository.GetByIdAsync(command.Id);
         if (subscription == null) return null;
         subscriptionRepository.Delete(subscription);
         await unitOfWork.CompleteAsync();

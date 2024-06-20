@@ -1,9 +1,10 @@
 using System.Net.Mime;
-using AutoMapper;
-using Domain.Collaboration.Model.Aggregates;
+using Domain.Collaboration.Model.Queries;
 using Domain.Collaboration.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Collaboration.REST.Resources;
+using Presentation.Collaboration.REST.Transform;
 
 namespace Presentation.Collaboration.REST;
 
@@ -26,14 +27,14 @@ public class CommentController(ICommentCommandService commentCommandService, ICo
     /// <response code="400">Bad Request</response>
         
     [HttpGet]
-    [Route("get-all-comments")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
     public async Task<IActionResult> GetAllComments()
     {
-        var comments = await _repository.GetAllAsync();
-        var result = _mapper.Map<IEnumerable<Comment>, IEnumerable<CommentResponse>>(comments);
-        return Ok(result);
+        var query = new GetAllCommentsQuery();
+        var comments = await commentQueryService.Handle(query);
+        var commentResource = comments.Select(CommentResourceFromEntityAssembler.ToResourceFromEntity);
+        return Ok(commentResource);
     }
         
         
@@ -47,16 +48,15 @@ public class CommentController(ICommentCommandService commentCommandService, ICo
     /// <returns></returns>
         
     [HttpGet]
-    [Route("get-comment-by-id")]
+    [Route("{id:int}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
     public async Task<IActionResult> GetCommentById(int id)
     {
-        var comment = await _repository.GetByIdAsync(id);
-        var result = _mapper.Map<Comment, CommentResponse>(comment);
-            
-        if (result == null) return NotFound();
-        return Ok(result);
+        var query = new GetCommentByIdQuery(id);
+        var comment = await commentQueryService.Handle(query);
+        var commentResource = CommentResourceFromEntityAssembler.ToResourceFromEntity(comment);
+        return Ok(commentResource);
     }
         
     /// <summary>
@@ -69,15 +69,15 @@ public class CommentController(ICommentCommandService commentCommandService, ICo
     /// <returns></returns>
         
     [HttpPost]
-    [Route("create-comment")]
     [ProducesResponseType(201)]
     [ProducesResponseType(401)]
-    public async Task<IActionResult> PostComment([FromBody] CommentRequest data)
+    public async Task<IActionResult> PostComment([FromBody] CreateCommentResource createCommentResource)
     {
-        var comment = _mapper.Map<CommentRequest, Comment>(data);
-        await _repository.AddAsync(comment);
-        var commentResponse = _mapper.Map<Comment, CommentResponse>(comment);
-        return Ok(commentResponse);
+        var command = CreateCommentCommandFromResourceAssembler.ToCommandFromResource(createCommentResource);
+        var comment = await commentCommandService.Handle(command);
+        var commentResource = CommentResourceFromEntityAssembler.ToResourceFromEntity(comment);
+        return StatusCode(201, commentResource);
+
     }
         
     /// <summary>
@@ -89,15 +89,15 @@ public class CommentController(ICommentCommandService commentCommandService, ICo
     /// <response code="400">Bad Request</response>
     /// <returns></returns>
         
-    [HttpPost]
-    [Route("update-comment")]
+    [HttpPut("{id:int}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
-    public async Task<IActionResult> PutCommnent([FromBody] CommentRequest data)
+    public async Task<IActionResult> PutComment(int id,[FromBody] UpdateCommentResource updateCommentResource)
     {
-        var comment = _mapper.Map<CommentRequest, Comment>(data);
-        await _repository.UpdateAsync(comment);
-        return Ok();
+        var command = UpdateCommentCommandFromResourceAssembler.ToCommandFromResource(id,updateCommentResource);
+        var comment = await commentCommandService.Handle(command);
+        var commentResource = CommentResourceFromEntityAssembler.ToResourceFromEntity(comment);
+        return Ok(commentResource);
     }
         
         
@@ -110,13 +110,15 @@ public class CommentController(ICommentCommandService commentCommandService, ICo
     /// <response code="400">Bad Request</response>
     /// <returns></returns>
 
-    [HttpGet]
-    [Route("delete-comment")]
+    [HttpDelete("{id:int}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
     public async Task<IActionResult> DeleteComment(int id)
     {
-        await _repository.DeleteAsync(id);
-        return Ok();
+        var deleteCommentResource = new DeleteCommentResource(id);
+        var command = DeleteCommentCommandFromResourceAssembler.ToCommandFromResource(deleteCommentResource);
+        var comment = await commentCommandService.Handle(command);
+        var commentResource = CommentResourceFromEntityAssembler.ToResourceFromEntity(comment);
+        return Ok(commentResource);
     }
 }

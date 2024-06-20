@@ -5,5 +5,5 @@ namespace Domain.Monetization.Repositories;
 
 public interface ISubscriptionRepository : IBaseRepository<Subscription> 
 {
-    
+    Task<IEnumerable<Subscription?>> GetAllActiveAsync(bool isActive);
 }
