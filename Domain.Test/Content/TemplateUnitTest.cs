@@ -1,197 +1,119 @@
 
 
+using Domain.Content.Model.Aggregates;
+using Domain.Content.Model.Commands;
+using Domain.Content.Model.Queries;
+using Domain.Content.Repositories;
+using Domain.Content.Services;
+using Moq;
+
 namespace Domain.Test.Content;
 
 public class TemplateUnitTest
 {
-   /*[Fact]
-    public void AddAsync_ValidTemplate_ReturnsTaskCompletedTask()
-    {
-        // Arrange
-        Template template = new Template()
-        {
-            Title = "Template 1",
-            Description = "Description 1",
-            Type = "Illustration",
-            ImgUrl = "https://example.com/image.jpg",
-            Genre = string.Empty
-        };
+  [Fact]
+  public async Task CreateTemplateWorking()
+  {
+     //Arrange
+     var command = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre");
+     var template = new Template(command);
+     var mockTemplateCommandService = new Mock<ITemplateCommandService>();
+     //ACT
+     mockTemplateCommandService.Setup(x => x.Handle(command)).ReturnsAsync(template);
+     
+     //ASSERT
+      var result = await mockTemplateCommandService.Object.Handle(command);
+      Assert.NotNull(result);
+  }
 
-        var templateDataMock = new Mock<ITemplateData<Template>>();
-        var repositoryMock = new Mock<IContentDomain<Template>>();
-        
-        templateDataMock.Setup(x => x.GetByDescriptionAsync(template.Description)).ReturnsAsync((Template)null);
-        templateDataMock.Setup(x => x.GetByCoverImageAsync(template.ImgUrl)).ReturnsAsync((Template)null);
-        repositoryMock.Setup(x => x.Add(template)).Returns(Task.CompletedTask);
-        
-        ContentRepository<Template> repository = new ContentRepository<Template>(repositoryMock.Object, templateDataMock.Object);
-        
-        // Act
-        var result = repository.Add(template);
-        
-        // Assert
-        Assert.Equal(Task.CompletedTask, result);
-    }
-    
-    [Fact]
-    public void AddAsync_ValidTemplate_ThrowsException()
-    {
-        // Arrange
-        Template template = new Template()
-        {
-            Title = "Template 1",
-            Description = "Description 1",
-            Type = "Illustration",
-            ImgUrl = "https://example.com/image.jpg",
-            Genre = "Romance"
-        };
-        
-        var templateDataMock = new Mock<ITemplateData<Template>>();
-        var repositoryMock = new Mock<IContentDomain<Template>>();
-        
-        templateDataMock.Setup(x => x.GetByDescriptionAsync(template.Description)).ReturnsAsync((Template)null);
-        templateDataMock.Setup(x => x.GetByCoverImageAsync(template.ImgUrl)).ReturnsAsync((Template)null);
-        repositoryMock.Setup(x => x.Add(template)).Returns(Task.CompletedTask);
-        
-        ContentRepository<Template> repository = new ContentRepository<Template>(repositoryMock.Object, templateDataMock.Object);
-        
-        // Act
-        var exception = repository.Add(template).Exception;
-        
-        // Assert
-        Assert.ThrowsAsync<Exception>(async () => await repository.Add(template));
-    }
-    
-    [Fact]
-    public void AddAsync_ReaderWithExistingDescription_ThrowsException()
-    {
+  [Fact]
+
+  public void UpdateTemplateWorking()
+  {
         //Arrange
-        Template template = new Template()
-        {
-            Title = "Template 1",
-            Description = "Description 1",
-            Type = "Illustration",
-            ImgUrl = "https://example.com/image.jpg",
-            Genre = "Romance"
-        };
-        Template template2 = new Template()
-        {
-            Title = "Template 1",
-            Description = "Description 1",
-            Type = "Illustration",
-            ImgUrl = "https://example.com/image2.jpg",
-            Genre = "Fantasy"
-        };
+      var command = new UpdateTemplateCommand(1, "ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre");
+      var mockTemplateRepository = new Mock<ITemplateRepository>();
+      var template = new Template();
+      
+      //Act
+      mockTemplateRepository.Setup(x => x.GetByIdAsync(command.Id)).ReturnsAsync(template);
+      //Assert
+      mockTemplateRepository.Setup(x => x.Update(It.IsAny<Template>()));
+  }
 
-        var templateDataMock = new Mock<ITemplateData<Template>>();
-        var repositoryMock = new Mock<IContentDomain<Template>>();
+  [Fact]
+  public async Task GetTemplateByIdWorking()
+  {
+      //Arrange
+      var query = new GetTemplateByIdQuery(1);
+      var mockTemplateQueryService = new Mock<ITemplateQueryService>();
+      
+      //Act
+      mockTemplateQueryService.Setup(x => x.Handle(query)).ReturnsAsync(new Template());
+      var template = await mockTemplateQueryService.Object.Handle(query);
+      //Assert
+      Assert.NotNull(template);
+      
+  }
+  
+  [Fact]
+  public async Task GetTemplatesByGenreWorking()
+  {
+      //Arrange
+      var query = new GetTemplatesByGenreQuery("ExampleGenre");
+      var mockTemplateQueryService = new Mock<ITemplateQueryService>();
+      
+      //Act
+      mockTemplateQueryService.Setup(x => x.Handle(query)).ReturnsAsync(new List<Template>());
+      var templates = await mockTemplateQueryService.Object.Handle(query);
+      //Assert
+      Assert.NotNull(templates);
+  }
+  
+  [Fact]
+  public async Task GetAllTemplatesWorking()
+  {
+      //Arrange
+      var query = new GetAllTemplatesQuery();
+      var mockTemplateQueryService = new Mock<ITemplateQueryService>();
+      
+      //Act
+      mockTemplateQueryService.Setup(x => x.Handle(query)).ReturnsAsync(new List<Template>());
+      var templates = await mockTemplateQueryService.Object.Handle(query);
+      //Assert
+      Assert.NotNull(templates);
+  }
+  
+  [Fact]
+  public async Task DeleteTemplateWorking()
+  {
+      //Arrange
+      var command = new DeleteTemplateCommand(1);
+      var mockTemplateCommandService = new Mock<ITemplateCommandService>();
+      var mockTemplateRepository = new Mock<ITemplateRepository>();
+      //Act
+      mockTemplateRepository.Setup(x => x.GetByIdAsync(command.Id));
+      mockTemplateRepository.Setup(x => x.Delete(It.IsAny<Template>()));
+      
+      //Assert
+      mockTemplateCommandService.Setup(x => x.Handle(command));
+      await mockTemplateCommandService.Object.Handle(command);
+  }
 
-        templateDataMock.Setup(x => x.GetByDescriptionAsync(template.Description)).ReturnsAsync(template2);
-        templateDataMock.Setup(x => x.GetByCoverImageAsync(template.ImgUrl)).ReturnsAsync((Template)null);
-        repositoryMock.Setup(x => x.Add(template)).Returns(Task.CompletedTask);
-        
-        ContentRepository<Template> repository = new ContentRepository<Template>(repositoryMock.Object, templateDataMock.Object);
-
-        //Act
-        var exception = repository.Add(template).Exception;
-
-        //Assert
-        Assert.ThrowsAsync<Exception>(async () => await repository.Add(template));
-    } 
-    
-    [Fact]
-    public void AddAsync_ReaderWithExistingCoverImage_ThrowsException()
-    {
-        //Arrange
-        Template template = new Template()
-        {
-            Title = "Template 1",
-            Description = "Description 1",
-            Type = "Illustration",
-            ImgUrl = "https://example.com/image.jpg",
-            Genre = "Romance"
-        };
-        Template template2 = new Template()
-        {
-            Title = "Template 1",
-            Description = "Description 2",
-            Type = "Illustration",
-            ImgUrl = "https://example.com/image2.jpg",
-            Genre = "Fantasy"
-        };
-
-        var templateDataMock = new Mock<ITemplateData<Template>>();
-        var repositoryMock = new Mock<IContentDomain<Template>>();
-
-        templateDataMock.Setup(x => x.GetByDescriptionAsync(template.Description)).ReturnsAsync((Template)null);
-        templateDataMock.Setup(x => x.GetByCoverImageAsync(template.ImgUrl)).ReturnsAsync(template2);
-        repositoryMock.Setup(x => x.Add(template)).Returns(Task.CompletedTask);
-        
-        ContentRepository<Template> repository = new ContentRepository<Template>(repositoryMock.Object, templateDataMock.Object);
-
-        //Act
-        var exception = repository.Add(template).Exception;
-
-        //Assert
-        Assert.ThrowsAsync<Exception>(async () => await repository.Add(template));
-    }
-    
-    [Fact]
-    public void DeleteAsync_ValidId_ReturnsTaskCompletedTask()
-    {
-        //Arrage
-        Template template = new Template()
-        {
-            Id = 1,
-            Title = "Template 1",
-            Description = "Description 1",
-            Type = "Book",
-            ImgUrl = "https://example.com/image.jpg",
-            Genre = "Romance"
-        };
-        
-        var templateDataMock = new Mock<ITemplateData<Template>>();
-        var repositoryMock = new Mock<IContentDomain<Template>>();
-
-        templateDataMock.Setup(x => x.GetByIdAsync(template.Id)).ReturnsAsync(template);
-        templateDataMock.Setup(x => x.Delete(template.Id)).Returns(Task.CompletedTask);
-        
-        ContentRepository<Template> repository = new ContentRepository<Template>(repositoryMock.Object, templateDataMock.Object);
-        
-        //Act
-        var result=  repository.Delete(template.Id);
-        
-        //Assert
-        Assert.Equal(Task.CompletedTask, result);
-    } 
-    
-    [Fact]
-    public void DeleteAsync_InvalidId_ThrowsException()
-    {
-        //Arrage
-        Template template = new Template()
-        {
-            Id = 0,
-            Title = "Template 1",
-            Description = "Description 1",
-            Type = "Book",
-            ImgUrl = "https://example.com/image.jpg",
-            Genre = "Romance"
-        };
-        
-        var templateDataMock = new Mock<ITemplateData<Template>>();
-        var repositoryMock = new Mock<IContentDomain<Template>>();
-
-        templateDataMock.Setup(x => x.GetByIdAsync(template.Id)).ReturnsAsync((Template)null);
-        
-        ContentRepository<Template> repository = new ContentRepository<Template>(repositoryMock.Object, templateDataMock.Object);
-        
-        //Act
-        var result=  repository.Delete(template.Id);
-        
-        //Assert
-        Assert.ThrowsAsync<Exception>(async () => await repository.Delete(template.Id));
-    } 
-    */
+  [Fact]
+  public async Task BusinessRulesAreWorking()
+  {
+      //Arrange
+      var newCommand = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre");
+      var repeatCommand = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre");
+      var mockTemplateCommandService = new Mock<ITemplateCommandService>();
+      var newTemplate = new Template(newCommand);
+      
+      //Act
+      mockTemplateCommandService.Setup(x => x.Handle(newCommand)).ReturnsAsync(newTemplate);
+      mockTemplateCommandService.Setup(x => x.Handle(repeatCommand)).ThrowsAsync(new Exception("Template with the same title already exists."));
+      //Assert
+      await Assert.ThrowsAsync<Exception>(() => mockTemplateCommandService.Object.Handle(repeatCommand));
+  }
 
 }
