@@ -52,7 +52,7 @@ public class AdminController(IAdminQueryService adminQueryService) : ControllerB
     {
         var getAllAdminsQuery = new GetAllAdminsQuery();
         var users = await adminQueryService.Handle(getAllAdminsQuery);
-        var userResources = users.Select(AdminResourceFromEntityAssembler.ToResourceFromEntity);
+        var userResources = users.Select(AdminResourceFromEntityAssembler.ToResourceFromEntity).ToList();
         return Ok(userResources);
     }
 }
