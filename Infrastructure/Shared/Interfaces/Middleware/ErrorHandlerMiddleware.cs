@@ -1,5 +1,6 @@
 using System.Data;
 using System.Net;
+using Domain.Content.Model.Entities;
 using Microsoft.AspNetCore.Http;
 using Shared;
 
@@ -30,9 +31,17 @@ public class ErrorHandlerMiddleware
     {
         var code = HttpStatusCode.InternalServerError;
         var result = ex.Message;
-        
 
-        if (ex is ConstraintException || ex is DuplicateNameException || ex is TemplateWithTheSameTitleAlreadyExistException  )
+        if (ex is InvalidCommisionAmountException || ex is InvalidReaderTypeException || ex is InvalidUsernameOrPasswordException)
+        {
+            code = HttpStatusCode.BadRequest;
+        }
+
+
+        if (ex is ConstraintException || ex is DuplicateNameException ||
+            ex is TemplateWithTheSameTitleAlreadyExistException || ex is AccountAlreadyExistsException ||
+            ex is ErrorOcurredWhileCreatingUserException || ex is ReaderDoesntExistException ||
+            ex is UsernameAlreadyTakenException)
         {
             code = HttpStatusCode.Conflict;
         }
