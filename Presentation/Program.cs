@@ -17,7 +17,6 @@ using Domain.Content.Repositories;
 using Domain.Content.Services;
 using Domain.IAM.Repositories;
 using Domain.IAM.Services;
-using Domain.Monetization.Model.Aggregates;
 using Domain.Monetization.Repositories;
 using Domain.Monetization.Services;
 using Domain.Shared.Repositories;
@@ -30,7 +29,6 @@ using Infrastructure.IAM.Persistence.EFC.Repositories;
 using Infrastructure.IAM.Pipeline.Middleware.Extensions;
 using Infrastructure.IAM.Tokens.JWT.Configuration;
 using Infrastructure.IAM.Tokens.JWT.Services;
-using Infrastructure.Monetization.Model.Entities;
 using Infrastructure.Monetization.Persistence.EFC.Repositories;
 using Infrastructure.Shared.Interfaces.ASP.Configuration;
 using Infrastructure.Shared.Persistence.EFC.Configuration;
@@ -139,12 +137,8 @@ builder.Services.AddScoped<IAdminQueryService, AdminQueryService>();
 
 
 
-builder.Services.AddScoped<Observer, SubscriptionObserver>();
-
-
 // Connect DB
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
 builder.Services.AddDbContext<AppDbContext>(
     dbContextOptions =>
     {

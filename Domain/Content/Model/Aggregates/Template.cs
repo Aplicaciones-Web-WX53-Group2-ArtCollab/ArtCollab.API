@@ -16,7 +16,10 @@ public partial class Template
     
     public int PortfolioId { get; set; }
     
+    public int TemplateStateId { get; set; }
+    
     public Portfolio Portfolio { get; set; }
+    public TemplateState TemplateState { get; set; }
     
     
 }
@@ -30,9 +33,11 @@ public partial class Template {
         Type = string.Empty;
         ImgUrl = string.Empty;
         Genre = string.Empty;
+        Portfolio = new Portfolio();
+        TemplateState = new TemplateState();
     }
 
-    public Template(CreateTemplateCommand command, Portfolio portfolio)
+    public Template(CreateTemplateCommand command, Portfolio portfolio, TemplateState templateState)
     {
         Title = command.Title;
         Description = command.Description;
@@ -40,6 +45,7 @@ public partial class Template {
         ImgUrl = command.ImgUrl;
         Genre = command.Genre;
         Portfolio = portfolio;
+        TemplateState = templateState;
     }
 }
 

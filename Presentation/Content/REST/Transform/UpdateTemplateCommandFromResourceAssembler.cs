@@ -10,6 +10,6 @@ public class UpdateTemplateCommandFromResourceAssembler
         return new UpdateTemplateCommand(id,resource.Title, resource.Description, resource.Type,
             resource.ImgUrl,
             resource.Genre,resource.PortfolioTitle, resource.PortfolioDescription, 
-            resource.PortfolioQuantity);
+            resource.PortfolioQuantity,resource.TemplateState);
     }
 }

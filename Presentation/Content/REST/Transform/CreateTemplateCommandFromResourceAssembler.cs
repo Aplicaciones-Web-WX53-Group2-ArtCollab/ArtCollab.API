@@ -11,6 +11,6 @@ public class CreateTemplateCommandFromResourceAssembler
         return new CreateTemplateCommand(createTemplateResource.Title, createTemplateResource.Description,
             createTemplateResource.Type, createTemplateResource.ImgUrl, createTemplateResource.Genre,
             createTemplateResource.PortfolioTitle, createTemplateResource.PortfolioDescription, 
-            createTemplateResource.PortfolioQuantity);
+            createTemplateResource.PortfolioQuantity, createTemplateResource.TemplateState);
     }
 }

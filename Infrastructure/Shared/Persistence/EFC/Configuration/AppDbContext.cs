@@ -4,7 +4,6 @@ using Domain.Content.Model.Entities;
 using Domain.IAM.Model.Aggregates;
 using Domain.Monetization.Model.Aggregates;
 using Domain.User.Model.Aggregates;
-using Infrastructure.Monetization.Model.Aggregates;
 using Infrastructure.Shared.Persistence.EFC.Configuration.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +17,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Comment> Comments { get; set; }
     public DbSet<Reader> Readers { get; set; }
     public DbSet<Portfolio> Portfolios { get; set; }
+    public DbSet<TemplateState> TemplateStates { get; set; }
     
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
@@ -70,6 +70,13 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         builder.Entity<Portfolio>().Property(p =>p.Quantity).IsRequired();
         builder.Entity<Template>().HasOne(t => t.Portfolio).WithMany(p => p.Templates)
             .HasForeignKey(t => t.PortfolioId);
+
+        builder.Entity<TemplateState>().ToTable("template_states");
+        builder.Entity<TemplateState>().HasKey(ts => ts.Id);
+        builder.Entity<TemplateState>().Property(ts => ts.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<TemplateState>().Property(ts => ts.Flag).IsRequired();
+        builder.Entity<Template>().HasOne(s => s.TemplateState).WithMany(t => t.Templates)
+            .HasForeignKey(t => t.TemplateStateId);
 
         builder.Entity<Comment>().ToTable("comments");
         builder.Entity<Comment>().HasKey(c => c.Id);

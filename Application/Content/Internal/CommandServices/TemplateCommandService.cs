@@ -11,8 +11,9 @@ public class TemplateCommandService(IUnitOfWork unitOfWork, ITemplateRepository 
 {
     public async Task<Template?> Handle(CreateTemplateCommand command)
     {
+        var templateState = new TemplateState(command.TemplateState);
         var portfolio = new Portfolio(command.PortfolioTitle,command.PortfolioDescription, command.PortfolioQuantity);
-        var template = new Template(command,portfolio);
+        var template = new Template(command,portfolio, templateState);
         var templateWithTitleExists = templateRepository.TemplateByTitleExists(command.Title);
         if (templateWithTitleExists)
         {
@@ -32,6 +33,10 @@ public class TemplateCommandService(IUnitOfWork unitOfWork, ITemplateRepository 
         template.Type = command.Type;
         template.ImgUrl = command.ImgUrl;
         template.Genre = command.Genre;
+        template.Portfolio.Title = command.PortfolioTitle;
+        template.Portfolio.Description = command.PortfolioDescription;
+        template.Portfolio.Quantity = command.PortfolioQuantity;
+        template.TemplateState.Flag = command.TemplateState;
         templateRepository.Update(template);
         await unitOfWork.CompleteAsync();
         return template;
