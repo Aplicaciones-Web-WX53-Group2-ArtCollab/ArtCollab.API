@@ -4,6 +4,7 @@ using Domain.Content.Model.Entities;
 using Domain.Content.Repositories;
 using Domain.Content.Services;
 using Domain.Shared.Repositories;
+using Shared;
 
 namespace Application.Content.Internal.CommandServices;
 
@@ -17,7 +18,7 @@ public class TemplateCommandService(IUnitOfWork unitOfWork, ITemplateRepository 
         var templateWithTitleExists = templateRepository.TemplateByTitleExists(command.Title);
         if (templateWithTitleExists)
         {
-            throw new Exception("Template with the same title already exists.");
+            throw new TemplateWithTheSameTitleAlreadyExistException();
         }
         await templateRepository.AddAsync(template);
         await unitOfWork.CompleteAsync();

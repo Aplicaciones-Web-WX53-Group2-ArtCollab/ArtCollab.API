@@ -31,6 +31,7 @@ using Infrastructure.IAM.Tokens.JWT.Configuration;
 using Infrastructure.IAM.Tokens.JWT.Services;
 using Infrastructure.Monetization.Persistence.EFC.Repositories;
 using Infrastructure.Shared.Interfaces.ASP.Configuration;
+using Infrastructure.Shared.Interfaces.Middleware;
 using Infrastructure.Shared.Persistence.EFC.Configuration;
 using Infrastructure.Shared.Persistence.EFC.Repositories;
 using Infrastructure.Users.Persistence.EFC;
@@ -165,6 +166,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // Add authorization middleware to pipeline
+app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseRequestAuthorization();
 
 app.UseHttpsRedirection();

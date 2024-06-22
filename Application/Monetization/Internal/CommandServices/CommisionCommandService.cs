@@ -3,6 +3,7 @@ using Domain.Monetization.Model.Commands;
 using Domain.Monetization.Repositories;
 using Domain.Monetization.Services;
 using Domain.Shared.Repositories;
+using Shared;
 
 namespace Application.Monetization.Internal.CommandServices;
 
@@ -13,7 +14,7 @@ public class CommisionCommandService(IUnitOfWork unitOfWork, ICommisionRepositor
         var commision = new Commision(command);
         if (commision.Amount <= 0)
         {
-            throw new ArgumentException("Amount must be greater than 0");
+            throw new InvalidCommisionAmountException();
         }
         await commisionRepository.AddAsync(commision);
         await unitOfWork.CompleteAsync();

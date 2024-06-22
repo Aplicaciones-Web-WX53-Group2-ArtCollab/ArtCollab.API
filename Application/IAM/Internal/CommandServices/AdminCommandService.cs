@@ -4,6 +4,7 @@ using Domain.IAM.Model.Commands;
 using Domain.IAM.Repositories;
 using Domain.IAM.Services;
 using Domain.Shared.Repositories;
+using Shared;
 
 namespace Application.IAM.Internal.CommandServices;
 
@@ -13,9 +14,9 @@ public class AdminCommandService(IUnitOfWork unitOfWork, IAdminRepository
     public async Task<(Admin admin, string token)> Handle(SignInCommand command)
     {
         var admin = await adminRepository.FindByUsernameAsync(command.Username);
-        
+
         if (admin is null || !hashingService.VerifyPassword(command.Password, admin.PasswordHash))
-            throw new Exception("Invalid username or password");
+            throw new InvalidUsernameOrPasswordException();
 
         var token = tokenService.GenerateToken(admin);
 
@@ -25,7 +26,7 @@ public class AdminCommandService(IUnitOfWork unitOfWork, IAdminRepository
     public async Task Handle(SignUpCommand command)
     {
         if (adminRepository.ExistsByUsername(command.Username))
-            throw new Exception($"Username {command.Username} is already taken");
+            throw new UsernameAlreadyTakenException($"Username {command.Username} is already taken");
 
         var hashedPassword = hashingService.HashPassword(command.Password);
         var user = new Admin(command.Username, hashedPassword);
@@ -36,7 +37,7 @@ public class AdminCommandService(IUnitOfWork unitOfWork, IAdminRepository
         }
         catch (Exception e)
         {
-            throw new Exception($"An error occurred while creating the user: {e.Message}");
+            throw new ErrorOcurredWhileCreatingUserException($"An error occurred while creating the user: {e.Message}");
         }
     }
 }
