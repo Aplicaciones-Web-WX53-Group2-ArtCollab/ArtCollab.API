@@ -20,22 +20,21 @@ public class TemplateTestPresentation
         var mockTemplateQueryService = new Mock<ITemplateQueryService>();
         var controller = new TemplateController(mockTemplateCommandService.Object, mockTemplateQueryService.Object);
         var command = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre","ExamplePortfolioTitle", "ExamplePortfolioDescription",1,false);
-        var portfolio = new Portfolio();
-        var templateState = new TemplateState(command.TemplateState);
-        var template = new Template(command,portfolio,templateState);
-        var templateResource = new CreateTemplateResource(template.Title, template.Description, template.Type,
-            template.ImgUrl, template.Genre,template.Portfolio.Title,template.Portfolio.Description,template.Portfolio.Quantity,template.TemplateState.Flag);
-        
+        var templateResource = new CreateTemplateResource(command.Title, command.Description, command.Type,
+            command.ImgUrl, command.Genre, command.PortfolioTitle, command.PortfolioDescription, command.PortfolioQuantity, command.TemplateState);
+    
+        var expectedTemplate = new Template(command, new Portfolio(), new TemplateState(command.TemplateState));
+        mockTemplateCommandService.Setup(x => x.Handle(command)).ReturnsAsync(expectedTemplate);
+    
         //Act
-        mockTemplateCommandService.Setup(x => x.Handle(command)).ReturnsAsync(template);
         var result = await controller.CreateTemplate(templateResource);
-        
+    
         //Assert
         var objectResult = Assert.IsType<ObjectResult>(result);
         Assert.Equal(201, objectResult.StatusCode);
-        
+    
         var returnedTemplateResource = Assert.IsType<TemplateResource>(objectResult.Value);
-        Assert.Equal(templateResource.Title, returnedTemplateResource.Title);
+        Assert.Equal(templateResource.TemplateState, returnedTemplateResource.TemplateState);
     }
 
     [Fact]
