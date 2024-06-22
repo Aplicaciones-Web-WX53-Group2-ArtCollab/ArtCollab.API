@@ -18,6 +18,9 @@ public partial class Template
     
     public int TemplateStateId { get; set; }
     
+    
+    public TemplateHistory HistoryTemplate { get;  }
+    
     public Portfolio Portfolio { get; set; }
     public TemplateState TemplateState { get; set; }
     
@@ -46,6 +49,8 @@ public partial class Template {
         Genre = command.Genre;
         Portfolio = portfolio;
         TemplateState = templateState;
+        CreatedDate = DateTime.Now;
+        HistoryTemplate = new TemplateHistory();
     }
 }
 

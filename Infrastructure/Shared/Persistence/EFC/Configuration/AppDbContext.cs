@@ -77,6 +77,14 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         builder.Entity<TemplateState>().Property(ts => ts.Flag).IsRequired();
         builder.Entity<Template>().HasOne(s => s.TemplateState).WithMany(t => t.Templates)
             .HasForeignKey(t => t.TemplateStateId);
+        
+        builder.Entity<TemplateHistory>().ToTable("template_histories");
+        builder.Entity<TemplateHistory>().HasKey(th => th.Id);
+        builder.Entity<TemplateHistory>().Property(th => th.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<TemplateHistory>().Property(th => th.DeleteAt).IsRequired();
+        builder.Entity<TemplateHistory>().Property(th => th.ModifiedAt).IsRequired();
+        builder.Entity<TemplateHistory>().HasOne(s => s.Template).WithOne( t => t.HistoryTemplate)
+            .HasForeignKey<TemplateHistory>(t => t.TemplateId);
 
         builder.Entity<Comment>().ToTable("comments");
         builder.Entity<Comment>().HasKey(c => c.Id);

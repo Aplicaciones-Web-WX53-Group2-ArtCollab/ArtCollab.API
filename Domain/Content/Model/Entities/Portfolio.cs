@@ -25,6 +25,7 @@ public partial class Portfolio
         Title = title;
         Description = description;
         Quantity = quantity;
+        CreatedDate = DateTime.Now;
     }
     
 }

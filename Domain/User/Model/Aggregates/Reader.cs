@@ -34,6 +34,5 @@ public partial class  Reader
         Type = command.Type;
         ImgUrl = command.ImgUrl;
         CreatedDate = DateTime.Now;
-        UpdatedDate = null;
     }
 }
