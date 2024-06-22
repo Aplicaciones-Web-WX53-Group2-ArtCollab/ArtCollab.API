@@ -9,6 +9,8 @@ public class CreateTemplateCommandFromResourceAssembler
     public static CreateTemplateCommand ToResourceFromEntity(CreateTemplateResource createTemplateResource)
     {
         return new CreateTemplateCommand(createTemplateResource.Title, createTemplateResource.Description,
-            createTemplateResource.Type, createTemplateResource.ImgUrl, createTemplateResource.Genre);
+            createTemplateResource.Type, createTemplateResource.ImgUrl, createTemplateResource.Genre,
+            createTemplateResource.PortfolioTitle, createTemplateResource.PortfolioDescription, 
+            createTemplateResource.PortfolioQuantity);
     }
 }

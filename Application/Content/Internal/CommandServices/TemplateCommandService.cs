@@ -1,5 +1,6 @@
 using Domain.Content.Model.Aggregates;
 using Domain.Content.Model.Commands;
+using Domain.Content.Model.Entities;
 using Domain.Content.Repositories;
 using Domain.Content.Services;
 using Domain.Shared.Repositories;
@@ -10,7 +11,8 @@ public class TemplateCommandService(IUnitOfWork unitOfWork, ITemplateRepository 
 {
     public async Task<Template?> Handle(CreateTemplateCommand command)
     {
-        var template = new Template(command);
+        var portfolio = new Portfolio(command.PortfolioTitle,command.PortfolioDescription, command.PortfolioQuantity);
+        var template = new Template(command,portfolio);
         var templateWithTitleExists = templateRepository.TemplateByTitleExists(command.Title);
         if (templateWithTitleExists)
         {

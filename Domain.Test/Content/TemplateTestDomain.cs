@@ -2,6 +2,7 @@
 
 using Domain.Content.Model.Aggregates;
 using Domain.Content.Model.Commands;
+using Domain.Content.Model.Entities;
 using Domain.Content.Model.Queries;
 using Domain.Content.Repositories;
 using Domain.Content.Services;
@@ -15,8 +16,9 @@ public class TemplateTestDomain
   public async Task CreateTemplateWorking()
   {
      //Arrange
-     var command = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre");
-     var template = new Template(command);
+     var command = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre","ExamplePortfolio","ExampleDescription",10);
+     var portfolio = new Portfolio();
+     var template = new Template(command,portfolio);
      var mockTemplateCommandService = new Mock<ITemplateCommandService>();
      //ACT
      mockTemplateCommandService.Setup(x => x.Handle(command)).ReturnsAsync(template);
@@ -31,7 +33,7 @@ public class TemplateTestDomain
   public void UpdateTemplateWorking()
   {
         //Arrange
-      var command = new UpdateTemplateCommand(1, "ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre");
+      var command = new UpdateTemplateCommand(1, "ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre","ExamplePortfolio","ExampleDescription",10);
       var mockTemplateRepository = new Mock<ITemplateRepository>();
       var template = new Template();
       
@@ -132,10 +134,11 @@ public class TemplateTestDomain
   public async Task BusinessRulesAreWorking()
   {
       //Arrange
-      var newCommand = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre");
-      var repeatCommand = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre");
+      var newCommand = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre","ExamplePortfolio","ExampleDescription",10);
+      var repeatCommand = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre","ExamplePortfolio","ExampleDescription",10);
       var mockTemplateCommandService = new Mock<ITemplateCommandService>();
-      var newTemplate = new Template(newCommand);
+      var portfolio = new Portfolio();
+      var newTemplate = new Template(newCommand,portfolio);
       
       //Act
       mockTemplateCommandService.Setup(x => x.Handle(newCommand)).ReturnsAsync(newTemplate);

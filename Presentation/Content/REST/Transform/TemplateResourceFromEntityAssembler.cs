@@ -5,7 +5,7 @@ namespace Presentation.Content.REST.Transform;
 
 public class TemplateResourceFromEntityAssembler
 {
-    public static TemplateResource ToResourceFromEntity(Template? template)
+    public static TemplateResource ToResourceFromEntity(Template template)
     {
         return new TemplateResource(template.Id, template.Title, template.Description, template.Type, template.ImgUrl,
             template.Genre);

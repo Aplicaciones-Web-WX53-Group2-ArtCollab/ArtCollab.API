@@ -1,5 +1,6 @@
 using Domain.Content.Model.Aggregates;
 using Domain.Content.Model.Commands;
+using Domain.Content.Model.Entities;
 using Domain.Content.Model.Queries;
 using Domain.Content.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -18,10 +19,11 @@ public class TemplateTestPresentation
         var mockTemplateCommandService = new Mock<ITemplateCommandService>();
         var mockTemplateQueryService = new Mock<ITemplateQueryService>();
         var controller = new TemplateController(mockTemplateCommandService.Object, mockTemplateQueryService.Object);
-        var command = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre");
-        var template = new Template(command);
+        var command = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre","ExamplePortfolioTitle", "ExamplePortfolioDescription",1);
+        var portfolio = new Portfolio();
+        var template = new Template(command,portfolio);
         var templateResource = new CreateTemplateResource(template.Title, template.Description, template.Type,
-            template.ImgUrl, template.Genre);
+            template.ImgUrl, template.Genre,template.Portfolio.Title,template.Portfolio.Description,template.Portfolio.Quantity);
         
         //Act
         mockTemplateCommandService.Setup(x => x.Handle(command)).ReturnsAsync(template);
@@ -43,8 +45,9 @@ public class TemplateTestPresentation
         var controller = new TemplateController(mockTemplateCommandService.Object, mockTemplateQueryService.Object);
         var deleteTemplateResource = new DeleteTemplateResource(1);
         var deleteCommand = new DeleteTemplateCommand(deleteTemplateResource.Id);
-        var createCommand = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre");
-        var template = new Template(createCommand);
+        var createCommand = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre","ExamplePortfolioTitle", "ExamplePortfolioDescription",1);
+        var portfolio = new Portfolio();
+        var template = new Template(createCommand,portfolio);
         var templateResource = new DeleteTemplateResource(template.Id);
         
         //Act
@@ -66,11 +69,12 @@ public class TemplateTestPresentation
         var mockTemplateCommandService = new Mock<ITemplateCommandService>();
         var mockTemplateQueryService = new Mock<ITemplateQueryService>();
         var controller = new TemplateController(mockTemplateCommandService.Object, mockTemplateQueryService.Object);
-        var createCommand = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre");
-        var template = new Template(createCommand);
-        var templateResource = new UpdateTemplateResource(template.Title, template.Description, template.Type, template.ImgUrl, template.Genre);
-        var updateCommand = new UpdateTemplateCommand(template.Id, template.Title, template.Description, template.Type, template.ImgUrl, template.Genre);
-        var updateTemplateResource = new UpdateTemplateResource(template.Title, template.Description, template.Type, template.ImgUrl, template.Genre);
+        var createCommand = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre","ExamplePortfolioTitle", "ExamplePortfolioDescription",1);
+        var portfolio = new Portfolio();
+        var template = new Template(createCommand,portfolio);
+        var templateResource = new UpdateTemplateResource(template.Title, template.Description, template.Type, template.ImgUrl, template.Genre,template.Portfolio.Title,template.Portfolio.Description,template.Portfolio.Quantity);
+        var updateCommand = new UpdateTemplateCommand(template.Id, template.Title, template.Description, template.Type, template.ImgUrl, template.Genre,template.Portfolio.Title,template.Portfolio.Description,template.Portfolio.Quantity);
+        var updateTemplateResource = new UpdateTemplateResource(template.Title, template.Description, template.Type, template.ImgUrl, template.Genre,template.Portfolio.Title,template.Portfolio.Description,template.Portfolio.Quantity);
         
         //Act
         mockTemplateCommandService.Setup(x => x.Handle(
@@ -95,8 +99,9 @@ public class TemplateTestPresentation
         var mockTemplateCommandService = new Mock<ITemplateCommandService>();
         var mockTemplateQueryService = new Mock<ITemplateQueryService>();
         var controller = new TemplateController(mockTemplateCommandService.Object, mockTemplateQueryService.Object);
-        var command = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre");
-        var template = new Template(command);
+        var command = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre","ExamplePortfolio","ExampleDescription",10);
+        var portfolio = new Portfolio();
+        var template = new Template(command,portfolio);
         var query = new GetTemplateByIdQuery(template.Id);
         var templateResource = new TemplateResource(template.Id, template.Title, template.Description, template.Type, template.ImgUrl, template.Genre);
         
@@ -117,8 +122,10 @@ public class TemplateTestPresentation
         var mockTemplateCommandService = new Mock<ITemplateCommandService>();
         var mockTemplateQueryService = new Mock<ITemplateQueryService>();
         var controller = new TemplateController(mockTemplateCommandService.Object, mockTemplateQueryService.Object);
-        var command = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre");
-        var template = new Template(command);
+        var command = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl",
+            "ExampleGenre", "ExamplePortfolioTitle", "ExamplePortfolioDescription",1);
+        var portfolio = new Portfolio();
+        var template = new Template(command,portfolio);
         var query = new GetAllTemplatesQuery();
         var templateResource = new TemplateResource(template.Id, template.Title, template.Description, template.Type, template.ImgUrl, template.Genre);
         
@@ -138,8 +145,10 @@ public class TemplateTestPresentation
         var mockTemplateCommandService = new Mock<ITemplateCommandService>();
         var mockTemplateQueryService = new Mock<ITemplateQueryService>();
         var controller = new TemplateController(mockTemplateCommandService.Object, mockTemplateQueryService.Object);
-        var command = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre");
-        var template = new Template(command);
+        var command = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", 
+            "ExampleImgUrl", "ExampleGenre","ExamplePortfolioTitle", "ExamplePortfolioDescription",1);
+        var portfolio = new Portfolio();
+        var template = new Template(command,portfolio);
         var query = new GetTemplatesByGenreQuery(template.Genre);
         var templateResource = new TemplateResource(template.Id, template.Title, template.Description, template.Type, template.ImgUrl, template.Genre);
         
@@ -160,8 +169,10 @@ public class TemplateTestPresentation
         var mockTemplateCommandService = new Mock<ITemplateCommandService>();
         var mockTemplateQueryService = new Mock<ITemplateQueryService>();
         var controller = new TemplateController(mockTemplateCommandService.Object, mockTemplateQueryService.Object);
-        var command = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre");
-        var template = new Template(command);
+        var command = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", 
+            "ExampleType", "ExampleImgUrl", "ExampleGenre","ExamplePortfolioTitle", "ExamplePortfolioDescription",1);
+        var portfolio = new Portfolio();
+        var template = new Template(command,portfolio);
         var query = new GetTemplateByDescriptionQuery(template.Description);
         var templateResource = new TemplateResource(template.Id, template.Title, template.Description, template.Type, template.ImgUrl, template.Genre);
         
@@ -182,8 +193,10 @@ public class TemplateTestPresentation
         var mockTemplateCommandService = new Mock<ITemplateCommandService>();
         var mockTemplateQueryService = new Mock<ITemplateQueryService>();
         var controller = new TemplateController(mockTemplateCommandService.Object, mockTemplateQueryService.Object);
-        var command = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", "ExampleImgUrl", "ExampleGenre");
-        var template = new Template(command);
+        var command = new CreateTemplateCommand("ExampleTitle", "ExampleDescription", "ExampleType", 
+            "ExampleImgUrl", "ExampleGenre","ExamplePortfolioTitle", "ExamplePortfolioDescription",1);
+        var portfolio = new Portfolio();
+        var template = new Template(command,portfolio);
         var query = new GetTemplateByCoverImageQuery(template.ImgUrl);
         var templateResource = new TemplateResource(template.Id, template.Title, template.Description, template.Type, template.ImgUrl, template.Genre);
         

@@ -1,5 +1,6 @@
 using Domain.Collaboration.Model.Aggregates;
 using Domain.Content.Model.Aggregates;
+using Domain.Content.Model.Entities;
 using Domain.IAM.Model.Aggregates;
 using Domain.Monetization.Model.Aggregates;
 using Domain.User.Model.Aggregates;
@@ -16,6 +17,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Template> Templates { get; set; }
     public DbSet<Comment> Comments { get; set; }
     public DbSet<Reader> Readers { get; set; }
+    public DbSet<Portfolio> Portfolios { get; set; }
     
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
@@ -44,10 +46,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         builder.Entity<Template>().Property(t => t.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Template>().Property(t => t.Description).IsRequired();
         builder.Entity<Template>().Property(t => t.Genre).IsRequired();
-        builder.Entity<Template>().Property(t => t.IsActive).IsRequired();
         builder.Entity<Template>().Property(t => t.Title).IsRequired();
         builder.Entity<Template>().Property(t => t.Type).IsRequired();
         builder.Entity<Template>().Property(t => t.ImgUrl).IsRequired();
+        builder.Entity<Template>().Property(t => t.PortfolioId).IsRequired();
         
         
         builder.Entity<Reader>().ToTable("readers");
@@ -59,6 +61,15 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         builder.Entity<Reader>().Property(r => r.Password).IsRequired();
         builder.Entity<Reader>().Property(r => r.Type).IsRequired();
         builder.Entity<Reader>().Property(r => r.ImgUrl).IsRequired();
+        
+        builder.Entity<Portfolio>().ToTable("portfolios");
+        builder.Entity<Portfolio>().HasKey(p => p.Id);
+        builder.Entity<Portfolio>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Portfolio>().Property(p => p.Description).IsRequired();
+        builder.Entity<Portfolio>().Property(p => p.Title).IsRequired();
+        builder.Entity<Portfolio>().Property(p =>p.Quantity).IsRequired();
+        builder.Entity<Template>().HasOne(t => t.Portfolio).WithMany(p => p.Templates)
+            .HasForeignKey(t => t.PortfolioId);
 
         builder.Entity<Comment>().ToTable("comments");
         builder.Entity<Comment>().HasKey(c => c.Id);
