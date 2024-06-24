@@ -155,14 +155,17 @@ builder.Services.AddDbContext<AppDbContext>(
         if (builder.Environment.IsDevelopment())
         {
             dbContextOptions.UseMySql(connectionString,
-                ServerVersion.AutoDetect(connectionString)
-            );
+                    ServerVersion.AutoDetect(connectionString)
+                ).LogTo(Console.WriteLine, LogLevel.Information)
+                .EnableDetailedErrors()
+                .EnableSensitiveDataLogging();
         }
         else if (builder.Environment.IsProduction())
         {
             dbContextOptions.UseMySql(productionConnectionString,
-                ServerVersion.AutoDetect(productionConnectionString)
-            );
+                    ServerVersion.AutoDetect(productionConnectionString)
+                ).LogTo(Console.WriteLine, LogLevel.Information)
+                .EnableDetailedErrors();
         }
     });
 
