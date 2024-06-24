@@ -102,6 +102,14 @@ builder.Services.AddSwaggerGen(
         options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
     });
 
+// Add CORS Policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllPolicy", policy => policy.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+});
+
 //dependency injection
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -140,12 +148,22 @@ builder.Services.AddScoped<IAdminQueryService, AdminQueryService>();
 
 // Connect DB
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var productionConnectionString = builder.Configuration.GetConnectionString("DeployedDataBase");
 builder.Services.AddDbContext<AppDbContext>(
     dbContextOptions =>
     {
-        dbContextOptions.UseMySql(connectionString,
-            ServerVersion.AutoDetect(connectionString)
-        );
+        if (builder.Environment.IsDevelopment())
+        {
+            dbContextOptions.UseMySql(connectionString,
+                ServerVersion.AutoDetect(connectionString)
+            );
+        }
+        else if (builder.Environment.IsProduction())
+        {
+            dbContextOptions.UseMySql(productionConnectionString,
+                ServerVersion.AutoDetect(productionConnectionString)
+            );
+        }
     });
 
 
@@ -168,6 +186,9 @@ if (app.Environment.IsDevelopment())
 // Add authorization middleware to pipeline
 app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseRequestAuthorization();
+
+//Add cors
+app.UseCors("AllowAllPolicy");
 
 app.UseHttpsRedirection();
 
