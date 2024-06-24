@@ -11,6 +11,7 @@ namespace Presentation.Content.REST
 {
     [Route("api/v1/content/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     [Produces((MediaTypeNames.Application.Json))]
     [ProducesResponseType(400)]
     [ProducesResponseType(500)]
