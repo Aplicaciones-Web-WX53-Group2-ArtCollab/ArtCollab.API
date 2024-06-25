@@ -6,7 +6,6 @@ using Shared;
 
 namespace Infrastructure.Shared.Interfaces.Middleware;
 
-/*
 public class ErrorHandlerMiddleware
 {
     private readonly RequestDelegate _next;
@@ -51,4 +50,4 @@ public class ErrorHandlerMiddleware
         context.Response.StatusCode = (int)code;
         await context.Response.WriteAsync(result);
     }
-}*/
+}
