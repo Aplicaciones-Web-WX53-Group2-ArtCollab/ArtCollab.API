@@ -14,6 +14,10 @@ public partial class Template
     
     public string Genre { get; set; }
     
+    public int Likes { get; set; }
+    
+    public int Views { get; set; }
+    
     public int PortfolioId { get; set; }
     
     public int TemplateStateId { get; set; }
@@ -36,6 +40,8 @@ public partial class Template {
         Type = string.Empty;
         ImgUrl = string.Empty;
         Genre = string.Empty;
+        Likes = 0;
+        Views = 0;
         Portfolio = new Portfolio();
         TemplateState = new TemplateState();
     }
@@ -47,6 +53,8 @@ public partial class Template {
         Type = command.Type;
         ImgUrl = command.ImgUrl;
         Genre = command.Genre;
+        Likes = command.Likes;
+        Views = command.Views;
         Portfolio = portfolio;
         TemplateState = templateState;
         CreatedDate = DateTime.Now;

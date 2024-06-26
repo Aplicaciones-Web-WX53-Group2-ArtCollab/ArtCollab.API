@@ -9,7 +9,7 @@ public class UpdateTemplateCommandFromResourceAssembler
     {
         return new UpdateTemplateCommand(id,resource.Title, resource.Description, resource.Type,
             resource.ImgUrl,
-            resource.Genre,resource.PortfolioTitle,  resource.Likes, resource.Views,resource.PortfolioDescription, 
+            resource.Genre, resource.Likes, resource.Views, resource.PortfolioTitle, resource.PortfolioDescription, 
             resource.PortfolioQuantity,resource.TemplateState);
     }
 }
