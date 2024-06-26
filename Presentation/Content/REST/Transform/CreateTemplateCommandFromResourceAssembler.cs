@@ -10,7 +10,7 @@ public class CreateTemplateCommandFromResourceAssembler
     {
         return new CreateTemplateCommand(createTemplateResource.Title, createTemplateResource.Description,
             createTemplateResource.Type, createTemplateResource.ImgUrl, createTemplateResource.Genre,
-            createTemplateResource.PortfolioTitle, createTemplateResource.PortfolioDescription, 
+            createTemplateResource.PortfolioTitle, createTemplateResource.Likes,createTemplateResource.Views,createTemplateResource.PortfolioDescription, 
             createTemplateResource.PortfolioQuantity, createTemplateResource.TemplateState);
     }
 }
